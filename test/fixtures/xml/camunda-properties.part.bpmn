@@ -1,0 +1,3 @@
+<camunda:properties xmlns:camunda="http://camunda.org/schema/1.0/bpmn">
+  <camunda:property />
+</camunda:properties>

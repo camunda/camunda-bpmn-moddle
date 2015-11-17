@@ -1,0 +1,12 @@
+<camunda:formData xmlns:camunda="http://camunda.org/schema/1.0/bpmn">
+  <camunda:formField
+      id="stringField"
+      label="String Field"
+      type="string"
+      defaultValue="someString">
+    <camunda:properties>
+      <camunda:property id="p1" value="property1"/>
+      <camunda:property id="p2" value="property2"/>
+    </camunda:properties>
+  </camunda:formField>
+</camunda:formData>
