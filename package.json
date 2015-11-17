@@ -1,0 +1,45 @@
+{
+  "name": "camunda-bpmn-moddle",
+  "version": "0.0.0",
+  "description": "Camunda moddle extensions for BPMN 2.0",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/camunda/camunda-bpmn-moddle"
+  },
+  "keywords": [
+    "bpmn",
+    "moddle",
+    "bpmn20",
+    "camunda",
+    "meta-model"
+  ],
+  "author": {
+    "name": "Nico Rehwaldt",
+    "url": "https://github.com/nikku"
+  },
+  "contributors": [
+    {
+      "name": "bpmn.io contributors",
+      "url": "https://github.com/bpmn-io"
+    }
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "grunt": "^0.4.2",
+    "grunt-contrib-jshint": "^0.7.2",
+    "grunt-contrib-watch": "^0.5.0",
+    "grunt-mocha-test": "^0.11.0",
+    "grunt-release": "^0.7.0",
+    "jsondiffpatch": "^0.1.4",
+    "load-grunt-tasks": "^0.3.0",
+    "xsd-schema-validator": "^0.3.0"
+  },
+  "dependencies": {
+    "lodash": "^3.0.0",
+    "bpmn-moddle": "^0.10.0"
+  }
+}
