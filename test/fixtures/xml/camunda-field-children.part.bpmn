@@ -1,0 +1,4 @@
+<camunda:field xmlns:camunda="http://camunda.org/schema/1.0/bpmn" name="html">
+  <camunda:expression><![CDATA[<html><body>Hi!</body></html>]]></camunda:expression>
+  <camunda:string>42 is the answer!</camunda:string>
+</camunda:field>

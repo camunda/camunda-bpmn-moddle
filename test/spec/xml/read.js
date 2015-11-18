@@ -721,6 +721,52 @@ describe('read', function() {
       });
     });
 
+
+    describe('camunda:field', function() {
+
+      it('attributes', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-field-attributes.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:Field', function(err, field) {
+
+          // then
+          expect(field).to.jsonEqual({
+            $type: 'camunda:Field',
+            name: 'html',
+            expression: '<html><body>Hi!</body></html>',
+            stringValue: '41 is not the answer!'
+          });
+
+          done(err);
+        });
+      });
+
+
+      it('with nested expression and string', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-field-children.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:Field', function(err, field) {
+
+          // then
+          expect(field).to.jsonEqual({
+            $type: 'camunda:Field',
+            name: 'html',
+            expression: '<html><body>Hi!</body></html>',
+            string: '42 is the answer!'
+          });
+
+          done(err);
+        });
+      });
+
+    });
+
   });
 
 });

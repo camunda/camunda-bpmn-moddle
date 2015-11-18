@@ -780,6 +780,30 @@
           "isAttr": true
         }
       ]
+    },
+    {
+      "name": "Field",
+      "superClass": [ "Element" ],
+      "properties": [
+        {
+          "name": "name",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "expression",
+          "type": "String",
+          "isAttr": true
+        },
+        {
+          "name": "string",
+          "type": "String"
+        },
+        {
+          "name": "stringValue",
+          "type": "String"
+        }
+      ]
     }
   ],
   "emumerations": [ ]

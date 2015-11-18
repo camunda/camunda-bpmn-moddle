@@ -1,0 +1,5 @@
+<camunda:field xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+  name="html"
+  expression="<html><body>Hi!</body></html>"
+  stringValue="41 is not the answer!"
+/>
