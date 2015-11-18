@@ -38,10 +38,7 @@
     "grunt-release": "^0.13.0",
     "jsondiffpatch": "^0.1.4",
     "load-grunt-tasks": "^0.3.0",
-    "xsd-schema-validator": "^0.3.0"
-  },
-  "dependencies": {
-    "bpmn-moddle": "^0.10.0",
-    "lodash": "^3.0.0"
+    "xsd-schema-validator": "^0.3.0",
+    "bpmn-moddle": "^0.10.0"
   }
 }
