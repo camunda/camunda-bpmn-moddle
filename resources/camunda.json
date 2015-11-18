@@ -178,6 +178,20 @@
       ]
     },
     {
+      "name": "FormalExpression",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:FormalExpression"
+      ],
+      "properties": [
+        {
+          "name": "resource",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
       "name": "Assignable",
       "extends": [ "bpmn:UserTask" ],
       "properties": [

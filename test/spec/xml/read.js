@@ -211,6 +211,28 @@ describe('read', function() {
     });
 
 
+    describe('camunda:resource', function() {
+
+      it('on FormalExpression', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/formalExpression-resource.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:FormalExpression', function(err, starter) {
+
+          // then
+          expect(starter).to.jsonEqual({
+            $type: 'bpmn:FormalExpression',
+            resource: 'deployment://some-file'
+          });
+
+          done(err);
+        });
+      });
+    });
+
+
     it('camunda:in', function(done) {
 
       // given
