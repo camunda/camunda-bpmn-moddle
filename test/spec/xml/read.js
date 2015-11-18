@@ -222,6 +222,26 @@ describe('read', function() {
     });
 
 
+    it('camunda:jobPriority', function(done) {
+
+      // given
+      var xml = readFile('test/fixtures/xml/process-camunda-jobPriority.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'bpmn:Process', function(err, proc) {
+
+        // then
+        expect(proc).to.jsonEqual({
+          $type: 'bpmn:Process',
+          jobPriority: 100
+        });
+
+        done(err);
+      });
+
+    });
+
+
     describe('bpmn:ScriptTask', function() {
 
       it('extended by camunda:resource, camunda:resultVariable', function(done) {

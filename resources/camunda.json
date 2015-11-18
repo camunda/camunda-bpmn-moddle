@@ -8,6 +8,21 @@
   "associations": [],
   "types": [
     {
+      "name": "JobPriorized",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:Process",
+        "bpmn:Activity"
+      ],
+      "properties": [
+        {
+          "name": "jobPriority",
+          "isAttr": true,
+          "type": "Integer"
+        }
+      ]
+    },
+    {
       "name": "InOutBinding",
       "isAbstract": true,
       "properties": [
