@@ -59,6 +59,25 @@ describe('read', function() {
     });
 
 
+    it('camunda:errorCodeVariable on ErrorEventDefinition', function(done) {
+
+      // given
+      var xml = readFile('test/fixtures/xml/camunda-errorCodeVariable-errorEventDefinition.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'bpmn:ErrorEventDefinition', function(err, definition) {
+
+        // then
+        expect(definition).to.jsonEqual({
+          $type: 'bpmn:ErrorEventDefinition',
+          errorCodeVariable: 'errorCode'
+        });
+
+        done(err);
+      });
+    });
+
+
     it.skip('camunda:properties', function(done) {
 
       // given

@@ -58,6 +58,20 @@
       ]
     },
     {
+      "name": "ErrorEventDefinition",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:ErrorEventDefinition"
+      ],
+      "properties": [
+        {
+          "name": "errorCodeVariable",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
       "name": "Assignable",
       "extends": [ "bpmn:UserTask" ],
       "properties": [
