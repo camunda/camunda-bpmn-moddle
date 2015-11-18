@@ -8,6 +8,44 @@
   "associations": [],
   "types": [
     {
+      "name": "In",
+      "isAbstract": true,
+      "properties": [
+        {
+          "name": "source",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "sourceExpression",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "target",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "businessKey",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "local",
+          "isAttr": true,
+          "type": "Boolean",
+          "default": false
+        },
+        {
+          "name": "variables",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+
+    {
       "name": "AsyncCapable",
       "isAbstract": true,
       "extends": [

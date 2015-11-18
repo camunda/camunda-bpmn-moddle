@@ -152,6 +152,29 @@ describe('read', function() {
     });
 
 
+    it('camunda:in', function(done) {
+
+      // given
+      var xml = readFile('test/fixtures/xml/camunda-in.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'camunda:In', function(err, properties) {
+
+        // then
+        expect(properties).to.jsonEqual({
+          $type: 'camunda:In',
+          sourceExpression: 'fooExp',
+          source: 'foo',
+          target: 'bar',
+          variables: 'all',
+          local: true
+        });
+
+        done(err);
+      });
+    });
+
+
     describe('bpmn:ScriptTask', function() {
 
       it('extended by camunda:resource, camunda:resultVariable', function(done) {
@@ -278,7 +301,7 @@ describe('read', function() {
           $type: 'camunda:TaskListener',
           event: 'create',
           class: 'org.camunda.bpm.engine.test.bpmn.usertask.UserTaskTestCreateTaskListener',
-          delegateExpression: "${myTaskListener}",
+          delegateExpression: '${myTaskListener}',
           expression: '${myTaskListener.notify(task, task.eventName)}'
         });
 

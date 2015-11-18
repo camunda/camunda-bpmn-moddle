@@ -1,0 +1,6 @@
+<camunda:in xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+            sourceExpression="fooExp"
+            source="foo"
+            target="bar"
+            variables="all"
+            local="true" />
