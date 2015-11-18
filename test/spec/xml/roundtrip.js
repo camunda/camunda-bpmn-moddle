@@ -14,11 +14,19 @@ describe('import -> export roundtrip', function() {
   });
 
 
+  function stripSpaces(xml) {
+    return xml.replace(/\s\/>/g, '/>')
+              .replace(/\n/g, '')
+              .replace(/>\s+</g, '><');
+  }
+
   function validateExport(file) {
 
     return function(done) {
 
       var xml = readFile(file);
+
+      xml = stripSpaces(xml);
 
       moddle.fromXML(xml, 'bpmn:Definitions', function(err, definitions) {
         if (err) {
@@ -30,6 +38,8 @@ describe('import -> export roundtrip', function() {
           if (err) {
             return done(err);
           }
+
+          savedXML = stripSpaces(savedXML);
 
           expect(savedXML).to.eql(xml);
 
