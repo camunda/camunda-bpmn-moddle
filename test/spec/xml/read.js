@@ -439,6 +439,29 @@ describe('read', function() {
     });
 
 
+    describe('camunda:formHandlerClass', function() {
+
+      it('on UserTask', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/userTask-camunda-formHandlerClass.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:UserTask', function(err, task) {
+
+          // then
+          expect(task).to.jsonEqual({
+            $type: 'bpmn:UserTask',
+            formHandlerClass: 'my.company.FormHandler'
+          });
+
+          done(err);
+        });
+      });
+
+    });
+
+
     it('bpmn:CallActivity', function(done) {
 
       // given
