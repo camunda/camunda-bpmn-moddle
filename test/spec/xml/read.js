@@ -230,6 +230,28 @@ describe('read', function() {
 
     });
 
+
+    it('camunda:taskListener', function(done) {
+
+      // given
+      var xml = readFile('test/fixtures/xml/camunda-taskListener.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'camunda:TaskListener', function(err, taskListener) {
+
+        // then
+        expect(taskListener).to.jsonEqual({
+          $type: 'camunda:TaskListener',
+          event: 'create',
+          class: 'org.camunda.bpm.engine.test.bpmn.usertask.UserTaskTestCreateTaskListener',
+          delegateExpression: "${myTaskListener}",
+          expression: '${myTaskListener.notify(task, task.eventName)}'
+        });
+
+        done(err);
+      });
+    });
+
   });
 
 });

@@ -1,0 +1,5 @@
+<camunda:taskListener xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+  event='create'
+  class='org.camunda.bpm.engine.test.bpmn.usertask.UserTaskTestCreateTaskListener'
+  delegateExpression="${myTaskListener}"
+  expression="${myTaskListener.notify(task, task.eventName)}" />
