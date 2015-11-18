@@ -24,6 +24,9 @@
     },
     {
       "name": "InOutBinding",
+      "superClass": [
+        "Element"
+      ],
       "isAbstract": true,
       "properties": [
         {
@@ -137,6 +140,9 @@
     },
     {
       "name": "PotentialStarter",
+      "superClass": [
+        "Element"
+      ],
       "properties": [
         {
           "name": "resourceAssignmentExpression",
@@ -517,7 +523,9 @@
     },
     {
       "name": "Value",
-      "superClass": [ "InputOutputParameterDefinition" ],
+      "superClass": [
+        "InputOutputParameterDefinition"
+      ],
       "properties": [
         {
           "name": "id",
@@ -551,6 +559,31 @@
         {
           "name": "value",
           "isBody": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "Field",
+      "superClass": [ "Element" ],
+      "properties": [
+        {
+          "name": "name",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "expression",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "stringValue",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "string",
           "type": "String"
         }
       ]
@@ -614,7 +647,11 @@
         {
           "name": "script",
           "type": "Script"
-         }
+        },
+        {
+          "name": "field",
+          "type": "Field"
+        }
       ]
     },
     {
@@ -640,6 +677,14 @@
           "name": "event",
           "isAttr": true,
           "type": "String"
+        },
+        {
+          "name": "script",
+          "type": "Script"
+        },
+        {
+          "name": "field",
+          "type": "Field"
         }
       ]
     },
@@ -783,30 +828,6 @@
           "name": "config",
           "type": "String",
           "isAttr": true
-        }
-      ]
-    },
-    {
-      "name": "Field",
-      "superClass": [ "Element" ],
-      "properties": [
-        {
-          "name": "name",
-          "type": "String",
-          "isAttr": true
-        },
-        {
-          "name": "expression",
-          "type": "String",
-          "isAttr": true
-        },
-        {
-          "name": "string",
-          "type": "String"
-        },
-        {
-          "name": "stringValue",
-          "type": "String"
         }
       ]
     }
