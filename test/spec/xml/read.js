@@ -555,6 +555,33 @@ describe('read', function() {
     });
 
 
+    it('camunda:formProperty', function(done) {
+      // given
+      var xml = readFile('test/fixtures/xml/camunda-formProperty.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'camunda:FormProperty', function(err, formProperty) {
+
+        // then
+        expect(formProperty).to.jsonEqual({
+          $type: 'camunda:FormProperty',
+          id: 'longProperty',
+          name: 'Property',
+          type: 'long',
+          required: 'true',
+          readable: 'true',
+          writable: 'true',
+          variable: 'SpeakerName',
+          expression: '#{address.street}',
+          datePattern: 'dd-MM-yyyy hh:mm',
+          default: '42'
+        });
+
+        done(err);
+      });
+    });
+
+
     describe('camunda:executionListener', function() {
 
       it('attributes', function(done) {

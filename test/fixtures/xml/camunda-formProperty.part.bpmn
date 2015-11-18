@@ -1,0 +1,13 @@
+<camunda:formProperty xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+  id="longProperty"
+  name="Property"
+  type="long"
+  required="true"
+  readable="true"
+  writable="true"
+  variable="SpeakerName"
+  expression="#{address.street}"
+  datePattern="dd-MM-yyyy hh:mm"
+  default="42"
+/>
+
