@@ -17,6 +17,12 @@
       ],
       "properties": [
         {
+          "name": "async",
+          "isAttr": true,
+          "type": "Boolean",
+          "default": false
+        },
+        {
           "name": "asyncBefore",
           "isAttr": true,
           "type": "Boolean",
@@ -33,6 +39,21 @@
           "isAttr": true,
           "type": "Boolean",
           "default": true
+        }
+      ]
+    },
+    {
+      "name": "SignalEventDefinition",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:SignalEventDefinition"
+      ],
+      "properties": [
+        {
+          "name": "async",
+          "isAttr": true,
+          "type": "Boolean",
+          "default": false
         }
       ]
     },

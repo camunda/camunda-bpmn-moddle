@@ -15,8 +15,51 @@ describe('read', function() {
       moddle = createModdle();
     });
 
+    describe('camunda:async', function() {
 
-    it('camunda:Properties', function(done) {
+      it('on ServiceTask', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-async-serviceTask.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:ServiceTask', function(err, serviceTask) {
+
+          // then
+          expect(serviceTask).to.jsonEqual({
+            $type: 'bpmn:ServiceTask',
+            async: true
+          });
+
+          done(err);
+        });
+
+      });
+
+
+      it('on SignalEventDefinition', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-async-signalEventDefinition.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:SignalEventDefinition', function(err, definition) {
+
+          // then
+          expect(definition).to.jsonEqual({
+            $type: 'bpmn:SignalEventDefinition',
+            async: true
+          });
+
+          done(err);
+        });
+
+      });
+
+    });
+
+
+    it.skip('camunda:properties', function(done) {
 
       // given
       var xml = readFile('test/fixtures/xml/camunda-properties.part.bpmn');
@@ -39,7 +82,7 @@ describe('read', function() {
     });
 
 
-    it('camunda:FormData', function(done) {
+    it.skip('camunda:formData', function(done) {
 
       // given
       var xml = readFile('test/fixtures/xml/camunda-formData.part.bpmn');
@@ -79,7 +122,7 @@ describe('read', function() {
     });
 
 
-    it('camunda:ExecutionListener', function(done) {
+    it('camunda:executionListener', function(done) {
 
       // given
       var xml = readFile('test/fixtures/xml/camunda-executionListener.part.bpmn');

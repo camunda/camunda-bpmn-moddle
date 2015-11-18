@@ -42,7 +42,7 @@ describe('import -> export roundtrip', function() {
 
     describe('bpmn:UserTask', function() {
 
-      it('camunda:FormData', validateExport('test/fixtures/xml/userTask-camunda-formData.bpmn'));
+      it.skip('camunda:FormData', validateExport('test/fixtures/xml/userTask-camunda-formData.bpmn'));
 
     });
 
