@@ -1,0 +1,7 @@
+<camunda:connector xmlns:camunda="http://camunda.org/schema/1.0/bpmn">
+  <camunda:connectorId>connector</camunda:connectorId>
+  <camunda:inputOutput>
+    <camunda:inputParameter name="in"/>
+    <camunda:outputParameter name="out"/>
+  </camunda:inputOutput>
+</camunda:connector>

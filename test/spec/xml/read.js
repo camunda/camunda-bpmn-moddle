@@ -129,6 +129,40 @@ describe('read', function() {
     });
 
 
+    it('camunda:connector', function(done) {
+
+      // given
+      var xml = readFile('test/fixtures/xml/camunda-connector.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'camunda:Connector', function(err, connector) {
+
+        // then
+        expect(connector).to.jsonEqual({
+          $type: 'camunda:Connector',
+          connectorId: 'connector',
+          inputOutput: {
+            $type: 'camunda:InputOutput',
+            inputParameters: [
+              {
+                $type: 'camunda:InputParameter',
+                name: 'in'
+              }
+            ],
+            outputParameters: [
+              {
+                $type: 'camunda:OutputParameter',
+                name: 'out'
+              }
+            ]
+          }
+        });
+
+        done(err);
+      });
+    });
+
+
     it('camunda:properties', function(done) {
 
       // given
@@ -244,7 +278,7 @@ describe('read', function() {
 
     describe('bpmn:ScriptTask', function() {
 
-      it('extended by camunda:resource, camunda:resultVariable', function(done) {
+      it('extended with camunda:resource, camunda:resultVariable', function(done) {
 
         // given
         var xml = readFile('test/fixtures/xml/scriptTask.part.bpmn');
@@ -317,13 +351,13 @@ describe('read', function() {
               values: [
                 {
                   $type: 'camunda:Value',
-                  id: "a",
-                  name: "A"
+                  id: 'a',
+                  name: 'A'
                 },
                 {
                   $type: 'camunda:Value',
-                  id: "b",
-                  name: "B"
+                  id: 'b',
+                  name: 'B'
                 }
               ]
             }
