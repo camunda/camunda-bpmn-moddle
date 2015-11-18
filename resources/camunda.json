@@ -72,6 +72,20 @@
       ]
     },
     {
+      "name": "EscalationEventDefinition",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:EscalationEventDefinition"
+      ],
+      "properties": [
+        {
+          "name": "escalationCodeVariable",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
       "name": "Assignable",
       "extends": [ "bpmn:UserTask" ],
       "properties": [

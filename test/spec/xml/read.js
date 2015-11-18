@@ -78,6 +78,25 @@ describe('read', function() {
     });
 
 
+    it('camunda:escalationCodeVariable on EscalationEventDefinition', function(done) {
+
+      // given
+      var xml = readFile('test/fixtures/xml/camunda-escalationCodeVariable-escalationEventDefinition.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'bpmn:EscalationEventDefinition', function(err, definition) {
+
+        // then
+        expect(definition).to.jsonEqual({
+          $type: 'bpmn:EscalationEventDefinition',
+          escalationCodeVariable: 'escalationCode'
+        });
+
+        done(err);
+      });
+    });
+
+
     it.skip('camunda:properties', function(done) {
 
       // given
