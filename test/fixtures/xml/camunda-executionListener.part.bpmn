@@ -1,0 +1,3 @@
+<camunda:executionListener xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+  event="start"
+  class="my.company.Listener" />

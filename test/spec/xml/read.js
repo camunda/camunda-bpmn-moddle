@@ -16,7 +16,7 @@ describe('read', function() {
     });
 
 
-    it('camunda:properties', function(done) {
+    it('camunda:Properties', function(done) {
 
       // given
       var xml = readFile('test/fixtures/xml/camunda-properties.part.bpmn');
@@ -39,7 +39,7 @@ describe('read', function() {
     });
 
 
-    it('camunda:formData', function(done) {
+    it('camunda:FormData', function(done) {
 
       // given
       var xml = readFile('test/fixtures/xml/camunda-formData.part.bpmn');
@@ -78,6 +78,26 @@ describe('read', function() {
 
     });
 
+
+    it('camunda:ExecutionListener', function(done) {
+
+      // given
+      var xml = readFile('test/fixtures/xml/camunda-executionListener.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'camunda:ExecutionListener', function(err, executionListener) {
+
+        // then
+        expect(executionListener).to.jsonEqual({
+          $type: 'camunda:ExecutionListener',
+          event: 'start',
+          'class': 'my.company.Listener'
+        });
+
+        done(err);
+      });
+
+    });
   });
 
 });
