@@ -186,6 +186,31 @@ describe('read', function() {
     });
 
 
+    it('camunda:potentialStarter', function(done) {
+
+      // given
+      var xml = readFile('test/fixtures/xml/camunda-potentialStarter.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'camunda:PotentialStarter', function(err, starter) {
+
+        // then
+        expect(starter).to.jsonEqual({
+          $type: 'camunda:PotentialStarter',
+          resourceAssignmentExpression: {
+            $type: 'bpmn:ResourceAssignmentExpression',
+            expression: {
+              $type: 'bpmn:FormalExpression',
+              body: 'group2, group(group3), user(user3)'
+            }
+          }
+        });
+
+        done(err);
+      });
+    });
+
+
     it('camunda:in', function(done) {
 
       // given

@@ -1,0 +1,6 @@
+<camunda:potentialStarter xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                          xmlns:camunda="http://camunda.org/schema/1.0/bpmn">
+  <resourceAssignmentExpression>
+    <formalExpression>group2, group(group3), user(user3)</formalExpression>
+  </resourceAssignmentExpression>
+</camunda:potentialStarter>

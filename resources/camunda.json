@@ -136,6 +136,15 @@
       ]
     },
     {
+      "name": "PotentialStarter",
+      "properties": [
+        {
+          "name": "resourceAssignmentExpression",
+          "type": "bpmn:ResourceAssignmentExpression"
+        }
+      ]
+    },
+    {
       "name": "ScriptTask",
       "isAbstract": true,
       "extends": [
