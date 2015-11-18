@@ -1,0 +1,8 @@
+<camunda:inputParameter xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+                        name="var1">
+  <camunda:list>
+    <camunda:value>${1+1}</camunda:value>
+    <camunda:value>${1+2}</camunda:value>
+    <camunda:value>${1+3}</camunda:value>
+  </camunda:list>
+</camunda:inputParameter>

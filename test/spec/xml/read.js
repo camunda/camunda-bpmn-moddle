@@ -232,6 +232,166 @@ describe('read', function() {
     });
 
 
+    describe('camunda:inputParameter', function() {
+
+      it('with body content', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-inputParameter-body.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:InputParameter', function(err, parameter) {
+
+          // then
+          expect(parameter).to.jsonEqual({
+            $type: 'camunda:InputParameter',
+            name: 'foo',
+            value: 'BAR'
+          });
+
+          done(err);
+        });
+      });
+
+
+      it('with nested script', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-inputParameter-script.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:InputParameter', function(err, parameter) {
+
+          // then
+          expect(parameter).to.jsonEqual({
+            $type: 'camunda:InputParameter',
+            definition: {
+              $type: 'camunda:Script'
+            }
+          });
+
+          done(err);
+        });
+      });
+
+
+      it('with nested list', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-inputParameter-list.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:InputParameter', function(err, parameter) {
+
+          // then
+          expect(parameter).to.jsonEqual({
+            $type: 'camunda:InputParameter',
+            name: 'var1',
+            definition: {
+              $type: 'camunda:List',
+              items: [
+                {
+                  $type: 'camunda:Value',
+                  value: '${1+1}'
+                },
+                {
+                  $type: 'camunda:Value',
+                  value: '${1+2}'
+                },
+                {
+                  $type: 'camunda:Value',
+                  value: '${1+3}'
+                }
+              ]
+            }
+          });
+
+          done(err);
+        });
+      });
+
+
+      it('with nested map', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-inputParameter-map.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:InputParameter', function(err, parameter) {
+
+          // then
+          expect(parameter).to.jsonEqual({
+            $type: 'camunda:InputParameter',
+            definition: {
+              $type: 'camunda:Map',
+              entries: [
+                {
+                  $type: 'camunda:Entry',
+                  key: 'a',
+                  value: '${1+1}'
+                },
+                {
+                  $type: 'camunda:Entry',
+                  key: 'b',
+                  value: '${1+2}'
+                },
+                {
+                  $type: 'camunda:Entry',
+                  key: 'c',
+                  value: '${1+3}'
+                }
+              ]
+            }
+          });
+
+          done(err);
+        });
+      });
+
+    });
+
+
+    describe('camunda:outputParameter', function() {
+
+      it('with mixed contents', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-outputParameter-mixed.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:OutputParameter', function(err, parameter) {
+
+          // then
+          expect(parameter).to.jsonEqual({
+            $type: 'camunda:OutputParameter',
+            name: 'var1',
+            definition: {
+              $type: 'camunda:List',
+              items: [
+                {
+                  $type: 'camunda:Value',
+                  value: 'constantStringValue'
+                },
+                {
+                  $type: 'camunda:Value',
+                  value: '${ \'elValue\' }'
+                },
+                {
+                  $type: 'camunda:Script',
+                  scriptFormat: 'Groovy',
+                  value: 'return "scriptValue";'
+                }
+              ]
+            }
+          });
+
+          done(err);
+        });
+      });
+
+    });
+
+
     it('bpmn:CallActivity', function(done) {
 
       // given

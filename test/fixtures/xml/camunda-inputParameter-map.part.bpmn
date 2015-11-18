@@ -1,0 +1,7 @@
+<camunda:inputParameter xmlns:camunda="http://camunda.org/schema/1.0/bpmn">
+  <camunda:map>
+    <camunda:entry key="a">${1+1}</camunda:entry>
+    <camunda:entry key="b">${1+2}</camunda:entry>
+    <camunda:entry key="c">${1+3}</camunda:entry>
+  </camunda:map>
+</camunda:inputParameter>

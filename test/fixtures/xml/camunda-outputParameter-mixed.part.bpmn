@@ -1,0 +1,10 @@
+<camunda:outputParameter xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+                         name="var1">
+  <camunda:list>
+    <camunda:value>constantStringValue</camunda:value>
+    <camunda:value>${ 'elValue' }</camunda:value>
+    <camunda:script scriptFormat="Groovy">
+      return "scriptValue";
+    </camunda:script>
+  </camunda:list>
+</camunda:outputParameter>

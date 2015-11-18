@@ -1,0 +1,3 @@
+<camunda:inputParameter xmlns:camunda="http://camunda.org/schema/1.0/bpmn">
+  <camunda:script />
+</camunda:inputParameter>

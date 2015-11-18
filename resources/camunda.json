@@ -449,6 +449,11 @@
         },
         {
           "name": "value",
+          "isBody": true,
+          "type": "String"
+        },
+        {
+          "name": "definition",
           "type": "InputOutputParameterDefinition"
         }
       ]
