@@ -72,6 +72,25 @@
       ]
     },
     {
+      "name": "ScriptTask",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:ScriptTask"
+      ],
+      "properties": [
+        {
+          "name": "resultVariable",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "resource",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
       "name": "EscalationEventDefinition",
       "isAbstract": true,
       "extends": [

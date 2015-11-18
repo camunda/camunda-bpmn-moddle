@@ -21,7 +21,7 @@ describe('read', function() {
       it('on ServiceTask', function(done) {
 
         // given
-        var xml = readFile('test/fixtures/xml/camunda-async-serviceTask.part.bpmn');
+        var xml = readFile('test/fixtures/xml/serviceTask-camunda-async.part.bpmn');
 
         // when
         moddle.fromXML(xml, 'bpmn:ServiceTask', function(err, serviceTask) {
@@ -41,7 +41,7 @@ describe('read', function() {
       it('on SignalEventDefinition', function(done) {
 
         // given
-        var xml = readFile('test/fixtures/xml/camunda-async-signalEventDefinition.part.bpmn');
+        var xml = readFile('test/fixtures/xml/signalEventDefinition-camunda-async.part.bpmn');
 
         // when
         moddle.fromXML(xml, 'bpmn:SignalEventDefinition', function(err, definition) {
@@ -60,41 +60,51 @@ describe('read', function() {
     });
 
 
-    it('camunda:errorCodeVariable on ErrorEventDefinition', function(done) {
+    describe('camunda:errorCodeVariable', function() {
 
-      // given
-      var xml = readFile('test/fixtures/xml/camunda-errorCodeVariable-errorEventDefinition.part.bpmn');
+      it('on ErrorEventDefinition', function(done) {
 
-      // when
-      moddle.fromXML(xml, 'bpmn:ErrorEventDefinition', function(err, definition) {
+        // given
+        var xml = readFile('test/fixtures/xml/errorEventDefinition-camunda-errorCodeVariable.part.bpmn');
 
-        // then
-        expect(definition).to.jsonEqual({
-          $type: 'bpmn:ErrorEventDefinition',
-          errorCodeVariable: 'errorCode'
+        // when
+        moddle.fromXML(xml, 'bpmn:ErrorEventDefinition', function(err, definition) {
+
+          // then
+          expect(definition).to.jsonEqual({
+            $type: 'bpmn:ErrorEventDefinition',
+            errorCodeVariable: 'errorCode'
+          });
+
+          done(err);
         });
 
-        done(err);
       });
+
     });
 
 
-    it('camunda:escalationCodeVariable on EscalationEventDefinition', function(done) {
+    describe('camunda:escalationCodeVariable', function() {
 
-      // given
-      var xml = readFile('test/fixtures/xml/camunda-escalationCodeVariable-escalationEventDefinition.part.bpmn');
+      it('on EscalationEventDefinition', function(done) {
 
-      // when
-      moddle.fromXML(xml, 'bpmn:EscalationEventDefinition', function(err, definition) {
+        // given
+        var xml = readFile('test/fixtures/xml/escalationEventDefinition-camunda-escalationCodeVariable.part.bpmn');
 
-        // then
-        expect(definition).to.jsonEqual({
-          $type: 'bpmn:EscalationEventDefinition',
-          escalationCodeVariable: 'escalationCode'
+        // when
+        moddle.fromXML(xml, 'bpmn:EscalationEventDefinition', function(err, definition) {
+
+          // then
+          expect(definition).to.jsonEqual({
+            $type: 'bpmn:EscalationEventDefinition',
+            escalationCodeVariable: 'escalationCode'
+          });
+
+          done(err);
         });
 
-        done(err);
       });
+
     });
 
 
@@ -141,6 +151,30 @@ describe('read', function() {
       });
     });
 
+
+    describe('bpmn:ScriptTask', function() {
+
+      it('extended by camunda:resource, camunda:resultVariable', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/scriptTask.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:ScriptTask', function(err, definition) {
+
+          // then
+          expect(definition).to.jsonEqual({
+            $type: 'bpmn:ScriptTask',
+            scriptFormat: 'python',
+            resource: 'some-file.py',
+            resultVariable: 'result'
+          });
+
+          done(err);
+        });
+      });
+
+    });
 
     it.skip('camunda:formData', function(done) {
 
