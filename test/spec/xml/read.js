@@ -483,6 +483,30 @@ describe('read', function() {
     });
 
 
+    describe('bpmn:Process', function() {
+
+      it('extended with camunda:candidateStarterUsers, camunda:candidateStarterGroups', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/process.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:Process', function(err, proc) {
+
+          // then
+          expect(proc).to.jsonEqual({
+            $type: 'bpmn:Process',
+            candidateStarterUsers: 'userInGroup2',
+            candidateStarterGroups: 'group1, group2, group3'
+          });
+
+          done(err);
+        });
+      });
+
+    });
+
+
     describe('bpmn:ScriptTask', function() {
 
       it('extended with camunda:resource, camunda:resultVariable', function(done) {
