@@ -195,7 +195,7 @@
       ]
     },
     {
-      "name": "Calling",
+      "name": "CallActivity",
       "extends": [ "bpmn:CallActivity" ],
       "properties": [
         {
@@ -206,6 +206,21 @@
         },
         {
           "name": "calledElementVersion",
+          "isAttr": true,
+          "type": "Integer"
+        },
+        {
+          "name": "caseRef",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "caseBinding",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "caseVersion",
           "isAttr": true,
           "type": "Integer"
         }

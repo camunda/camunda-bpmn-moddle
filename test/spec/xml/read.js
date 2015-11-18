@@ -158,10 +158,10 @@ describe('read', function() {
       var xml = readFile('test/fixtures/xml/camunda-in.part.bpmn');
 
       // when
-      moddle.fromXML(xml, 'camunda:In', function(err, properties) {
+      moddle.fromXML(xml, 'camunda:In', function(err, binding) {
 
         // then
-        expect(properties).to.jsonEqual({
+        expect(binding).to.jsonEqual({
           $type: 'camunda:In',
           sourceExpression: 'fooExp',
           source: 'foo',
@@ -181,10 +181,10 @@ describe('read', function() {
       var xml = readFile('test/fixtures/xml/camunda-out.part.bpmn');
 
       // when
-      moddle.fromXML(xml, 'camunda:Out', function(err, properties) {
+      moddle.fromXML(xml, 'camunda:Out', function(err, binding) {
 
         // then
-        expect(properties).to.jsonEqual({
+        expect(binding).to.jsonEqual({
           $type: 'camunda:Out',
           sourceExpression: 'fooExp',
           source: 'foo',
@@ -195,6 +195,30 @@ describe('read', function() {
 
         done(err);
       });
+    });
+
+
+    it('bpmn:CallActivity', function(done) {
+
+      // given
+      var xml = readFile('test/fixtures/xml/callActivity.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'bpmn:CallActivity', function(err, callActivity) {
+
+        // then
+        expect(callActivity).to.jsonEqual({
+          $type: 'bpmn:CallActivity',
+          calledElementBinding: 'version',
+          calledElementVersion: 1,
+          caseRef: 'oneTaskCase',
+          caseBinding: 'version',
+          caseVersion: 2
+        });
+
+        done(err);
+      });
+
     });
 
 
