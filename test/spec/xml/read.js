@@ -97,7 +97,7 @@ describe('read', function() {
     });
 
 
-    it.skip('camunda:properties', function(done) {
+    it('camunda:properties', function(done) {
 
       // given
       var xml = readFile('test/fixtures/xml/camunda-properties.part.bpmn');
