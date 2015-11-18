@@ -696,6 +696,11 @@
           "name": "default",
           "type": "String",
           "isAttr": true
+        },
+        {
+          "name": "values",
+          "type": "Value",
+          "isMany": true
         }
       ]
     },

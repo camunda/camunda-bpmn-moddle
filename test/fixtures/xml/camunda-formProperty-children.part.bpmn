@@ -1,0 +1,5 @@
+<camunda:formProperty xmlns:camunda="http://camunda.org/schema/1.0/bpmn">
+  <camunda:value id="false" name="Yes"/>
+  <camunda:value id="true" name="No"/>
+</camunda:formProperty>
+

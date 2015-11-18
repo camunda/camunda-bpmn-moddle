@@ -624,32 +624,64 @@ describe('read', function() {
     });
 
 
-    it('camunda:formProperty', function(done) {
-      // given
-      var xml = readFile('test/fixtures/xml/camunda-formProperty.part.bpmn');
+    describe('camunda:formProperty', function() {
 
-      // when
-      moddle.fromXML(xml, 'camunda:FormProperty', function(err, formProperty) {
+      it('attributes', function(done) {
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-formProperty-attributes.part.bpmn');
 
-        // then
-        expect(formProperty).to.jsonEqual({
-          $type: 'camunda:FormProperty',
-          id: 'longProperty',
-          name: 'Property',
-          type: 'long',
-          required: 'true',
-          readable: 'true',
-          writable: 'true',
-          variable: 'SpeakerName',
-          expression: '#{address.street}',
-          datePattern: 'dd-MM-yyyy hh:mm',
-          default: '42'
+        // when
+        moddle.fromXML(xml, 'camunda:FormProperty', function(err, formProperty) {
+
+          // then
+          expect(formProperty).to.jsonEqual({
+            $type: 'camunda:FormProperty',
+            id: 'longProperty',
+            name: 'Property',
+            type: 'long',
+            required: 'true',
+            readable: 'true',
+            writable: 'true',
+            variable: 'SpeakerName',
+            expression: '#{address.street}',
+            datePattern: 'dd-MM-yyyy hh:mm',
+            default: '42'
+          });
+
+          done(err);
         });
-
-        done(err);
       });
-    });
 
+
+      it('with nested value', function(done) {
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-formProperty-children.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:FormProperty', function(err, formProperty) {
+
+          // then
+          expect(formProperty).to.jsonEqual({
+            $type: 'camunda:FormProperty',
+            values: [
+              {
+                $type: 'camunda:Value',
+                id: 'false',
+                name: 'Yes'
+              },
+              {
+                $type: 'camunda:Value',
+                id: 'true',
+                name: 'No'
+              }
+            ]
+          });
+
+          done(err);
+        });
+      });
+
+    });
 
     describe('camunda:executionListener', function() {
 
