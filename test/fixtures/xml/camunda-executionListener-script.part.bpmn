@@ -1,0 +1,6 @@
+<camunda:executionListener xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+                           event="start">
+  <camunda:script scriptFormat="groovy">
+    foo = bar;
+  </camunda:script>
+</camunda:executionListener>

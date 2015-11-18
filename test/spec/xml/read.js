@@ -15,6 +15,7 @@ describe('read', function() {
       moddle = createModdle();
     });
 
+
     describe('camunda:async', function() {
 
       it('on ServiceTask', function(done) {
@@ -97,6 +98,27 @@ describe('read', function() {
     });
 
 
+    it('camunda:script', function(done) {
+
+      // given
+      var xml = readFile('test/fixtures/xml/camunda-script.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'camunda:Script', function(err, script) {
+
+        // then
+        expect(script).to.jsonEqual({
+          $type: 'camunda:Script',
+          scriptFormat: 'groovy',
+          resource: 'null',
+          value: 'foo = bar;'
+        });
+
+        done(err);
+      });
+    });
+
+
     it('camunda:properties', function(done) {
 
       // given
@@ -160,25 +182,54 @@ describe('read', function() {
     });
 
 
-    it('camunda:executionListener', function(done) {
+    describe('camunda:executionListener', function() {
 
-      // given
-      var xml = readFile('test/fixtures/xml/camunda-executionListener.part.bpmn');
+      it('attributes', function(done) {
 
-      // when
-      moddle.fromXML(xml, 'camunda:ExecutionListener', function(err, executionListener) {
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-executionListener.part.bpmn');
 
-        // then
-        expect(executionListener).to.jsonEqual({
-          $type: 'camunda:ExecutionListener',
-          event: 'start',
-          'class': 'my.company.Listener'
+        // when
+        moddle.fromXML(xml, 'camunda:ExecutionListener', function(err, executionListener) {
+
+          // then
+          expect(executionListener).to.jsonEqual({
+            $type: 'camunda:ExecutionListener',
+            event: 'start',
+            'class': 'my.company.Listener'
+          });
+
+          done(err);
         });
 
-        done(err);
+      });
+
+
+      it('script', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-executionListener-script.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:ExecutionListener', function(err, executionListener) {
+
+          // then
+          expect(executionListener).to.jsonEqual({
+            $type: 'camunda:ExecutionListener',
+            event: 'start',
+            script: {
+              $type: 'camunda:Script',
+              scriptFormat: 'groovy',
+              value: 'foo = bar;'
+            }
+          });
+
+          done(err);
+        });
       });
 
     });
+
   });
 
 });

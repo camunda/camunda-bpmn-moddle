@@ -371,12 +371,17 @@
       "superClass": [ "InputOutputParameterDefinition" ],
       "properties": [
         {
-          "name": "scriptLanguage",
+          "name": "scriptFormat",
           "isAttr": true,
           "type": "String"
         },
         {
-          "name": "source",
+          "name": "resource",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "value",
           "isBody": true,
           "type": "String"
         }
@@ -437,7 +442,11 @@
           "name": "event",
           "isAttr": true,
           "type": "String"
-        }
+        },
+        {
+          "name": "script",
+          "type": "Script"
+         }
       ]
     }
   ],

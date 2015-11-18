@@ -1,0 +1,4 @@
+<camunda:script xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+                scriptFormat="groovy" resource="null">
+  foo = bar;
+</camunda:script>
