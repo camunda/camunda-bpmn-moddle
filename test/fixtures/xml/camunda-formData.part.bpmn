@@ -8,5 +8,11 @@
       <camunda:property id="p1" value="property1"/>
       <camunda:property id="p2" value="property2"/>
     </camunda:properties>
+    <camunda:validation>
+      <camunda:constraint name="readonly" />
+      <camunda:constraint name="minlength" config="5" />
+    </camunda:validation>
+    <camunda:value id="a" name="A"/>
+    <camunda:value id="b" name="B"/>
   </camunda:formField>
 </camunda:formData>

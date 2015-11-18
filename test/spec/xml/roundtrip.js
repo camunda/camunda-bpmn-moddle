@@ -32,6 +32,8 @@ describe('import -> export roundtrip', function() {
           }
 
           expect(savedXML).to.eql(xml);
+
+          done();
         });
       });
     };
@@ -42,7 +44,7 @@ describe('import -> export roundtrip', function() {
 
     describe('bpmn:UserTask', function() {
 
-      it.skip('camunda:FormData', validateExport('test/fixtures/xml/userTask-camunda-formData.bpmn'));
+      it('camunda:FormData', validateExport('test/fixtures/xml/userTask-camunda-formData.bpmn'));
 
     });
 

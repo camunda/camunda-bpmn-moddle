@@ -246,7 +246,8 @@ describe('read', function() {
 
     });
 
-    it.skip('camunda:formData', function(done) {
+
+    it('camunda:formData', function(done) {
 
       // given
       var xml = readFile('test/fixtures/xml/camunda-formData.part.bpmn');
@@ -264,16 +265,45 @@ describe('read', function() {
               label: 'String Field',
               type: 'string',
               defaultValue: 'someString',
-              properties: [
+              properties: {
+                $type: 'camunda:Properties',
+                values: [
+                  {
+                    $type: 'camunda:Property',
+                    id: 'p1',
+                    value: 'property1'
+                  },
+                  {
+                    $type: 'camunda:Property',
+                    id: 'p2',
+                    value: 'property2'
+                  }
+                ]
+              },
+              validation: {
+                $type: 'camunda:Validation',
+                constraints: [
+                  {
+                    $type: 'camunda:Constraint',
+                    name: 'readonly'
+                  },
+                  {
+                    $type: 'camunda:Constraint',
+                    name: 'minlength',
+                    config: '5'
+                  }
+                ]
+              },
+              values: [
                 {
-                  $type: 'camunda:FormProperty',
-                  id: 'p1',
-                  value: 'property1'
+                  $type: 'camunda:Value',
+                  id: "a",
+                  name: "A"
                 },
                 {
-                  $type: 'camunda:FormProperty',
-                  id: 'p2',
-                  value: 'property2'
+                  $type: 'camunda:Value',
+                  id: "b",
+                  name: "B"
                 }
               ]
             }
