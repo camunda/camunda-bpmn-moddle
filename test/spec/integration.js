@@ -5,7 +5,7 @@ var BpmnModdle = require('bpmn-moddle');
 var camundaDescriptor = require('../../resources/camunda');
 
 
-describe('descriptor', function() {
+describe('exports', function() {
 
   it('should extend bpmn-moddle', function() {
 
