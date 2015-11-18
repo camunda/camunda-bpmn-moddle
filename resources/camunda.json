@@ -8,7 +8,7 @@
   "associations": [],
   "types": [
     {
-      "name": "In",
+      "name": "InOutBinding",
       "isAbstract": true,
       "properties": [
         {
@@ -44,7 +44,18 @@
         }
       ]
     },
-
+    {
+      "name": "In",
+      "superClass": [
+        "InOutBinding"
+      ]
+    },
+    {
+      "name": "Out",
+      "superClass": [
+        "InOutBinding"
+      ]
+    },
     {
       "name": "AsyncCapable",
       "isAbstract": true,

@@ -175,6 +175,29 @@ describe('read', function() {
     });
 
 
+    it('camunda:out', function(done) {
+
+      // given
+      var xml = readFile('test/fixtures/xml/camunda-out.part.bpmn');
+
+      // when
+      moddle.fromXML(xml, 'camunda:Out', function(err, properties) {
+
+        // then
+        expect(properties).to.jsonEqual({
+          $type: 'camunda:Out',
+          sourceExpression: 'fooExp',
+          source: 'foo',
+          target: 'bar',
+          variables: 'all',
+          local: true
+        });
+
+        done(err);
+      });
+    });
+
+
     describe('bpmn:ScriptTask', function() {
 
       it('extended by camunda:resource, camunda:resultVariable', function(done) {
