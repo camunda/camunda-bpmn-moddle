@@ -486,21 +486,81 @@ describe('read', function() {
     });
 
 
-    it('camunda:jobPriority', function(done) {
+    describe('camunda:jobPriority', function() {
 
-      // given
-      var xml = readFile('test/fixtures/xml/process-camunda-jobPriority.part.bpmn');
+      it('on Process', function(done) {
 
-      // when
-      moddle.fromXML(xml, 'bpmn:Process', function(err, proc) {
+        // given
+        var xml = readFile('test/fixtures/xml/process-camunda-jobPriority.part.bpmn');
 
-        // then
-        expect(proc).to.jsonEqual({
-          $type: 'bpmn:Process',
-          jobPriority: 100
+        // when
+        moddle.fromXML(xml, 'bpmn:Process', function(err, proc) {
+
+          // then
+          expect(proc).to.jsonEqual({
+            $type: 'bpmn:Process',
+            jobPriority: '100'
+          });
+
+          done(err);
         });
+      });
 
-        done(err);
+
+      it('on ServiceTask', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/serviceTask-camunda-jobPriority.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:ServiceTask', function(err, task) {
+
+          // then
+          expect(task).to.jsonEqual({
+            $type: 'bpmn:ServiceTask',
+            jobPriority: '100'
+          });
+
+          done(err);
+        });
+      });
+
+
+      it('on Gateway', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/gateway-camunda-jobPriority.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:ExclusiveGateway', function(err, gateway) {
+
+          // then
+          expect(gateway).to.jsonEqual({
+            $type: 'bpmn:ExclusiveGateway',
+            jobPriority: '${ some - expression }'
+          });
+
+          done(err);
+        });
+      });
+
+
+      it('on Event', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/event-camunda-jobPriority.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:IntermediateCatchEvent', function(err, proc) {
+
+          // then
+          expect(proc).to.jsonEqual({
+            $type: 'bpmn:IntermediateCatchEvent',
+            jobPriority: '100'
+          });
+
+          done(err);
+        });
       });
 
     });

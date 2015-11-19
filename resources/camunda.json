@@ -8,21 +8,6 @@
   "associations": [],
   "types": [
     {
-      "name": "JobPriorized",
-      "isAbstract": true,
-      "extends": [
-        "bpmn:Process",
-        "bpmn:Activity"
-      ],
-      "properties": [
-        {
-          "name": "jobPriority",
-          "isAttr": true,
-          "type": "Integer"
-        }
-      ]
-    },
-    {
       "name": "InOutBinding",
       "superClass": [
         "Element"
@@ -106,6 +91,21 @@
           "isAttr": true,
           "type": "Boolean",
           "default": true
+        }
+      ]
+    },
+    {
+      "name": "JobPriorized",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:Process",
+        "camunda:AsyncCapable"
+      ],
+      "properties": [
+        {
+          "name": "jobPriority",
+          "isAttr": true,
+          "type": "String"
         }
       ]
     },
