@@ -176,7 +176,10 @@ describe('read', function() {
           $type: 'camunda:Properties',
           values: [
             {
-              $type: 'camunda:Property'
+              $type: 'camunda:Property',
+              id: 'p1',
+              name: 'foo',
+              value: 'property1'
             }
           ]
         });

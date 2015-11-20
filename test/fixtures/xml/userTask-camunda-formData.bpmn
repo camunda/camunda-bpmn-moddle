@@ -13,6 +13,10 @@
             </camunda:validation>
           </camunda:formField>
           <camunda:formField id="longField" label="Long Field" type="long" defaultValue="5">
+            <camunda:properties>
+              <camunda:property id="p1" name="foo" value="property1"/>
+              <camunda:property id="p2" name="bar" value="property2"/>
+            </camunda:properties>
             <camunda:validation>
               <camunda:constraint name="max" config="10" />
               <camunda:constraint name="min" config="3" />

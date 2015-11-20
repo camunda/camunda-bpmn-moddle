@@ -403,15 +403,18 @@
       "properties": [
         {
           "name": "id",
-          "type": "String"
+          "type": "String",
+          "isAttr": true
         },
         {
           "name": "name",
-          "type": "String"
+          "type": "String",
+          "isAttr": true
         },
         {
           "name": "value",
-          "type": "String"
+          "type": "String",
+          "isAttr": true
         }
       ]
     },
