@@ -15,8 +15,9 @@ describe('import -> export roundtrip', function() {
 
 
   function stripSpaces(xml) {
-    return xml.replace(/\s\/>/g, '/>')
-              .replace(/\n/g, '')
+    return xml.replace(/\n/g, '')
+              .replace(/\s{2,}/g, ' ')
+              .replace(/\s\/>/g, '/>')
               .replace(/>\s+</g, '><');
   }
 
@@ -55,6 +56,8 @@ describe('import -> export roundtrip', function() {
     describe('bpmn:UserTask', function() {
 
       it('camunda:FormData', validateExport('test/fixtures/xml/userTask-camunda-formData.bpmn'));
+
+      it('camunda:InputOutput', validateExport('test/fixtures/xml/inputOutput-nestedList.bpmn'));
 
     });
 
