@@ -532,10 +532,12 @@
       "properties": [
         {
           "name": "id",
+          "isAttr": true,
           "type": "String"
         },
         {
           "name": "name",
+          "isAttr": true,
           "type": "String"
         },
         {

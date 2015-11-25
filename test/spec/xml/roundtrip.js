@@ -53,13 +53,9 @@ describe('import -> export roundtrip', function() {
 
   describe('should keep camunda attributes', function() {
 
-    describe('bpmn:UserTask', function() {
+    it('camunda:FormData', validateExport('test/fixtures/xml/userTask-camunda-formData.bpmn'));
 
-      it('camunda:FormData', validateExport('test/fixtures/xml/userTask-camunda-formData.bpmn'));
-
-      it('camunda:InputOutput', validateExport('test/fixtures/xml/inputOutput-nestedList.bpmn'));
-
-    });
+    it('camunda:InputOutput', validateExport('test/fixtures/xml/inputOutput-nestedList.bpmn'));
 
   });
 

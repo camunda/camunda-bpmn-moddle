@@ -12,6 +12,13 @@
               <camunda:constraint name="minlength" config="5" />
             </camunda:validation>
           </camunda:formField>
+          <camunda:formField
+              id="enumField" label="Enum Field" type="enum"
+              defaultValue="a">
+              <camunda:value id="a" name="A"/>
+              <camunda:value id="b" name="B"/>
+              <camunda:value id="c" name="C"/>
+          </camunda:formField>
           <camunda:formField id="longField" label="Long Field" type="long" defaultValue="5">
             <camunda:properties>
               <camunda:property id="p1" name="foo" value="property1"/>
