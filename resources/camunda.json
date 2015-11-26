@@ -162,6 +162,11 @@
           "name": "formHandlerClass",
           "isAttr": true,
           "type": "String"
+        },
+        {
+          "name": "formKey",
+          "isAttr": true,
+          "type": "String"
         }
       ]
     },
@@ -237,11 +242,6 @@
       "properties": [
         {
           "name": "assignee",
-          "isAttr": true,
-          "type": "String"
-        },
-        {
-          "name": "formKey",
           "isAttr": true,
           "type": "String"
         },

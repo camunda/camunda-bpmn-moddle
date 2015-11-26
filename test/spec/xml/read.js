@@ -442,12 +442,12 @@ describe('read', function() {
     });
 
 
-    describe('camunda:formHandlerClass', function() {
+    describe('camunda:FormSupported with camunda:formKey and camunda:formHandlerClass', function() {
 
       it('on UserTask', function(done) {
 
         // given
-        var xml = readFile('test/fixtures/xml/userTask-camunda-formHandlerClass.part.bpmn');
+        var xml = readFile('test/fixtures/xml/userTask-camunda-formSupported.part.bpmn');
 
         // when
         moddle.fromXML(xml, 'bpmn:UserTask', function(err, task) {
@@ -455,7 +455,28 @@ describe('read', function() {
           // then
           expect(task).to.jsonEqual({
             $type: 'bpmn:UserTask',
-            formHandlerClass: 'my.company.FormHandler'
+            formHandlerClass: 'my.company.FormHandler',
+            formKey: 'form.html'
+          });
+
+          done(err);
+        });
+      });
+
+
+      it('on StartEvent', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/userTask-camunda-formSupported.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:StartEvent', function(err, startEvent) {
+
+          // then
+          expect(startEvent).to.jsonEqual({
+            $type: 'bpmn:StartEvent',
+            formHandlerClass: 'my.company.FormHandler',
+            formKey: 'form.html'
           });
 
           done(err);
