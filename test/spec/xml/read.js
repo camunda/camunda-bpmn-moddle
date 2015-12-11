@@ -883,6 +883,27 @@ describe('read', function() {
 
     });
 
+    describe('camunda:Collectable', function() {
+      it('attributes', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-multiInstance.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:Collectable', function(err, field) {
+
+          // then
+          expect(field).to.jsonEqual({
+            $type: 'camunda:Collectable',
+            collection: '5',
+            elementVariable: '5'
+          });
+
+          done(err);
+        });
+      });
+    });
+
   });
 
 });

@@ -611,6 +611,11 @@
           "name": "collection",
           "isAttr": true,
           "type": "String"
+        },
+        {
+          "name": "elementVariable",
+          "isAttr": true,
+          "type": "String"
         }
       ]
     },

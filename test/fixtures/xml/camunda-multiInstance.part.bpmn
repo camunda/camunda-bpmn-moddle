@@ -1,0 +1,5 @@
+<bpmn:multiInstanceLoopCharacteristics xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+                                       xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+                                       isSequential="true"
+                                       camunda:collection="5"
+                                       camunda:elementVariable="5" />
