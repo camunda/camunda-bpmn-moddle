@@ -486,6 +486,28 @@ describe('read', function() {
     });
 
 
+    describe('camunda:initiator', function() {
+
+      it('on StartEvent', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/startEvent-camunda-initiator.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:StartEvent', function(err, proc) {
+
+          // then
+          expect(proc).to.jsonEqual({
+            $type: 'bpmn:StartEvent',
+            initiator: 'kermit'
+          });
+
+          done(err);
+        });
+      });
+
+    });
+
     it('bpmn:CallActivity', function(done) {
 
       // given

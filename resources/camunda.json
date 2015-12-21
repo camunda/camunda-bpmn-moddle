@@ -171,6 +171,18 @@
       ]
     },
     {
+      "name": "Initiator",
+      "isAbstract": true,
+      "extends": [ "bpmn:StartEvent" ],
+      "properties": [
+        {
+          "name": "initiator",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
       "name": "ScriptTask",
       "isAbstract": true,
       "extends": [
