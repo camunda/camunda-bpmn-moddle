@@ -1,6 +1,6 @@
 {
   "name": "Camunda",
-  "uri": "http://camunda.org/schema/1.0/bpmn",
+  "uri": "http://activiti.org/bpmn",
   "prefix": "camunda",
   "xml": {
     "tagAlias": "lowerCase"
@@ -638,6 +638,11 @@
       "properties": [
         {
           "name": "collection",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "elementVariable",
           "isAttr": true,
           "type": "String"
         }
