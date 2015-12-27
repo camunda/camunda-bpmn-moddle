@@ -171,6 +171,35 @@
       ]
     },
     {
+      "name": "InputParameterSupported",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:StartEvent",
+        "bpmn:UserTask",
+        "bpmn:ReceiveTask",
+        "bpmn:SendTask",
+        "bpmn:ServiceTask",
+        "bpmn:BusinessRuleTask",
+        "bpmn:ScriptTask",
+        "bpmn:Task",
+        "bpmn:ManualTask"		
+      ]
+    },
+	{
+      "name": "OutputParameterSupported",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:UserTask",
+        "bpmn:ReceiveTask",
+        "bpmn:SendTask",
+        "bpmn:ServiceTask",
+        "bpmn:BusinessRuleTask",
+        "bpmn:ScriptTask",
+        "bpmn:Task",
+        "bpmn:ManualTask"		
+      ]
+    },
+    {
       "name": "ScriptTask",
       "isAbstract": true,
       "extends": [
