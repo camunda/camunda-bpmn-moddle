@@ -307,7 +307,8 @@
         {
           "name": "caseBinding",
           "isAttr": true,
-          "type": "String"
+          "type": "String",
+          "default": "latest"
         },
         {
           "name": "caseVersion",
