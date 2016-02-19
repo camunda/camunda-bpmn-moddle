@@ -373,7 +373,8 @@
         {
           "name": "mapDecisionResult",
           "isAttr": true,
-          "type": "String"
+          "type": "String",
+          "default": "resultList"
         }
       ]
     },
