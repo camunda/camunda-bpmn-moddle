@@ -381,7 +381,7 @@
     {
       "name": "ExternalCapable",
       "extends": [
-        "bpmn:ServiceTask"
+        "camunda:ServiceTaskLike"
       ],
       "properties": [
         {
