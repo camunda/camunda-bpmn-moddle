@@ -7,13 +7,6 @@ var readFile = require('../../helper').readFile,
 
 describe('import -> export roundtrip', function() {
 
-  var moddle;
-
-  beforeEach(function() {
-    moddle = createModdle();
-  });
-
-
   function stripSpaces(xml) {
     return xml.replace(/\n|\r/g, '')
               .replace(/\s{2,}/g, ' ')
@@ -25,9 +18,9 @@ describe('import -> export roundtrip', function() {
 
     return function(done) {
 
-      var xml = readFile(file);
+      var xml = stripSpaces(readFile(file));
 
-      xml = stripSpaces(xml);
+      var moddle = createModdle();
 
       moddle.fromXML(xml, 'bpmn:Definitions', function(err, definitions) {
         if (err) {
