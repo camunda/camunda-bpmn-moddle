@@ -217,6 +217,11 @@
           "name": "candidateStarterUsers",
           "isAttr": true,
           "type": "String"
+        },
+        {
+          "name": "semanticVersion",
+          "isAttr": true,
+          "type": "String"
         }
       ]
     },
