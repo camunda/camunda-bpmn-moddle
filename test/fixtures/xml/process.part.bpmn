@@ -2,5 +2,5 @@
          xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
          camunda:candidateStarterUsers="userInGroup2"
          camunda:candidateStarterGroups="group1, group2, group3"
-         camunda:semanticVersion="1.0.0" >
+         camunda:versionTag="1.0.0" >
 </process>

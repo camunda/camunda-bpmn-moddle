@@ -219,7 +219,7 @@
           "type": "String"
         },
         {
-          "name": "semanticVersion",
+          "name": "versionTag",
           "isAttr": true,
           "type": "String"
         }

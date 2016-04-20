@@ -627,7 +627,7 @@ describe('read', function() {
             $type: 'bpmn:Process',
             candidateStarterUsers: 'userInGroup2',
             candidateStarterGroups: 'group1, group2, group3',
-            semanticVersion: '1.0.0'
+            versionTag: '1.0.0'
           });
 
           done(err);
