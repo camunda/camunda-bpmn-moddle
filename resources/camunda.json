@@ -402,6 +402,20 @@
       ]
     },
     {
+      "name": "TaskPriorized",
+      "extends": [
+        "bpmn:Process",
+        "camunda:ExternalCapable"
+      ],
+      "properties": [
+        {
+          "name": "taskPriority",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
       "name": "Properties",
       "superClass": [
         "Element"

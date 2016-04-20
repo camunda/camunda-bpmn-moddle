@@ -531,6 +531,46 @@ describe('read', function() {
 
     });
 
+    describe('camunda:taskPriority', function() {
+
+      it('on Process', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/process-camunda-taskPriority.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:Process', function(err, proc) {
+
+          // then
+          expect(proc).to.jsonEqual({
+            $type : 'bpmn:Process',
+            taskPriority : '100'
+          });
+
+          done(err);
+        });
+      });
+
+
+      it('on ServiceTaskLike Element', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/serviceTask-camunda-taskPriority.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:ServiceTask', function(err, task) {
+
+          // then
+          expect(task).to.jsonEqual({
+            $type : 'bpmn:ServiceTask',
+            taskPriority : '100'
+          });
+
+          done(err);
+        });
+      });
+    });
+
 
     describe('camunda:jobPriority', function() {
 
@@ -614,7 +654,7 @@ describe('read', function() {
 
     describe('bpmn:Process', function() {
 
-      it('extended with camunda:candidateStarterUsers, camunda:candidateStarterGroups', function(done) {
+      it('extended with camunda:candidateStarterUsers, camunda:candidateStarterGroups, camunda:versionTag', function(done) {
 
         // given
         var xml = readFile('test/fixtures/xml/process.part.bpmn');
