@@ -285,7 +285,7 @@
         {
           "name": "priority",
           "isAttr": true,
-          "type": "Integer"
+          "type": "String"
         }
       ]
     },

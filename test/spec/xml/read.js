@@ -16,6 +16,29 @@ describe('read', function() {
     });
 
 
+    describe('camunda:priority', function() {
+
+      it('on UserTask', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/userTask-camunda-priority.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:UserTask', function(err, serviceTask) {
+
+          // then
+          expect(serviceTask).to.jsonEqual({
+            $type: 'bpmn:UserTask',
+            priority: '${ priority }'
+          });
+
+          done(err);
+        });
+
+      });
+    });
+
+
     describe('camunda:async', function() {
 
       it('on ServiceTask', function(done) {
