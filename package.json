@@ -1,6 +1,6 @@
 {
   "name": "camunda-bpmn-moddle",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Camunda moddle extensions for BPMN 2.0",
   "scripts": {
     "test": "grunt test"
