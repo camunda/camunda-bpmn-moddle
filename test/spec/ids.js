@@ -6,13 +6,6 @@ var readFile = require('../helper').readFile,
 
 describe('ids', function() {
 
-  var moddle;
-
-  beforeEach(function() {
-    moddle = createModdle();
-  });
-
-
   describe('id validation', function() {
 
     it('should ignore id property on camunda:FormField', function(done) {

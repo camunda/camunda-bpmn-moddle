@@ -3,6 +3,7 @@
   "version": "0.5.1",
   "description": "Camunda moddle extensions for BPMN 2.0",
   "scripts": {
+    "all": "grunt",
     "test": "grunt test"
   },
   "repository": {
@@ -31,10 +32,12 @@
     "async": "^1.5.0",
     "bpmn-moddle": "^0.11.0",
     "chai": "^1.9.1",
+    "eslint": "^2.11.1",
+    "eslint-plugin-mocha": "^2.2.0",
     "glob": "^6.0.1",
     "grunt": "^0.4.2",
-    "grunt-contrib-jshint": "^0.7.2",
     "grunt-contrib-watch": "^0.5.0",
+    "grunt-eslint": "^18.1.0",
     "grunt-mocha-test": "^0.11.0",
     "grunt-release": "^0.13.0",
     "jsondiffpatch": "^0.1.4",
