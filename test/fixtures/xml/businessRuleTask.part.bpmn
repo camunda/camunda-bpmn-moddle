@@ -1,0 +1,6 @@
+<businessRuleTask xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+             decisionRef="myDecision"
+             camunda:decisionRefBinding="version"
+             camunda:decisionRefVersion="1"
+             camunda:decisionRefTenantId="tenant1"/>

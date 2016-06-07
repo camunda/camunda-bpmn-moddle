@@ -544,9 +544,11 @@ describe('read', function() {
           $type: 'bpmn:CallActivity',
           calledElementBinding: 'version',
           calledElementVersion: 1,
+          calledElementTenantId: 'tenant1',
           caseRef: 'oneTaskCase',
           caseBinding: 'version',
-          caseVersion: 2
+          caseVersion: 2,
+          caseTenantId: 'tenant1'
         });
 
         done(err);
@@ -983,6 +985,55 @@ describe('read', function() {
             $type: 'camunda:Collectable',
             collection: '5',
             elementVariable: '5'
+          });
+
+          done(err);
+        });
+      });
+    });
+
+    describe('camunda tenant id', function() {
+
+      it('on BusinessRuleTask', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/businessRuleTask.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:BusinessRuleTask', function(err, proc) {
+
+          // then
+          expect(proc).to.jsonEqual({
+            $type: 'bpmn:BusinessRuleTask',
+            decisionRef: 'myDecision',
+            decisionRefBinding: 'version',
+            decisionRefVersion: '1',
+            decisionRefTenantId: 'tenant1'
+          });
+
+          done(err);
+        });
+      });
+
+
+      it('on CallActivity', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/callActivity.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:CallActivity', function(err, task) {
+
+          // then
+          expect(task).to.jsonEqual({
+            $type: 'bpmn:CallActivity',
+            calledElementBinding: 'version',
+            calledElementVersion: 1,
+            calledElementTenantId: 'tenant1',
+            caseRef: 'oneTaskCase',
+            caseBinding: 'version',
+            caseVersion: 2,
+            caseTenantId: 'tenant1'
           });
 
           done(err);
