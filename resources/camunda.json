@@ -135,6 +135,11 @@
           "name": "errorCodeVariable",
           "isAttr": true,
           "type": "String"
+        },
+        {
+          "name": "errorMessageVariable",
+          "isAttr": true,
+          "type": "String"
         }
       ]
     },

@@ -1041,6 +1041,30 @@ describe('read', function() {
       });
     });
 
+
+    describe('camunda:errorMessageVariable', function() {
+
+      it('on ErrorEventDefinition', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/errorEventDefinition-camunda-errorMessageVariable.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:ErrorEventDefinition', function(err, definition) {
+
+          // then
+          expect(definition).to.jsonEqual({
+            $type: 'bpmn:ErrorEventDefinition',
+            errorMessageVariable: 'errorMessage'
+          });
+
+          done(err);
+        });
+
+      });
+
+    });
+
   });
 
 });
