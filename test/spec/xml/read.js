@@ -548,7 +548,9 @@ describe('read', function() {
           caseRef: 'oneTaskCase',
           caseBinding: 'version',
           caseVersion: 2,
-          caseTenantId: 'tenant1'
+          caseTenantId: 'tenant1',
+          variableMappingClass: 'org.camunda.bpm.test.Test',
+          variableMappingDelegateExpression: '${test}'
         });
 
         done(err);
@@ -1033,7 +1035,9 @@ describe('read', function() {
             caseRef: 'oneTaskCase',
             caseBinding: 'version',
             caseVersion: 2,
-            caseTenantId: 'tenant1'
+            caseTenantId: 'tenant1',
+            variableMappingClass: 'org.camunda.bpm.test.Test',
+            variableMappingDelegateExpression: '${test}'
           });
 
           done(err);

@@ -6,4 +6,6 @@
               camunda:caseRef="oneTaskCase"
               camunda:caseBinding="version"
               camunda:caseVersion="2"
-              camunda:caseTenantId="tenant1" />
+              camunda:caseTenantId="tenant1"
+              camunda:variableMappingClass="org.camunda.bpm.test.Test"
+              camunda:variableMappingDelegateExpression="${test}"/>
