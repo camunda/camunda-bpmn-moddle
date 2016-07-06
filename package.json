@@ -30,7 +30,7 @@
   "license": "MIT",
   "devDependencies": {
     "async": "^1.5.0",
-    "bpmn-moddle": "^0.11.0",
+    "bpmn-moddle": "^0.12.1",
     "chai": "^1.9.1",
     "eslint": "^2.11.1",
     "eslint-plugin-mocha": "^2.2.0",
