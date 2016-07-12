@@ -44,5 +44,8 @@
     "jsondiffpatch": "^0.1.4",
     "load-grunt-tasks": "^0.3.0",
     "xsd-schema-validator": "^0.3.0"
+  },
+  "dependencies": {
+    "lodash": "^3.0.0"
   }
 }
