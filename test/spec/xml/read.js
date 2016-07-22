@@ -903,6 +903,38 @@ describe('read', function() {
         });
       });
 
+      it('fields', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-executionListener-fields.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:ExecutionListener', function(err, executionListener) {
+
+          // then
+          expect(executionListener).to.jsonEqual({
+            $type: 'camunda:ExecutionListener',
+            event: 'start',
+            'class': 'my.company.Listener',
+            fields : [
+              {
+                $type: 'camunda:Field',
+                name: 'fieldOne',
+                stringValue: 'myString'
+              },
+              {
+                $type: 'camunda:Field',
+                name: 'fieldTwo',
+                expression: '${myExpression}'
+              }
+            ]
+          });
+
+          done(err);
+        });
+
+      });
+
     });
 
 

@@ -1,0 +1,6 @@
+<camunda:executionListener xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+  event="start"
+  class="my.company.Listener" >
+  <camunda:field name="fieldOne" stringValue="myString" />
+  <camunda:field name="fieldTwo" expression="${myExpression}" />
+</camunda:executionListener  
