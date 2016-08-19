@@ -831,6 +831,11 @@
           "name": "fields",
           "type": "FormField",
           "isMany": true
+        },
+        {
+          "name": "businessKey",
+          "type": "String",
+          "isAttr": true
         }
       ]
     },
