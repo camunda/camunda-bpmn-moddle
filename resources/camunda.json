@@ -307,7 +307,7 @@
         {
           "name": "calledElementVersion",
           "isAttr": true,
-          "type": "Integer"
+          "type": "String"
         },
         {
           "name": "calledElementTenantId",
@@ -328,7 +328,7 @@
         {
           "name": "caseVersion",
           "isAttr": true,
-          "type": "Integer"
+          "type": "String"
         },
         {
           "name": "caseTenantId",

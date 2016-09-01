@@ -543,11 +543,11 @@ describe('read', function() {
         expect(callActivity).to.jsonEqual({
           $type: 'bpmn:CallActivity',
           calledElementBinding: 'version',
-          calledElementVersion: 1,
+          calledElementVersion: '1',
           calledElementTenantId: 'tenant1',
           caseRef: 'oneTaskCase',
           caseBinding: 'version',
-          caseVersion: 2,
+          caseVersion: '2',
           caseTenantId: 'tenant1',
           variableMappingClass: 'org.camunda.bpm.test.Test',
           variableMappingDelegateExpression: '${test}'
@@ -1062,11 +1062,11 @@ describe('read', function() {
           expect(task).to.jsonEqual({
             $type: 'bpmn:CallActivity',
             calledElementBinding: 'version',
-            calledElementVersion: 1,
+            calledElementVersion: '1',
             calledElementTenantId: 'tenant1',
             caseRef: 'oneTaskCase',
             caseBinding: 'version',
-            caseVersion: 2,
+            caseVersion: '2',
             caseTenantId: 'tenant1',
             variableMappingClass: 'org.camunda.bpm.test.Test',
             variableMappingDelegateExpression: '${test}'
