@@ -909,6 +909,25 @@
           "isAttr": true
         }
       ]
+    },
+    {
+      "name": "ConditionalEventDefinition",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:ConditionalEventDefinition"
+      ],
+      "properties": [
+        {
+          "name": "variableName",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "variableEvent",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
     }
   ],
   "emumerations": [ ]

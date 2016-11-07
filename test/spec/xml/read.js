@@ -1101,6 +1101,53 @@ describe('read', function() {
 
     });
 
+    describe('camunda:variableName', function() {
+
+      it('on ConditionalEventDefinition', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/conditionalEventDefinition-camunda-variableName.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:ConditionalEventDefinition', function(err, definition) {
+
+          // then
+          expect(definition).to.jsonEqual({
+            $type: 'bpmn:ConditionalEventDefinition',
+            variableName: 'myConditionVar'
+          });
+
+          done(err);
+        });
+
+      });
+
+    });
+
+    describe('camunda:variableEvent', function() {
+
+      it('on ConditionalEventDefinition', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/conditionalEventDefinition-camunda-variableEvent.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:ConditionalEventDefinition', function(err, definition) {
+
+          // then
+          expect(definition).to.jsonEqual({
+            $type: 'bpmn:ConditionalEventDefinition',
+            variableEvent: 'create, update'
+          });
+
+          done(err);
+        });
+
+      });
+
+    });
+
+
   });
 
 });
