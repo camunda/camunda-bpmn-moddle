@@ -1,7 +1,7 @@
 'use strict';
 
 var Helper = require('../../helper');
-
+var assign = Helper.assign;
 
 describe('write', function() {
 
@@ -15,7 +15,7 @@ describe('write', function() {
     }
 
     // skip preamble for tests
-    options = Object.assign({ preamble: false }, options);
+    options = assign({ preamble: false }, options);
 
     moddle.toXML(element, options, callback);
   }
