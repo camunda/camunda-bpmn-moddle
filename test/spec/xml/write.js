@@ -1,10 +1,7 @@
 'use strict';
 
-var assign = require('lodash/object/assign'),
-    isFunction = require('lodash/lang/isFunction');
-
 var Helper = require('../../helper');
-
+var assign = Helper.assign;
 
 describe('write', function() {
 
@@ -12,7 +9,7 @@ describe('write', function() {
 
 
   function write(element, options, callback) {
-    if (isFunction(options)) {
+    if (typeof options === 'function') {
       callback = options;
       options = {};
     }
