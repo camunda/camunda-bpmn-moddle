@@ -1,8 +1,5 @@
 'use strict';
 
-var assign = require('lodash/object/assign'),
-    isFunction = require('lodash/lang/isFunction');
-
 var Helper = require('../../helper');
 
 
@@ -12,13 +9,13 @@ describe('write', function() {
 
 
   function write(element, options, callback) {
-    if (isFunction(options)) {
+    if (typeof options === 'function') {
       callback = options;
       options = {};
     }
 
     // skip preamble for tests
-    options = assign({ preamble: false }, options);
+    options = Object.assign({ preamble: false }, options);
 
     moddle.toXML(element, options, callback);
   }
