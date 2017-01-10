@@ -51,13 +51,23 @@
       "name": "In",
       "superClass": [
         "InOutBinding"
-      ]
+      ],
+      "meta": {
+        "allowedIn": [
+          "bpmn:CallActivity"
+        ]
+      }
     },
     {
       "name": "Out",
       "superClass": [
         "InOutBinding"
-      ]
+      ],
+      "meta": {
+        "allowedIn": [
+          "bpmn:CallActivity"
+        ]
+      }
     },
     {
       "name": "AsyncCapable",
@@ -450,6 +460,9 @@
       "superClass": [
         "Element"
       ],
+      "meta": {
+        "allowedIn": [ "*" ]
+      },
       "properties": [
         {
           "name": "values",
@@ -486,6 +499,13 @@
       "superClass": [
         "Element"
       ],
+      "meta": {
+        "allowedIn": [
+          "bpmn:ServiceTask",
+          "bpmn:BusinessRuleTask",
+          "bpmn:SendTask"
+        ]
+      },
       "properties": [
         {
           "name": "inputOutput",
@@ -502,6 +522,30 @@
       "superClass": [
         "Element"
       ],
+      "meta": {
+        "allowedIn": [
+          "bpmn:Task",
+          "bpmn:UserTask",
+          "bpmn:ServiceTask",
+          "bpmn:SendTask",
+          "bpmn:BusinessRuleTask",
+          "bpmn:ReceiveTask",
+          "bpmn:ScriptTask",
+          "bpmn:ManualTask",
+          "bpmn:GlobalUserTask",
+          "bpmn:GlobalScriptTask",
+          "bpmn:GlobalBusinessRuleTask",
+          "bpmn:GlobalTask",
+          "bpmn:GlobalManualTask",
+          "bpmn:IntermediateCatchEvent",
+          "bpmn:IntermediateThrowEvent",
+          "bpmn:EndEvent",
+          "bpmn:ThrowEvent",
+          "bpmn:CatchEvent",
+          "bpmn:ImplicitThrowEvent",
+          "bpmn:CallActivity"
+        ]
+      },
       "properties": [
         {
           "name": "inputOutput",
@@ -634,6 +678,13 @@
     {
       "name": "Field",
       "superClass": [ "Element" ],
+      "meta": {
+        "allowedIn": [
+          "bpmn:ServiceTask",
+          "bpmn:BusinessRuleTask",
+          "bpmn:SendTask"
+        ]
+      },
       "properties": [
         {
           "name": "name",
@@ -684,6 +735,18 @@
     {
       "name": "FailedJobRetryTimeCycle",
       "superClass": [ "Element" ],
+      "meta": {
+        "allowedIn": [
+          "bpmn:Task",
+          "bpmn:ServiceTask",
+          "bpmn:SendTask",
+          "bpmn:UserTask",
+          "bpmn:BusinessRuleTask",
+          "bpmn:ScriptTask",
+          "bpmn:ReceiveTask",
+          "bpmn:CallActivity"
+        ]
+      },
       "properties": [
         {
           "name": "body",
@@ -695,6 +758,28 @@
     {
       "name": "ExecutionListener",
       "superClass": [ "Element" ],
+      "meta": {
+        "allowedIn": [
+          "bpmn:Task",
+          "bpmn:ServiceTask",
+          "bpmn:UserTask",
+          "bpmn:BusinessRuleTask",
+          "bpmn:ScriptTask",
+          "bpmn:ReceiveTask",
+          "bpmn:ManualTask",
+          "bpmn:ExclusiveGateway",
+          "bpmn:SequenceFlow",
+          "bpmn:ParallelGateway",
+          "bpmn:InclusiveGateway",
+          "bpmn:EventBasedGateway",
+          "bpmn:StartEvent",
+          "bpmn:IntermediateCatchEvent",
+          "bpmn:IntermediateThrowEvent",
+          "bpmn:EndEvent",
+          "bpmn:BoundaryEvent",
+          "bpmn:CallActivity"
+        ]
+      },
       "properties": [
         {
           "name": "expression",
@@ -730,6 +815,11 @@
     {
       "name": "TaskListener",
       "superClass": [ "Element" ],
+      "meta": {
+        "allowedIn": [
+          "bpmn:UserTask"
+        ]
+      },
       "properties": [
         {
           "name": "expression",
@@ -765,6 +855,12 @@
     {
       "name": "FormProperty",
       "superClass": [ "Element" ],
+      "meta": {
+        "allowedIn": [
+          "bpmn:StartEvent",
+          "bpmn:UserTask"
+        ]
+      },
       "properties": [
         {
           "name": "id",
@@ -826,6 +922,12 @@
     {
       "name": "FormData",
       "superClass": [ "Element" ],
+      "meta": {
+        "allowedIn": [
+          "bpmn:StartEvent",
+          "bpmn:UserTask"
+        ]
+      },
       "properties": [
         {
           "name": "fields",
