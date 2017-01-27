@@ -40,6 +40,25 @@ Perform a complete build of the application via
 grunt
 ```
 
+## Extension
+
+We include an extension that provides the necessary validation to clone certain properties, when making use of a library like `bpmn-js`. This allows to easily plug with out modeler solution, which works like the following example:
+
+```js
+
+var BpmnJS = require('bpmn-js/lib/Modeler'),
+    camundaExtensionModule = require('camunda-bpmn-moddle/lib');
+
+var modeler = new BpmnJS({
+    additionalModules: [
+      camundaExtensionModule
+    ]
+  });
+
+```
+
+This extension makes use of dependency injection via [didi](https://github.com/nikku/didi) and expects an events interface such as [`eventBus`](https://github.com/bpmn-io/diagram-js/blob/master/lib/core/EventBus.js), where we plugin and listen to the `property.clone` event.
+
 
 ## License
 
