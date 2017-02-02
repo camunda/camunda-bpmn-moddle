@@ -25,7 +25,7 @@ describe('extension', function() {
       eventDefinitions: [ msgEvtDef ]
     });
 
-    var canCloneProperty = extension.canCloneProperty(endEvent, connector.$descriptor);
+    var canCloneProperty = extension.canCloneProperty(endEvent, msgEvtDef, connector.$descriptor);
 
     // then
     expect(canCloneProperty).to.be.true;
@@ -41,7 +41,7 @@ describe('extension', function() {
 
     var intermediateThrowEvent = moddle.create('bpmn:IntermediateThrowEvent');
 
-    var canCloneProperty = extension.canCloneProperty(intermediateThrowEvent, field.$descriptor);
+    var canCloneProperty = extension.canCloneProperty(intermediateThrowEvent, undefined, field.$descriptor);
 
     // then
     expect(canCloneProperty).to.not.exist;
@@ -54,11 +54,35 @@ describe('extension', function() {
       body: 'foobar'
     });
 
+    var multiInstLoopChar = moddle.create('bpmn:MultiInstanceLoopCharacteristics');
+
     var subProcess = moddle.create('bpmn:SubProcess', {
-      loopCharacteristics: moddle.create('bpmn:MultiInstanceLoopCharacteristics')
+      loopCharacteristics: multiInstLoopChar
     });
 
-    var canCloneProperty = extension.canCloneProperty(subProcess, retryCycle.$descriptor);
+    var canCloneProperty = extension.canCloneProperty(subProcess, multiInstLoopChar, retryCycle.$descriptor);
+
+    // then
+    expect(canCloneProperty).to.be.true;
+  });
+
+  it('can clone "Field"', function() {
+    // given
+    var field = moddle.create('camunda:Field', {
+      name: 'hello_field'
+    });
+
+    var extensionElements = moddle.create('bpmn:ExtensionElements', { values: [ field ] });
+
+    var msgEvtDef = moddle.create('bpmn:MessageEventDefinition', {
+      extensionElements: extensionElements
+    });
+
+    var msgIntermThrowEvt = moddle.create('bpmn:IntermediateThrowEvent', {
+      eventDefinitions: [ msgEvtDef ]
+    });
+
+    var canCloneProperty = extension.canCloneProperty(msgIntermThrowEvt, msgEvtDef, field.$descriptor);
 
     // then
     expect(canCloneProperty).to.be.true;
