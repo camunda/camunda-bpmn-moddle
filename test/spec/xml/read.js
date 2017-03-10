@@ -509,6 +509,45 @@ describe('read', function() {
     });
 
 
+    describe('camunda:TemplateSupported with camunda:modelerTemplate', function() {
+      it('on Task', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/task-camunda-modelerTemplate.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:Task', function(err, task) {
+
+          // then
+          expect(task).to.jsonEqual({
+            $type: 'bpmn:Task',
+            modelerTemplate: 'foo'
+          });
+
+          done(err);
+        });
+      });
+
+      it('on StartEvent', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/startEvent-camunda-modelerTemplate.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:StartEvent', function(err, task) {
+
+          // then
+          expect(task).to.jsonEqual({
+            $type: 'bpmn:StartEvent',
+            modelerTemplate: 'bar'
+          });
+
+          done(err);
+        });
+      });
+    });
+
+
     describe('camunda:initiator', function() {
 
       it('on StartEvent', function(done) {

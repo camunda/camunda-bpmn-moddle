@@ -186,6 +186,20 @@
       ]
     },
     {
+      "name": "TemplateSupported",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:FlowElement"
+      ],
+      "properties": [
+        {
+          "name": "modelerTemplate",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
       "name": "Initiator",
       "isAbstract": true,
       "extends": [ "bpmn:StartEvent" ],
