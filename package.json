@@ -1,25 +1,26 @@
 {
-  "name": "camunda-bpmn-moddle",
-  "version": "0.11.0",
-  "description": "Camunda moddle extensions for BPMN 2.0",
+  "name": "camunda-bpmn-moddle-es6",
+  "version": "1.0.0",
+  "description": "Camunda moddle extensions for BPMN 2.0 with ES6 import",
   "scripts": {
     "all": "grunt",
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/camunda/camunda-bpmn-moddle"
+    "url": "https://github.com/laserman83/camunda-bpmn-moddle-es6"
   },
   "keywords": [
     "bpmn",
     "moddle",
     "bpmn20",
     "camunda",
-    "meta-model"
+    "meta-model",
+    "es6"
   ],
   "author": {
-    "name": "Nico Rehwaldt",
-    "url": "https://github.com/nikku"
+    "name": "David Carvalho",
+    "url": "https://github.com/laserman83"
   },
   "contributors": [
     {
