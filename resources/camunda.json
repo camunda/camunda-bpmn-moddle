@@ -251,6 +251,11 @@
           "name": "versionTag",
           "isAttr": true,
           "type": "String"
+        },
+        {
+          "name": "historyTimeToLive",
+          "isAttr": true,
+          "type": "String"
         }
       ]
     },

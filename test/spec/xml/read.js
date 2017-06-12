@@ -16,6 +16,31 @@ describe('read', function() {
     });
 
 
+    describe('camunda:historyTimeToLive', function() {
+
+      it('on Process', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/process-camunda-historyTimeToLive.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:Process', function(err, proc) {
+
+          // then
+          expect(proc).to.jsonEqual({
+            $type : 'bpmn:Process',
+            historyTimeToLive : 'foo'
+          });
+
+          done(err);
+
+        });
+
+      });
+
+    });
+
+
     describe('camunda:priority', function() {
 
       it('on UserTask', function(done) {
