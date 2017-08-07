@@ -535,6 +535,25 @@ describe('read', function() {
 
 
     describe('camunda:TemplateSupported with camunda:modelerTemplate', function() {
+
+      it('on Process', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/process-camunda-modelerTemplate.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:Process', function(err, task) {
+
+          // then
+          expect(task).to.jsonEqual({
+            $type: 'bpmn:Process',
+            modelerTemplate: 'foo'
+          });
+
+          done(err);
+        });
+      });
+
       it('on Task', function(done) {
 
         // given
@@ -570,6 +589,7 @@ describe('read', function() {
           done(err);
         });
       });
+
     });
 
 

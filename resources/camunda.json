@@ -189,6 +189,7 @@
       "name": "TemplateSupported",
       "isAbstract": true,
       "extends": [
+        "bpmn:Process",
         "bpmn:FlowElement"
       ],
       "properties": [
