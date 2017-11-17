@@ -3,4 +3,4 @@
   class="my.company.Listener" >
   <camunda:field name="fieldOne" stringValue="myString" />
   <camunda:field name="fieldTwo" expression="${myExpression}" />
-</camunda:executionListener  
+</camunda:executionListener>

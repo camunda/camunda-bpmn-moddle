@@ -518,11 +518,11 @@ describe('read', function() {
         var xml = readFile('test/fixtures/xml/userTask-camunda-formSupported.part.bpmn');
 
         // when
-        moddle.fromXML(xml, 'bpmn:StartEvent', function(err, startEvent) {
+        moddle.fromXML(xml, 'bpmn:UserTask', function(err, startEvent) {
 
           // then
           expect(startEvent).to.jsonEqual({
-            $type: 'bpmn:StartEvent',
+            $type: 'bpmn:UserTask',
             formHandlerClass: 'my.company.FormHandler',
             formKey: 'form.html'
           });
@@ -987,6 +987,7 @@ describe('read', function() {
         });
       });
 
+
       it('fields', function(done) {
 
         // given
@@ -1089,18 +1090,23 @@ describe('read', function() {
 
     });
 
+
     describe('camunda:Collectable', function() {
+
       it('attributes', function(done) {
 
         // given
         var xml = readFile('test/fixtures/xml/camunda-multiInstance.part.bpmn');
 
         // when
-        moddle.fromXML(xml, 'camunda:Collectable', function(err, field) {
+        moddle.fromXML(xml, 'bpmn:MultiInstanceLoopCharacteristics', function(err, field) {
+
+          console.log(JSON.stringify(field));
 
           // then
           expect(field).to.jsonEqual({
-            $type: 'camunda:Collectable',
+            $type: 'bpmn:MultiInstanceLoopCharacteristics',
+            isSequential: true,
             collection: '5',
             elementVariable: '5'
           });
