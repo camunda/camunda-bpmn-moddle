@@ -9,9 +9,9 @@ describe('import -> export roundtrip', function() {
 
   function stripSpaces(xml) {
     return xml.replace(/\n|\r/g, '')
-              .replace(/\s{2,}/g, ' ')
-              .replace(/\s\/>/g, '/>')
-              .replace(/>\s+</g, '><');
+      .replace(/\s{2,}/g, ' ')
+      .replace(/\s\/>/g, '/>')
+      .replace(/>\s+</g, '><');
   }
 
   function validateExport(file) {

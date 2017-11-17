@@ -22,8 +22,8 @@ describe.skip('camunda models', function() {
   it('should parse camunda extensions', function(done) {
 
     var allFiles = [].concat(
-          glob.sync('**/*.bpmn', { cwd: diagramPath, dot: true }),
-          glob.sync('**/*.bpmn20.xml', { cwd: diagramPath, dot: true })
+      glob.sync('**/*.bpmn', { cwd: diagramPath, dot: true }),
+      glob.sync('**/*.bpmn20.xml', { cwd: diagramPath, dot: true })
     );
 
     var results = {
