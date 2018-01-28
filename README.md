@@ -44,12 +44,16 @@ We include an extension that provides the necessary validation to clone certain 
 
 ```js
 var BpmnJS = require('bpmn-js/lib/Modeler'),
-    camundaExtensionModule = require('camunda-bpmn-moddle/lib');
+    camundaExtensionModule = require('camunda-bpmn-moddle/lib'),
+    camundaModdle = require('camunda-bpmn-moddle/resources/camunda');
 
 var modeler = new BpmnJS({
     additionalModules: [
       camundaExtensionModule
-    ]
+    ],
+    moddleExtensions: {
+      camunda: camundaModdle
+    }
   });
 ```
 
