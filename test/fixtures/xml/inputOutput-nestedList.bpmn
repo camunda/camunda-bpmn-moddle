@@ -61,15 +61,15 @@
         <dc:Bounds x="214" y="156" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="_BPMNShape_StartEvent_2" targetElement="_BPMNShape_UserTask_2">
-        <di:waypoint xsi:type="dc:Point" x="164" y="196"/>
-        <di:waypoint xsi:type="dc:Point" x="214" y="196"/>
+        <di:waypoint x="164" y="196"/>
+        <di:waypoint x="214" y="196"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_EndEvent_2" bpmnElement="EndEvent_1">
         <dc:Bounds x="364" y="178" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="_BPMNShape_UserTask_2" targetElement="_BPMNShape_EndEvent_2">
-        <di:waypoint xsi:type="dc:Point" x="314" y="196"/>
-        <di:waypoint xsi:type="dc:Point" x="364" y="196"/>
+        <di:waypoint x="314" y="196"/>
+        <di:waypoint x="364" y="196"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

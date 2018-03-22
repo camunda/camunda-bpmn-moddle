@@ -32,15 +32,17 @@
   "license": "MIT",
   "devDependencies": {
     "async": "^2.6.0",
-    "bpmn-moddle": "^1.1.1",
+    "bpmn-moddle": "^3.0.0",
     "chai": "^4.1.2",
     "eslint": "^4.11.0",
     "eslint-plugin-mocha": "^4.11.0",
     "glob": "^7.1.2",
     "jsondiffpatch": "^0.2.5",
-    "lodash": "^3.0.0",
     "mocha": "^4.0.1",
     "npm-run-all": "^4.1.2",
     "xsd-schema-validator": "^0.5.0"
+  },
+  "dependencies": {
+    "min-dash": "^2.3.0"
   }
 }
