@@ -1,6 +1,6 @@
 'use strict';
 
-var glob  = require('glob'),
+var glob = require('glob'),
     asyncMap = require('async').map;
 
 var readFile = require('../helper').readFile,
