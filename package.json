@@ -6,7 +6,7 @@
     "all": "run-s lint test",
     "lint": "eslint .",
     "dev": "npm test -- --watch",
-    "test": "mocha -r ./test/expect --reporter=spec --recursive test"
+    "test": "mocha -r esm -r ./test/expect --reporter=spec --recursive test"
   },
   "repository": {
     "type": "git",
@@ -32,10 +32,11 @@
   "license": "MIT",
   "devDependencies": {
     "async": "^2.6.0",
-    "bpmn-moddle": "^3.0.0",
+    "bpmn-moddle": "^5.1.1",
     "chai": "^4.1.2",
     "eslint": "^4.19.1",
     "eslint-plugin-bpmn-io": "^0.5.2",
+    "esm": "^3.0.15",
     "glob": "^7.1.2",
     "jsondiffpatch": "^0.2.5",
     "mocha": "^4.0.1",
@@ -43,6 +44,6 @@
     "xsd-schema-validator": "^0.5.0"
   },
   "dependencies": {
-    "min-dash": "^2.3.0"
+    "min-dash": "^3.0.0"
   }
 }

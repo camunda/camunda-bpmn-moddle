@@ -21,12 +21,8 @@
             <camunda:inputParameter name="var1">
               <camunda:list>
                 <camunda:value>constantStringValue</camunda:value>
-                <camunda:value><![CDATA[${ 'elValue' }]]></camunda:value>
-                <camunda:script scriptFormat="Groovy">
-                  <![CDATA[
-                    return "scriptValue";
-                  ]]>
-                </camunda:script>
+                <camunda:value>${ 'elValue' }</camunda:value>
+                <camunda:script scriptFormat="Groovy">return "scriptValue";</camunda:script>
                 <camunda:list>
                   <camunda:list>
                     <camunda:value>a</camunda:value>

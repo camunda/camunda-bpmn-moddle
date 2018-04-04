@@ -1101,8 +1101,6 @@ describe('read', function() {
         // when
         moddle.fromXML(xml, 'bpmn:MultiInstanceLoopCharacteristics', function(err, field) {
 
-          console.log(JSON.stringify(field));
-
           // then
           expect(field).to.jsonEqual({
             $type: 'bpmn:MultiInstanceLoopCharacteristics',

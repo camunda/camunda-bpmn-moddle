@@ -10,7 +10,7 @@ function readFile(filename) {
 module.exports.readFile = readFile;
 
 
-var BpmnModdle = require('bpmn-moddle');
+var BpmnModdle = require('bpmn-moddle').default;
 
 var camundaDescriptor = require('../resources/camunda');
 
