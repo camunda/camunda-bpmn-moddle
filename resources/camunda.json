@@ -257,6 +257,11 @@
           "name": "historyTimeToLive",
           "isAttr": true,
           "type": "String"
+        },
+        {
+          "name": "isStartableInTasklist",
+          "isAttr": true,
+          "type": "Boolean"
         }
       ]
     },
