@@ -63,6 +63,16 @@ describe('read', function() {
 
       });
 
+
+      it('default value', function() {
+
+        // when
+        var bo = moddle.create('bpmn:Process');
+
+        // then
+        expect(bo.get('camunda:isStartableInTasklist')).to.be.true;
+      });
+
     });
 
 

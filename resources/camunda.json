@@ -261,7 +261,8 @@
         {
           "name": "isStartableInTasklist",
           "isAttr": true,
-          "type": "Boolean"
+          "type": "Boolean",
+          "default": true
         }
       ]
     },

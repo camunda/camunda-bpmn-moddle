@@ -6,6 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.1.1
+
+* `FIX`: correct `camunda:isStartableInTasklist` default value ([#41](https://github.com/camunda/camunda-bpmn-moddle/issues/41))
+
 ## 3.1.0
 
 * `FEAT`: support `camunda:isStartableInTasklist`
