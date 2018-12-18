@@ -346,6 +346,11 @@
           "type": "String"
         },
         {
+          "name": "calledElementVersionTag",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
           "name": "calledElementTenantId",
           "isAttr": true,
           "type": "String"
