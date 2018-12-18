@@ -2,6 +2,7 @@
               xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
               camunda:calledElementBinding="version"
               camunda:calledElementVersion="1"
+              camunda:calledElementVersionTag="version1"
               camunda:calledElementTenantId="tenant1"
               camunda:caseRef="oneTaskCase"
               camunda:caseBinding="version"
