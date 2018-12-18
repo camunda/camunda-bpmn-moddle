@@ -6,6 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 3.2.0
+
+* `FEAT`: add `camunda:calledElementVersionTag` to schema ([#43](https://github.com/camunda/camunda-bpmn-moddle/issues/43))
+
 ## 3.1.1
 
 * `FIX`: correct `camunda:isStartableInTasklist` default value ([#41](https://github.com/camunda/camunda-bpmn-moddle/issues/41))
