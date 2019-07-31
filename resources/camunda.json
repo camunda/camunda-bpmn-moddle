@@ -532,9 +532,7 @@
       ],
       "meta": {
         "allowedIn": [
-          "bpmn:ServiceTask",
-          "bpmn:BusinessRuleTask",
-          "bpmn:SendTask"
+          "camunda:ServiceTaskLike"
         ]
       },
       "properties": [
@@ -713,9 +711,9 @@
       "superClass": [ "Element" ],
       "meta": {
         "allowedIn": [
-          "bpmn:ServiceTask",
-          "bpmn:BusinessRuleTask",
-          "bpmn:SendTask"
+          "camunda:ServiceTaskLike",
+          "camunda:ExecutionListener",
+          "camunda:TaskListener"
         ]
       },
       "properties": [

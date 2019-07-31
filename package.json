@@ -6,7 +6,7 @@
     "all": "run-s lint test",
     "lint": "eslint .",
     "dev": "npm test -- --watch",
-    "test": "mocha -r esm -r ./test/expect --reporter=spec --recursive test"
+    "test": "mocha -r esm -r ./test/expect --reporter=spec --inspect --recursive test"
   },
   "repository": {
     "type": "git",
