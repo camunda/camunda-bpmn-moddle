@@ -28,7 +28,7 @@ describe('extension', function() {
           messageEndEvent = moddle.create('bpmn:EndEvent');
 
       extensionElements.$parent = messageEventDefinition;
-  
+
       messageEventDefinition.$parent = messageEndEvent;
       messageEventDefinition.extensionElements = extensionElements;
 
@@ -50,12 +50,12 @@ describe('extension', function() {
           signalEventDefinition = moddle.create('bpmn:SignalEventDefinition'),
           signalEndEvent = moddle.create('bpmn:EndEvent');
 
-        extensionElements.$parent = signalEventDefinition;
+      extensionElements.$parent = signalEventDefinition;
 
-        signalEventDefinition.$parent = signalEndEvent;
-        signalEventDefinition.extensionElements = extensionElements;
-  
-        signalEndEvent.eventDefinitions = [ signalEventDefinition ];
+      signalEventDefinition.$parent = signalEndEvent;
+      signalEventDefinition.extensionElements = extensionElements;
+
+      signalEndEvent.eventDefinitions = [ signalEventDefinition ];
 
       // when
       var canCopyProperty = camundaModdleExtension.canCopyProperty(connector, extensionElements);
@@ -274,7 +274,7 @@ describe('extension', function() {
 
         messageEventDefinition.$parent = messageIntermediateCatchEvent;
         messageEventDefinition.extensionElements = extensionElements;
-  
+
         messageIntermediateCatchEvent.eventDefinitions = [ messageEventDefinition ];
 
         // when
@@ -296,10 +296,10 @@ describe('extension', function() {
       extensionElements.$parent = loopCharacteristics;
 
       loopCharacteristics.extensionElements = extensionElements;
-  
+
       // when
       var canCopyProperty = camundaModdleExtension.canCopyProperty(retryCycle, extensionElements);
-  
+
       // then
       expect(canCopyProperty).not.to.be.false;
     });
@@ -319,10 +319,10 @@ describe('extension', function() {
       extensionElements.$parent = userTask;
 
       userTask.extensionElements = extensionElements;
-  
+
       // when
       var canCopyProperty = camundaModdleExtension.canCopyProperty(taskListener, extensionElements);
-  
+
       // then
       expect(canCopyProperty).not.to.be.false;
     });
@@ -338,10 +338,10 @@ describe('extension', function() {
       extensionElements.$parent = serviceTask;
 
       serviceTask.extensionElements = extensionElements;
-  
+
       // when
       var canCopyProperty = camundaModdleExtension.canCopyProperty(taskListener, extensionElements);
-  
+
       // then
       expect(canCopyProperty).to.be.false;
     });
