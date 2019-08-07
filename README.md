@@ -38,9 +38,9 @@ Perform a complete build of the application via
 npm run all
 ```
 
-## Extension
+## [bpmn-js](https://github.com/bpmn-io/bpmn-js) Extension
 
-We include an extension that provides the necessary validation to clone certain properties, when making use of a library like `bpmn-js`. This allows to easily plug with out modeler solution, which works like the following example:
+We include an extension that makes [bpmn-js](https://github.com/bpmn-io/bpmn-js) copy and replace mechanisms aware of Camunda properties.
 
 ```js
 var BpmnJS = require('bpmn-js/lib/Modeler'),
@@ -57,7 +57,7 @@ var modeler = new BpmnJS({
   });
 ```
 
-This extension makes use of dependency injection via [didi](https://github.com/nikku/didi) and expects an events interface such as [`eventBus`](https://github.com/bpmn-io/diagram-js/blob/master/lib/core/EventBus.js), where we plugin and listen to the `property.clone` event.
+This extension hooks into the copy mechanism provided by the BPMN editor and ensures Camunda properties are kept and or dropped on copy and element replace.
 
 
 ## License
