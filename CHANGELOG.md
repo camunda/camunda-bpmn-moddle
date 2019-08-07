@@ -12,6 +12,10 @@ ___Note:__ Yet to be released changes appear here._
 * `CHORE`: use Camunda logical types in `allowedIn` mappings
 * `FIX`: make extension work
 
+### Breaking Changes
+
+* Requires `bpmn-js@5+` for proper copying of moddle attributes
+
 ## 3.2.0
 
 * `FEAT`: add `camunda:calledElementVersionTag` to schema ([#43](https://github.com/camunda/camunda-bpmn-moddle/issues/43))
