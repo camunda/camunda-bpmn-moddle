@@ -6,6 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 4.0.1
+
+* `DOCS`: update bpmn-js integration docs
+
 ## 4.0.0
 
 * `CHORE`: update moddle copy mechanism for compatibility with `bpmn-js@5`
