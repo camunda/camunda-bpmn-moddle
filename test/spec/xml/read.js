@@ -191,6 +191,30 @@ describe('read', function() {
     });
 
 
+    describe('camunda:errorMessage', function() {
+
+      it('on Error', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-errorMessage.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:Error', function(err, definition) {
+
+          // then
+          expect(definition).to.jsonEqual({
+            $type: 'bpmn:Error',
+            errorMessage: 'errorMessage'
+          });
+
+          done(err);
+        });
+
+      });
+
+    });
+
+
     it('camunda:script', function(done) {
 
       // given

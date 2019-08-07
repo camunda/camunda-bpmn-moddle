@@ -154,6 +154,20 @@
       ]
     },
     {
+      "name": "Error",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:Error"
+      ],
+      "properties": [
+        {
+          "name": "camunda:errorMessage",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
       "name": "PotentialStarter",
       "superClass": [
         "Element"
