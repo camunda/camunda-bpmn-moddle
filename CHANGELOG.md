@@ -6,6 +6,12 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 4.0.0
+
+* `CHORE`: update moddle copy mechanism for compatibility with `bpmn-js@5`
+* `CHORE`: use Camunda logical types in `allowedIn` mappings
+* `FIX`: make extension work
+
 ## 3.2.0
 
 * `FEAT`: add `camunda:calledElementVersionTag` to schema ([#43](https://github.com/camunda/camunda-bpmn-moddle/issues/43))
