@@ -792,7 +792,8 @@
           "bpmn:CallActivity",
           "bpmn:TimerEventDefinition",
           "bpmn:SignalEventDefinition",
-          "bpmn:MultiInstanceLoopCharacteristics"
+          "bpmn:MultiInstanceLoopCharacteristics",
+          "bpmn:SubProcess"
         ]
       },
       "properties": [
