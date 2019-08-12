@@ -6,6 +6,11 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 4.1.1
+
+* `FIX`: allow [`camunda:failedJobRetryTimeCycle`](https://docs.camunda.org/manual/7.11/reference/bpmn20/custom-extensions/extension-elements/#failedjobretrytimecycle) in `bpmn:SubProcess`
+* `FIX`: allow [`camunda:executionListener`](https://docs.camunda.org/manual/7.11/reference/bpmn20/custom-extensions/extension-elements/#executionlistener) in `bpmn:Process`
+
 ## 4.1.0
 
 * `FEAT`: add `camunda:errorMessage` to schema ([`d47da`](https://github.com/camunda/camunda-bpmn-moddle/commit/d47da3a8e90b90994fd397c3ddb6572ce6dcbc1c))
