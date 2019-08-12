@@ -567,28 +567,8 @@
       ],
       "meta": {
         "allowedIn": [
-          "bpmn:Task",
-          "bpmn:UserTask",
-          "bpmn:ServiceTask",
-          "bpmn:SendTask",
-          "bpmn:BusinessRuleTask",
-          "bpmn:ReceiveTask",
-          "bpmn:ScriptTask",
-          "bpmn:ManualTask",
-          "bpmn:GlobalUserTask",
-          "bpmn:GlobalScriptTask",
-          "bpmn:GlobalBusinessRuleTask",
-          "bpmn:GlobalTask",
-          "bpmn:GlobalManualTask",
-          "bpmn:SubProcess",
-          "bpmn:Transaction",
-          "bpmn:IntermediateCatchEvent",
-          "bpmn:IntermediateThrowEvent",
-          "bpmn:EndEvent",
-          "bpmn:ThrowEvent",
-          "bpmn:CatchEvent",
-          "bpmn:ImplicitThrowEvent",
-          "bpmn:CallActivity"
+          "bpmn:FlowNode",
+          "camunda:Connector"
         ]
       },
       "properties": [
@@ -782,18 +762,8 @@
       "superClass": [ "Element" ],
       "meta": {
         "allowedIn": [
-          "bpmn:Task",
-          "bpmn:ServiceTask",
-          "bpmn:SendTask",
-          "bpmn:UserTask",
-          "bpmn:BusinessRuleTask",
-          "bpmn:ScriptTask",
-          "bpmn:ReceiveTask",
-          "bpmn:CallActivity",
-          "bpmn:TimerEventDefinition",
-          "bpmn:SignalEventDefinition",
-          "bpmn:MultiInstanceLoopCharacteristics",
-          "bpmn:SubProcess"
+          "camunda:AsyncCapable",
+          "bpmn:MultiInstanceLoopCharacteristics"
         ]
       },
       "properties": [
