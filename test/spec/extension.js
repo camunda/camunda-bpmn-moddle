@@ -87,10 +87,27 @@ describe('extension', function() {
       expect(canCopyProperty).to.be.false;
     });
 
+
+    it('should allow if parent is ServiceTask', function() {
+
+      // given
+      var connector = moddle.create('camunda:Connector'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          serviceTask = moddle.create('bpmn:ServiceTask');
+
+      extensionElements.$parent = serviceTask;
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(connector, extensionElements);
+
+      // then
+      expect(canCopyProperty).not.to.be.false;
+    });
+
   });
 
 
-  describe('field', function() {
+  describe('camunda:Field', function() {
 
     it('should allow if parent has MessageEventDefinition', function() {
 
@@ -163,9 +180,9 @@ describe('extension', function() {
   });
 
 
-  describe('retry cycle', function() {
+  describe('camunda:FailedJobRetryTimeCycle', function() {
 
-    it('should allow if parent has SignalEventDefinition and is IntermediateThrowEvent',
+    it('should allow if parent is Signal IntermediateThrowEvent',
       function() {
 
         // given
@@ -190,7 +207,7 @@ describe('extension', function() {
     );
 
 
-    it('should NOT allow if parent has SignalEventDefinition and is not IntermediateThrowEvent',
+    it('should allow if parent is Signal StartEvent',
       function() {
 
         // given
@@ -210,12 +227,12 @@ describe('extension', function() {
         var canCopyProperty = camundaModdleExtension.canCopyProperty(retryCycle, extensionElements);
 
         // then
-        expect(canCopyProperty).to.be.false;
+        expect(canCopyProperty).not.to.be.false;
       }
     );
 
 
-    it('should allow if parent has TimerEventDefinition is catching', function() {
+    it('should allow if parent is Timer IntermediateCatchEvent', function() {
 
       // given
       var retryCycle = moddle.create('camunda:FailedJobRetryTimeCycle'),
@@ -238,7 +255,7 @@ describe('extension', function() {
     });
 
 
-    it('should NOT allow if parent has TimerEventDefinition and is not catching', function() {
+    it('should allow if parent is Timer EndEvent', function() {
 
       // given
       var retryCycle = moddle.create('camunda:FailedJobRetryTimeCycle'),
@@ -257,11 +274,11 @@ describe('extension', function() {
       var canCopyProperty = camundaModdleExtension.canCopyProperty(retryCycle, extensionElements);
 
       // then
-      expect(canCopyProperty).to.be.false;
+      expect(canCopyProperty).not.to.be.false;
     });
 
 
-    it('should NOT allow if parent has no SignalEventDefinition or TimerEventDefinition',
+    it('should allow if parent is Message IntermediateCatchEvent',
       function() {
 
         // given
@@ -281,12 +298,12 @@ describe('extension', function() {
         var canCopyProperty = camundaModdleExtension.canCopyProperty(retryCycle, extensionElements);
 
         // then
-        expect(canCopyProperty).to.be.false;
+        expect(canCopyProperty).not.to.be.false;
       }
     );
 
 
-    it('should allow if parent is loop characteristics', function() {
+    it('should allow if parent is MultiInstanceLoopCharacteristics', function() {
 
       // given
       var retryCycle = moddle.create('camunda:FailedJobRetryTimeCycle'),
@@ -307,7 +324,7 @@ describe('extension', function() {
   });
 
 
-  describe('task listener', function() {
+  describe('camunda:TaskListener', function() {
 
     it('should allow if parent is user task', function() {
 
@@ -348,7 +365,69 @@ describe('extension', function() {
 
   });
 
+
+  describe('camunda:InputOutput', function() {
+
+    it('should NOT allow on Gateway', function() {
+
+      // given
+      var inputOutput = moddle.create('camunda:InputOutput'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          gateway = moddle.create('bpmn:Gateway');
+
+      extensionElements.$parent = gateway;
+
+      gateway.extensionElements = extensionElements;
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(inputOutput, extensionElements);
+
+      // then
+      expect(canCopyProperty).to.be.false;
+    });
+
+
+    it('should NOT allow on BoundaryEvent', function() {
+
+      // given
+      var inputOutput = moddle.create('camunda:InputOutput'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          boundaryEvent = moddle.create('bpmn:BoundaryEvent');
+
+      extensionElements.$parent = boundaryEvent;
+
+      boundaryEvent.extensionElements = extensionElements;
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(inputOutput, extensionElements);
+
+      // then
+      expect(canCopyProperty).to.be.false;
+    });
+
+
+    it('should NOT allow on StartEvent', function() {
+
+      // given
+      var inputOutput = moddle.create('camunda:InputOutput'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          startEvent = moddle.create('bpmn:StartEvent');
+
+      extensionElements.$parent = startEvent;
+
+      startEvent.extensionElements = extensionElements;
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(inputOutput, extensionElements);
+
+      // then
+      expect(canCopyProperty).to.be.false;
+    });
+
+  });
+
 });
+
 
 // helpers //////////
 
