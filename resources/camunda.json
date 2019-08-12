@@ -826,7 +826,8 @@
           "bpmn:EndEvent",
           "bpmn:BoundaryEvent",
           "bpmn:CallActivity",
-          "bpmn:SubProcess"
+          "bpmn:SubProcess",
+          "bpmn:Process"
         ]
       },
       "properties": [
