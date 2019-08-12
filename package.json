@@ -1,6 +1,6 @@
 {
   "name": "camunda-bpmn-moddle",
-  "version": "4.1.0",
+  "version": "4.1.1",
   "description": "Camunda moddle extensions for BPMN 2.0",
   "scripts": {
     "all": "run-s lint test",
