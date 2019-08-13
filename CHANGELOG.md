@@ -6,6 +6,11 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 4.1.2
+
+* `FIX`: do not copy `camunda:InputOutput` on gateways
+* `FIX`: copy `camunda:FailedJobRetryTimeCycle` consistently for all `camunda:AsyncCapable` elements
+
 ## 4.1.1
 
 * `FIX`: allow [`camunda:failedJobRetryTimeCycle`](https://docs.camunda.org/manual/7.11/reference/bpmn20/custom-extensions/extension-elements/#failedjobretrytimecycle) in `bpmn:SubProcess`
