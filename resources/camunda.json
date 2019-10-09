@@ -8,6 +8,20 @@
   "associations": [],
   "types": [
     {
+      "name": "Definitions",
+      "isAbstract": true,
+      "extends": [
+        "bpmn:Definitions"
+      ],
+      "properties": [
+        {
+          "name": "diagramRelationId",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
       "name": "InOutBinding",
       "superClass": [
         "Element"

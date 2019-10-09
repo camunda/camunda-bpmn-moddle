@@ -296,6 +296,30 @@ describe('read', function() {
     });
 
 
+    describe('camunda:diagramRelationId', function() {
+
+      it('on Definitions', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/definitions-diagramRelationId.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'bpmn:Definitions', function(err, definition) {
+
+          // then
+          expect(definition).to.jsonEqual({
+            $type: 'bpmn:Definitions',
+            diagramRelationId: 'foo'
+          });
+
+          done(err);
+        });
+
+      });
+
+    });
+
+
     it('camunda:potentialStarter', function(done) {
 
       // given
