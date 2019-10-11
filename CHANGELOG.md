@@ -6,6 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 4.2.0
+
+* `FEAT`: add `camunda:diagramRelationId` to schema ([#49](https://github.com/camunda/camunda-bpmn-moddle/issues/49))
+
 ## 4.1.2
 
 * `FIX`: do not copy `camunda:InputOutput` on gateways
