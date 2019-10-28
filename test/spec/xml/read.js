@@ -1107,24 +1107,56 @@ describe('read', function() {
     });
 
 
-    it('camunda:taskListener', function(done) {
+    describe('camunda:taskListener', function() {
 
-      // given
-      var xml = readFile('test/fixtures/xml/camunda-taskListener.part.bpmn');
+      it('create event', function(done) {
 
-      // when
-      moddle.fromXML(xml, 'camunda:TaskListener', function(err, taskListener) {
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-taskListener.part.bpmn');
 
-        // then
-        expect(taskListener).to.jsonEqual({
-          $type: 'camunda:TaskListener',
-          event: 'create',
-          class: 'org.camunda.bpm.engine.test.bpmn.usertask.UserTaskTestCreateTaskListener',
-          delegateExpression: '${myTaskListener}',
-          expression: '${myTaskListener.notify(task, task.eventName)}'
+        // when
+        moddle.fromXML(xml, 'camunda:TaskListener', function(err, taskListener) {
+
+          // then
+          expect(taskListener).to.jsonEqual({
+            $type: 'camunda:TaskListener',
+            event: 'create',
+            class: 'org.camunda.bpm.engine.test.bpmn.usertask.UserTaskTestCreateTaskListener',
+            delegateExpression: '${myTaskListener}',
+            expression: '${myTaskListener.notify(task, task.eventName)}'
+          });
+
+          done(err);
         });
+      });
 
-        done(err);
+
+      it('timeout event', function(done) {
+
+        // given
+        var xml = readFile('test/fixtures/xml/camunda-timeout-taskListener.part.bpmn');
+
+        // when
+        moddle.fromXML(xml, 'camunda:TaskListener', function(err, taskListener) {
+
+          // then
+          expect(taskListener).to.jsonEqual({
+            $type: 'camunda:TaskListener',
+            event: 'timeout',
+            id: 'timeout-friendly',
+            eventDefinitions: [
+              {
+                $type: 'bpmn:TimerEventDefinition',
+                timeDuration: {
+                  $type: 'bpmn:FormalExpression',
+                  body: 'PT1H'
+                }
+              }
+            ]
+          });
+
+          done(err);
+        });
       });
     });
 

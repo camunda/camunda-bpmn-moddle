@@ -1,0 +1,7 @@
+<camunda:taskListener xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+  event='timeout'
+  id="timeout-friendly">
+    <bpmn:timerEventDefinition>
+      <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1H</bpmn:timeDuration>
+    </bpmn:timerEventDefinition>
+</camunda:taskListener>
