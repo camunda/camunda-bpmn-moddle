@@ -6,6 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 4.3.0
+
+* `FEAT`: add `id` and `eventDefinitions` to task listener schema ([`9668525f`](https://github.com/camunda/camunda-bpmn-moddle/commit/9668525f217df6938312e84bde0f022115ea5935))
+
 ## 4.2.0
 
 * `FEAT`: add `camunda:diagramRelationId` to schema ([#49](https://github.com/camunda/camunda-bpmn-moddle/issues/49))
