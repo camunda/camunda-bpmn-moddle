@@ -366,6 +366,148 @@ describe('extension', function() {
   });
 
 
+  describe('camunda:In', function() {
+
+    it('should allow <camunda:In> on CallActivity', function() {
+
+      // given
+      var inOutBinding = moddle.create('camunda:In'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          callActivity = moddle.create('bpmn:CallActivity');
+
+      extensionElements.$parent = callActivity;
+
+      callActivity.extensionElements = extensionElements;
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+
+      // then
+      expect(canCopyProperty).not.to.be.false;
+    });
+
+
+    it('should allow <camunda:In> on SignalIntermediateThrowEvent', function() {
+
+      // given
+      var inOutBinding = moddle.create('camunda:In'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          signalEventDefinition = moddle.create('bpmn:SignalEventDefinition'),
+          intermediateThrowEvent = moddle.create('bpmn:IntermediateThrowEvent');
+
+      extensionElements.$parent = signalEventDefinition;
+
+      signalEventDefinition.extensionElements = extensionElements;
+
+      signalEventDefinition.$parent = intermediateThrowEvent;
+
+      intermediateThrowEvent.eventDefinitions = [ signalEventDefinition ];
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+
+      // then
+      expect(canCopyProperty).not.to.be.false;
+    });
+
+
+    it('should allow <camunda:In> on SignalEndEvent', function() {
+
+      // given
+      var inOutBinding = moddle.create('camunda:In'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          signalEventDefinition = moddle.create('bpmn:SignalEventDefinition'),
+          endEvent = moddle.create('bpmn:EndEvent');
+
+      extensionElements.$parent = signalEventDefinition;
+
+      signalEventDefinition.extensionElements = extensionElements;
+
+      signalEventDefinition.$parent = endEvent;
+
+      endEvent.eventDefinitions = [ signalEventDefinition ];
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+
+      // then
+      expect(canCopyProperty).not.to.be.false;
+    });
+
+
+    it('should NOT allow <camunda:In> on SignalStartEvent', function() {
+
+      // given
+      var inOutBinding = moddle.create('camunda:In'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          signalEventDefinition = moddle.create('bpmn:SignalEventDefinition'),
+          startEvent = moddle.create('bpmn:StartEvent');
+
+      extensionElements.$parent = signalEventDefinition;
+
+      signalEventDefinition.extensionElements = extensionElements;
+
+      signalEventDefinition.$parent = startEvent;
+
+      startEvent.eventDefinitions = [ signalEventDefinition ];
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+
+      // then
+      expect(canCopyProperty).to.be.false;
+    });
+
+
+    it('should NOT allow <camunda:In> on SignalIntermediateCatchEvent', function() {
+
+      // given
+      var inOutBinding = moddle.create('camunda:In'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          signalEventDefinition = moddle.create('bpmn:SignalEventDefinition'),
+          intermediateCatchEvent = moddle.create('bpmn:IntermediateCatchEvent');
+
+      extensionElements.$parent = signalEventDefinition;
+
+      signalEventDefinition.extensionElements = extensionElements;
+
+      signalEventDefinition.$parent = intermediateCatchEvent;
+
+      intermediateCatchEvent.eventDefinitions = [ signalEventDefinition ];
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+
+      // then
+      expect(canCopyProperty).to.be.false;
+    });
+
+
+    it('should NOT allow <camunda:In> on MessageIntermediateThrowEvent', function() {
+
+      // given
+      var inOutBinding = moddle.create('camunda:In'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          messageEventDefinition = moddle.create('bpmn:MessageEventDefinition'),
+          intermediateCatchEvent = moddle.create('bpmn:IntermediateCatchEvent');
+
+      extensionElements.$parent = messageEventDefinition;
+
+      messageEventDefinition.extensionElements = extensionElements;
+
+      messageEventDefinition.$parent = intermediateCatchEvent;
+
+      intermediateCatchEvent.eventDefinitions = [ messageEventDefinition ];
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+
+      // then
+      expect(canCopyProperty).to.be.false;
+    });
+  });
+
+
   describe('camunda:InputOutput', function() {
 
     it('should NOT allow on Gateway', function() {
