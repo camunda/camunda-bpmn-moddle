@@ -68,7 +68,8 @@
       ],
       "meta": {
         "allowedIn": [
-          "bpmn:CallActivity"
+          "bpmn:CallActivity",
+          "bpmn:SignalEventDefinition"
         ]
       }
     },
