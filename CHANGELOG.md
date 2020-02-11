@@ -6,6 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 4.4.0
+
+* `FEAT`: copy [`camunda:in`](https://docs.camunda.org/manual/7.12/reference/bpmn20/custom-extensions/extension-elements/#in) on signal throw events ([#54](https://github.com/camunda/camunda-bpmn-moddle/pull/54))
+
 ## 4.3.0
 
 * `FEAT`: add `id` and `eventDefinitions` to task listener schema ([`9668525f`](https://github.com/camunda/camunda-bpmn-moddle/commit/9668525f217df6938312e84bde0f022115ea5935))
