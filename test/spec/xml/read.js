@@ -1329,12 +1329,12 @@ describe('read', function() {
 
     });
 
-    describe('camunda:variableEvent', function() {
+    describe('camunda:variableEvents', function() {
 
       it('on ConditionalEventDefinition', function(done) {
 
         // given
-        var xml = readFile('test/fixtures/xml/conditionalEventDefinition-camunda-variableEvent.part.bpmn');
+        var xml = readFile('test/fixtures/xml/conditionalEventDefinition-camunda-variableEvents.part.bpmn');
 
         // when
         moddle.fromXML(xml, 'bpmn:ConditionalEventDefinition', function(err, definition) {
@@ -1342,7 +1342,7 @@ describe('read', function() {
           // then
           expect(definition).to.jsonEqual({
             $type: 'bpmn:ConditionalEventDefinition',
-            variableEvent: 'create, update'
+            variableEvents: 'create, update'
           });
 
           done(err);
