@@ -1071,7 +1071,7 @@
           "type": "String"
         },
         {
-          "name": "variableEvent",
+          "name": "variableEvents",
           "isAttr": true,
           "type": "String"
         }
