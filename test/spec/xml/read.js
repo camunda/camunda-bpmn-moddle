@@ -617,60 +617,129 @@ describe('read', function() {
     });
 
 
-    describe('camunda:TemplateSupported with camunda:modelerTemplate', function() {
+    describe('camunda:TemplateSupported', function() {
 
-      it('on Process', function(done) {
+      describe('camunda:modelerTemplate', function() {
 
-        // given
-        var xml = readFile('test/fixtures/xml/process-camunda-modelerTemplate.part.bpmn');
+        it('on Process', function(done) {
 
-        // when
-        moddle.fromXML(xml, 'bpmn:Process', function(err, task) {
+          // given
+          var xml = readFile('test/fixtures/xml/process-camunda-modelerTemplate.part.bpmn');
 
-          // then
-          expect(task).to.jsonEqual({
-            $type: 'bpmn:Process',
-            modelerTemplate: 'foo'
+          // when
+          moddle.fromXML(xml, 'bpmn:Process', function(err, task) {
+
+            // then
+            expect(task).to.jsonEqual({
+              $type: 'bpmn:Process',
+              modelerTemplate: 'foo'
+            });
+
+            done(err);
           });
-
-          done(err);
         });
+
+
+        it('on Task', function(done) {
+
+          // given
+          var xml = readFile('test/fixtures/xml/task-camunda-modelerTemplate.part.bpmn');
+
+          // when
+          moddle.fromXML(xml, 'bpmn:Task', function(err, task) {
+
+            // then
+            expect(task).to.jsonEqual({
+              $type: 'bpmn:Task',
+              modelerTemplate: 'foo'
+            });
+
+            done(err);
+          });
+        });
+
+
+        it('on StartEvent', function(done) {
+
+          // given
+          var xml = readFile('test/fixtures/xml/startEvent-camunda-modelerTemplate.part.bpmn');
+
+          // when
+          moddle.fromXML(xml, 'bpmn:StartEvent', function(err, task) {
+
+            // then
+            expect(task).to.jsonEqual({
+              $type: 'bpmn:StartEvent',
+              modelerTemplate: 'bar'
+            });
+
+            done(err);
+          });
+        });
+
       });
 
-      it('on Task', function(done) {
+      describe('camunda:modelerTemplateVersion', function() {
 
-        // given
-        var xml = readFile('test/fixtures/xml/task-camunda-modelerTemplate.part.bpmn');
+        it('on Process', function(done) {
 
-        // when
-        moddle.fromXML(xml, 'bpmn:Task', function(err, task) {
+          // given
+          var xml = readFile('test/fixtures/xml/process-camunda-modelerTemplateVersion.part.bpmn');
 
-          // then
-          expect(task).to.jsonEqual({
-            $type: 'bpmn:Task',
-            modelerTemplate: 'foo'
+          // when
+          moddle.fromXML(xml, 'bpmn:Process', function(err, task) {
+
+            // then
+            expect(task).to.jsonEqual({
+              $type: 'bpmn:Process',
+              modelerTemplate: 'foo',
+              modelerTemplateVersion: 1
+            });
+
+            done(err);
           });
-
-          done(err);
         });
-      });
 
-      it('on StartEvent', function(done) {
 
-        // given
-        var xml = readFile('test/fixtures/xml/startEvent-camunda-modelerTemplate.part.bpmn');
+        it('on Task', function(done) {
 
-        // when
-        moddle.fromXML(xml, 'bpmn:StartEvent', function(err, task) {
+          // given
+          var xml = readFile('test/fixtures/xml/task-camunda-modelerTemplateVersion.part.bpmn');
 
-          // then
-          expect(task).to.jsonEqual({
-            $type: 'bpmn:StartEvent',
-            modelerTemplate: 'bar'
+          // when
+          moddle.fromXML(xml, 'bpmn:Task', function(err, task) {
+
+            // then
+            expect(task).to.jsonEqual({
+              $type: 'bpmn:Task',
+              modelerTemplate: 'foo',
+              modelerTemplateVersion: 1
+            });
+
+            done(err);
           });
-
-          done(err);
         });
+
+
+        it('on StartEvent', function(done) {
+
+          // given
+          var xml = readFile('test/fixtures/xml/startEvent-camunda-modelerTemplateVersion.part.bpmn');
+
+          // when
+          moddle.fromXML(xml, 'bpmn:StartEvent', function(err, task) {
+
+            // then
+            expect(task).to.jsonEqual({
+              $type: 'bpmn:StartEvent',
+              modelerTemplate: 'bar',
+              modelerTemplateVersion: 1
+            });
+
+            done(err);
+          });
+        });
+
       });
 
     });

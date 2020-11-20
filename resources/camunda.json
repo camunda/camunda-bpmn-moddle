@@ -226,6 +226,11 @@
           "name": "modelerTemplate",
           "isAttr": true,
           "type": "String"
+        },
+        {
+          "name": "modelerTemplateVersion",
+          "isAttr": true,
+          "type": "Integer"
         }
       ]
     },
