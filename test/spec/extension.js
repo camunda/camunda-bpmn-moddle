@@ -324,6 +324,48 @@ describe('extension', function() {
   });
 
 
+  describe('camunda:ErrorEventDefinition', function() {
+
+    it('should allow if parent is service task', function() {
+
+      // given
+      var errorEventDefinition = moddle.create('camunda:ErrorEventDefinition'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          serviceTask = moddle.create('bpmn:ServiceTask');
+
+      extensionElements.$parent = serviceTask;
+
+      serviceTask.extensionElements = extensionElements;
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(errorEventDefinition, extensionElements);
+
+      // then
+      expect(canCopyProperty).not.to.be.false;
+    });
+
+
+    it('should not allow if parent is not a service task', function() {
+
+      // given
+      var errorEventDefinition = moddle.create('camunda:ErrorEventDefinition'),
+          extensionElements = moddle.create('bpmn:ExtensionElements'),
+          userTask = moddle.create('bpmn:UserTask');
+
+      extensionElements.$parent = userTask;
+
+      userTask.extensionElements = extensionElements;
+
+      // when
+      var canCopyProperty = camundaModdleExtension.canCopyProperty(errorEventDefinition, extensionElements);
+
+      // then
+      expect(canCopyProperty).to.be.false;
+    });
+
+  });
+
+
   describe('camunda:TaskListener', function() {
 
     it('should allow if parent is user task', function() {

@@ -169,6 +169,22 @@
       ]
     },
     {
+      "name": "ErrorEventDefinition",
+      "superClass": [
+        "bpmn:ErrorEventDefinition"
+      ],
+      "properties": [
+        {
+          "name": "expression",
+          "isAttr": true,
+          "type": "String"
+        }
+      ],
+      "meta": {
+        "allowedIn": [ "bpmn:ServiceTask" ]
+      }
+    },
+    {
       "name": "Error",
       "isAbstract": true,
       "extends": [
