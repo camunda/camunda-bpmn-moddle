@@ -6,6 +6,12 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+* `CHORE`: rename `*EventDefinition` to `*EventDefinitionExtension`
+
+### Breaking Changes
+
+* `*EventDefinition` elements were re-named by appending `Extension`. Adjust the name of these elements, if you extended or superclassed them. 
+
 ## 4.5.0
 
 * `FIX`: add `modelerTemplateVersion` property ([#60](https://github.com/camunda/camunda-bpmn-moddle/pull/60))
