@@ -135,7 +135,7 @@
       ]
     },
     {
-      "name": "SignalEventDefinition",
+      "name": "SignalEventDefinitionExtension",
       "isAbstract": true,
       "extends": [
         "bpmn:SignalEventDefinition"
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "name": "ErrorEventDefinition",
+      "name": "ErrorEventDefinitionExtension",
       "isAbstract": true,
       "extends": [
         "bpmn:ErrorEventDefinition"
@@ -301,7 +301,7 @@
       ]
     },
     {
-      "name": "EscalationEventDefinition",
+      "name": "EscalationEventDefinitionExtension",
       "isAbstract": true,
       "extends": [
         "bpmn:EscalationEventDefinition"
@@ -1064,7 +1064,7 @@
       ]
     },
     {
-      "name": "ConditionalEventDefinition",
+      "name": "ConditionalEventDefinitionExtension",
       "isAbstract": true,
       "extends": [
         "bpmn:ConditionalEventDefinition"
