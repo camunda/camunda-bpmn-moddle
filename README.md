@@ -1,6 +1,6 @@
 # camunda-bpmn-moddle
 
-[![Build Status](https://travis-ci.com/camunda/camunda-bpmn-moddle.svg)](https://travis-ci.com/camunda/camunda-bpmn-moddle)
+[![CI](https://github.com/camunda/camunda-bpmn-moddle/workflows/CI/badge.svg)](https://github.com/camunda/camunda-bpmn-moddle/actions?query=workflow%3ACI)
 
 This project defines the [Camunda](https://camunda.org) namespace extensions for BPMN 2.0 as a [moddle](https://github.com/bpmn-io/moddle) descriptor.
 
