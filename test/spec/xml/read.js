@@ -145,20 +145,29 @@ describe('read', function() {
 
     describe('camunda:errorEventDefinition', function() {
 
-      it('attributes', function(done) {
+      it('on ServiceTask', function(done) {
 
         // given
-        var xml = readFile('test/fixtures/xml/camunda-errorEventDefinition.part.bpmn');
+        var xml = readFile('test/fixtures/xml/serviceTask-camunda-errorEventDefinition.part.bpmn');
 
         // when
-        moddle.fromXML(xml, 'camunda:ErrorEventDefinition', function(err, errorEventDefinition) {
+        moddle.fromXML(xml, 'bpmn:ServiceTask', function(err, serviceTask) {
 
           // then
-          expect(errorEventDefinition).to.jsonEqual({
-            $type: 'camunda:ErrorEventDefinition',
-            id: 'Id_1',
-            expression: '${true}'
-          });
+          expect(serviceTask).to.jsonEqual({
+            $type: 'bpmn:ServiceTask',
+            extensionElements: {
+              $type: 'bpmn:ExtensionElements',
+              values: [
+                {
+                  $type: 'camunda:ErrorEventDefinition',
+                  id: 'Id_1',
+                  expression: '${true}'
+                },
+              ],
+            },
+          }
+          );
 
           done(err);
         });

@@ -171,7 +171,8 @@
     {
       "name": "ErrorEventDefinition",
       "superClass": [
-        "bpmn:ErrorEventDefinition"
+        "bpmn:ErrorEventDefinition",
+        "Element"
       ],
       "properties": [
         {

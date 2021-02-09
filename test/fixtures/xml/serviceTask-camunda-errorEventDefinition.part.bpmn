@@ -1,0 +1,8 @@
+<bpmn:serviceTask>
+    <bpmn:extensionElements>
+        <camunda:errorEventDefinition xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+        xmlns:camunda="http://camunda.org/schema/1.0/bpmn"
+        id="Id_1"
+        expression="${true}"/>
+    </bpmn:extensionElements>
+</bpmn:serviceTask>
