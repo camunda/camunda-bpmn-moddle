@@ -9,33 +9,33 @@ describe('read', function() {
 
   describe('should read extensions', function() {
 
-    var moddle;
+    var moddle = createModdle();
 
-    beforeEach(function() {
-      moddle = createModdle();
-    });
+    function read(xml, root, opts) {
+      return moddle.fromXML(xml, root, opts);
+    }
+
+    function fromFile(file, root, opts) {
+      var contents = readFile('test/fixtures/xml/' + file);
+      return read(contents, root, opts);
+    }
 
 
     describe('camunda:historyTimeToLive', function() {
 
-      it('on Process', function(done) {
+      it('on Process', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/process-camunda-historyTimeToLive.part.bpmn');
+        var file = 'process-camunda-historyTimeToLive.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:Process', function(err, proc) {
+        var { rootElement: process } = await fromFile(file, 'bpmn:Process');
 
-          // then
-          expect(proc).to.jsonEqual({
-            $type : 'bpmn:Process',
-            historyTimeToLive : 'foo'
-          });
-
-          done(err);
-
+        // then
+        expect(process).to.jsonEqual({
+          $type : 'bpmn:Process',
+          historyTimeToLive : 'foo'
         });
-
       });
 
     });
@@ -43,24 +43,19 @@ describe('read', function() {
 
     describe('camunda:isStartableInTasklist', function() {
 
-      it('on Process', function(done) {
+      it('on Process', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/process-camunda-isStartableInTasklist.part.bpmn');
+        var file = 'process-camunda-isStartableInTasklist.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:Process', function(err, proc) {
+        var { rootElement: process } = await fromFile(file, 'bpmn:Process');
 
-          // then
-          expect(proc).to.jsonEqual({
-            $type : 'bpmn:Process',
-            isStartableInTasklist : true
-          });
-
-          done(err);
-
+        // then
+        expect(process).to.jsonEqual({
+          $type : 'bpmn:Process',
+          isStartableInTasklist : true
         });
-
       });
 
 
@@ -78,66 +73,55 @@ describe('read', function() {
 
     describe('camunda:priority', function() {
 
-      it('on UserTask', function(done) {
+      it('on UserTask', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/userTask-camunda-priority.part.bpmn');
+        var file = 'userTask-camunda-priority.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:UserTask', function(err, serviceTask) {
+        var { rootElement: userTask } = await fromFile(file, 'bpmn:UserTask');
 
-          // then
-          expect(serviceTask).to.jsonEqual({
-            $type: 'bpmn:UserTask',
-            priority: '${ priority }'
-          });
-
-          done(err);
+        // then
+        expect(userTask).to.jsonEqual({
+          $type: 'bpmn:UserTask',
+          priority: '${ priority }'
         });
-
       });
+
     });
 
 
     describe('camunda:async', function() {
 
-      it('on ServiceTask', function(done) {
+      it('on ServiceTask', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/serviceTask-camunda-async.part.bpmn');
+        var file = 'serviceTask-camunda-async.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:ServiceTask', function(err, serviceTask) {
+        var { rootElement: serviceTask } = await fromFile(file, 'bpmn:ServiceTask');
 
-          // then
-          expect(serviceTask).to.jsonEqual({
-            $type: 'bpmn:ServiceTask',
-            async: true
-          });
-
-          done(err);
+        // then
+        expect(serviceTask).to.jsonEqual({
+          $type: 'bpmn:ServiceTask',
+          async: true
         });
-
       });
 
 
-      it('on SignalEventDefinition', function(done) {
+      it('on SignalEventDefinition', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/signalEventDefinition-camunda-async.part.bpmn');
+        var file = 'signalEventDefinition-camunda-async.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:SignalEventDefinition', function(err, definition) {
+        var { rootElement: signalEventDefinition } = await fromFile(file, 'bpmn:SignalEventDefinition');
 
-          // then
-          expect(definition).to.jsonEqual({
-            $type: 'bpmn:SignalEventDefinition',
-            async: true
-          });
-
-          done(err);
+        // then
+        expect(signalEventDefinition).to.jsonEqual({
+          $type: 'bpmn:SignalEventDefinition',
+          async: true
         });
-
       });
 
     });
@@ -145,33 +129,29 @@ describe('read', function() {
 
     describe('camunda:errorEventDefinition', function() {
 
-      it('on ServiceTask', function(done) {
+      it('on ServiceTask', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/serviceTask-camunda-errorEventDefinition.part.bpmn');
+        var file = 'serviceTask-camunda-errorEventDefinition.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:ServiceTask', function(err, serviceTask) {
+        var { rootElement: serviceTask } = await fromFile(file, 'bpmn:ServiceTask');
 
-          // then
-          expect(serviceTask).to.jsonEqual({
-            $type: 'bpmn:ServiceTask',
-            extensionElements: {
-              $type: 'bpmn:ExtensionElements',
-              values: [
-                {
-                  $type: 'camunda:ErrorEventDefinition',
-                  id: 'Id_1',
-                  expression: '${true}'
-                },
-              ],
-            },
-          }
-          );
-
-          done(err);
-        });
-
+        // then
+        expect(serviceTask).to.jsonEqual({
+          $type: 'bpmn:ServiceTask',
+          extensionElements: {
+            $type: 'bpmn:ExtensionElements',
+            values: [
+              {
+                $type: 'camunda:ErrorEventDefinition',
+                id: 'Id_1',
+                expression: '${true}'
+              },
+            ],
+          },
+        }
+        );
       });
 
     });
@@ -179,23 +159,19 @@ describe('read', function() {
 
     describe('camunda:errorCodeVariable', function() {
 
-      it('on ErrorEventDefinition', function(done) {
+      it('on ErrorEventDefinition', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/errorEventDefinition-camunda-errorCodeVariable.part.bpmn');
+        var file = 'errorEventDefinition-camunda-errorCodeVariable.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:ErrorEventDefinition', function(err, definition) {
+        var { rootElement: errorEventDefinition } = await fromFile(file, 'bpmn:ErrorEventDefinition');
 
-          // then
-          expect(definition).to.jsonEqual({
-            $type: 'bpmn:ErrorEventDefinition',
-            errorCodeVariable: 'errorCode'
-          });
-
-          done(err);
+        // then
+        expect(errorEventDefinition).to.jsonEqual({
+          $type: 'bpmn:ErrorEventDefinition',
+          errorCodeVariable: 'errorCode'
         });
-
       });
 
     });
@@ -203,23 +179,19 @@ describe('read', function() {
 
     describe('camunda:escalationCodeVariable', function() {
 
-      it('on EscalationEventDefinition', function(done) {
+      it('on EscalationEventDefinition', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/escalationEventDefinition-camunda-escalationCodeVariable.part.bpmn');
+        var file = 'escalationEventDefinition-camunda-escalationCodeVariable.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:EscalationEventDefinition', function(err, definition) {
+        var { rootElement: escalationEventDefinition } = await fromFile(file, 'bpmn:EscalationEventDefinition');
 
-          // then
-          expect(definition).to.jsonEqual({
-            $type: 'bpmn:EscalationEventDefinition',
-            escalationCodeVariable: 'escalationCode'
-          });
-
-          done(err);
+        // then
+        expect(escalationEventDefinition).to.jsonEqual({
+          $type: 'bpmn:EscalationEventDefinition',
+          escalationCodeVariable: 'escalationCode'
         });
-
       });
 
     });
@@ -227,339 +199,299 @@ describe('read', function() {
 
     describe('camunda:errorMessage', function() {
 
-      it('on Error', function(done) {
+      it('on Error', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/camunda-errorMessage.part.bpmn');
+        var file = 'camunda-errorMessage.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:Error', function(err, definition) {
+        var { rootElement: error } = await fromFile(file, 'bpmn:Error');
 
-          // then
-          expect(definition).to.jsonEqual({
-            $type: 'bpmn:Error',
-            errorMessage: 'errorMessage'
-          });
-
-          done(err);
+        // then
+        expect(error).to.jsonEqual({
+          $type: 'bpmn:Error',
+          errorMessage: 'errorMessage'
         });
-
       });
 
     });
 
 
-    it('camunda:script', function(done) {
+    it('camunda:script', async function() {
 
       // given
-      var xml = readFile('test/fixtures/xml/camunda-script.part.bpmn');
+      var file = 'camunda-script.part.bpmn';
 
       // when
-      moddle.fromXML(xml, 'camunda:Script', function(err, script) {
+      var { rootElement: script } = await fromFile(file, 'camunda:Script');
 
-        // then
-        expect(script).to.jsonEqual({
-          $type: 'camunda:Script',
-          scriptFormat: 'groovy',
-          resource: 'null',
-          value: 'foo = bar;'
-        });
-
-        done(err);
+      // then
+      expect(script).to.jsonEqual({
+        $type: 'camunda:Script',
+        scriptFormat: 'groovy',
+        resource: 'null',
+        value: 'foo = bar;'
       });
     });
 
 
-    it('camunda:connector', function(done) {
+    it('camunda:connector', async function() {
 
       // given
-      var xml = readFile('test/fixtures/xml/camunda-connector.part.bpmn');
+      var file = 'camunda-connector.part.bpmn';
 
       // when
-      moddle.fromXML(xml, 'camunda:Connector', function(err, connector) {
+      var { rootElement: connector } = await fromFile(file, 'camunda:Connector');
 
-        // then
-        expect(connector).to.jsonEqual({
-          $type: 'camunda:Connector',
-          connectorId: 'connector',
-          inputOutput: {
-            $type: 'camunda:InputOutput',
-            inputParameters: [
-              {
-                $type: 'camunda:InputParameter',
-                name: 'in'
-              }
-            ],
-            outputParameters: [
-              {
-                $type: 'camunda:OutputParameter',
-                name: 'out'
-              }
-            ]
-          }
-        });
-
-        done(err);
-      });
-    });
-
-
-    it('camunda:properties', function(done) {
-
-      // given
-      var xml = readFile('test/fixtures/xml/camunda-properties.part.bpmn');
-
-      // when
-      moddle.fromXML(xml, 'camunda:Properties', function(err, properties) {
-
-        // then
-        expect(properties).to.jsonEqual({
-          $type: 'camunda:Properties',
-          values: [
+      // then
+      expect(connector).to.jsonEqual({
+        $type: 'camunda:Connector',
+        connectorId: 'connector',
+        inputOutput: {
+          $type: 'camunda:InputOutput',
+          inputParameters: [
             {
-              $type: 'camunda:Property',
-              id: 'p1',
-              name: 'foo',
-              value: 'property1'
+              $type: 'camunda:InputParameter',
+              name: 'in'
+            }
+          ],
+          outputParameters: [
+            {
+              $type: 'camunda:OutputParameter',
+              name: 'out'
             }
           ]
-        });
+        }
+      });
+    });
 
-        done(err);
+
+    it('camunda:properties', async function() {
+
+      // given
+      var file = 'camunda-properties.part.bpmn';
+
+      // when
+      var { rootElement: properties } = await fromFile(file, 'camunda:Properties');
+
+      // then
+      expect(properties).to.jsonEqual({
+        $type: 'camunda:Properties',
+        values: [
+          {
+            $type: 'camunda:Property',
+            id: 'p1',
+            name: 'foo',
+            value: 'property1'
+          }
+        ]
       });
     });
 
 
     describe('camunda:diagramRelationId', function() {
 
-      it('on Definitions', function(done) {
+      it('on Definitions', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/definitions-diagramRelationId.part.bpmn');
+        var file = 'definitions-diagramRelationId.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:Definitions', function(err, definition) {
+        var { rootElement: definitions } = await fromFile(file, 'bpmn:Definitions');
 
-          // then
-          expect(definition).to.jsonEqual({
-            $type: 'bpmn:Definitions',
-            diagramRelationId: 'foo'
-          });
-
-          done(err);
+        // then
+        expect(definitions).to.jsonEqual({
+          $type: 'bpmn:Definitions',
+          diagramRelationId: 'foo'
         });
-
       });
 
     });
 
 
-    it('camunda:potentialStarter', function(done) {
+    it('camunda:potentialStarter', async function() {
 
       // given
-      var xml = readFile('test/fixtures/xml/camunda-potentialStarter.part.bpmn');
+      var file = 'camunda-potentialStarter.part.bpmn';
 
       // when
-      moddle.fromXML(xml, 'camunda:PotentialStarter', function(err, starter) {
+      var { rootElement: starter } = await fromFile(file, 'camunda:PotentialStarter');
 
-        // then
-        expect(starter).to.jsonEqual({
-          $type: 'camunda:PotentialStarter',
-          resourceAssignmentExpression: {
-            $type: 'bpmn:ResourceAssignmentExpression',
-            expression: {
-              $type: 'bpmn:FormalExpression',
-              body: 'group2, group(group3), user(user3)'
-            }
+      // then
+      expect(starter).to.jsonEqual({
+        $type: 'camunda:PotentialStarter',
+        resourceAssignmentExpression: {
+          $type: 'bpmn:ResourceAssignmentExpression',
+          expression: {
+            $type: 'bpmn:FormalExpression',
+            body: 'group2, group(group3), user(user3)'
           }
-        });
-
-        done(err);
+        }
       });
     });
 
 
     describe('camunda:resource', function() {
 
-      it('on FormalExpression', function(done) {
+      it('on FormalExpression', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/formalExpression-resource.part.bpmn');
+        var file = 'formalExpression-resource.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:FormalExpression', function(err, starter) {
+        var { rootElement: expression } = await fromFile(file, 'bpmn:FormalExpression');
 
-          // then
-          expect(starter).to.jsonEqual({
-            $type: 'bpmn:FormalExpression',
-            resource: 'deployment://some-file'
-          });
-
-          done(err);
+        // then
+        expect(expression).to.jsonEqual({
+          $type: 'bpmn:FormalExpression',
+          resource: 'deployment://some-file'
         });
+      });
+
+    });
+
+
+    it('camunda:in', async function() {
+
+      // given
+      var file = 'camunda-in.part.bpmn';
+
+      // when
+      var { rootElement: binding } = await fromFile(file, 'camunda:In');
+
+      // then
+      expect(binding).to.jsonEqual({
+        $type: 'camunda:In',
+        sourceExpression: 'fooExp',
+        source: 'foo',
+        target: 'bar',
+        variables: 'all',
+        local: true
       });
     });
 
 
-    it('camunda:in', function(done) {
+    it('camunda:out', async function() {
 
       // given
-      var xml = readFile('test/fixtures/xml/camunda-in.part.bpmn');
+      var file = 'camunda-out.part.bpmn';
 
       // when
-      moddle.fromXML(xml, 'camunda:In', function(err, binding) {
+      var { rootElement: binding } = await fromFile(file, 'camunda:Out');
 
-        // then
-        expect(binding).to.jsonEqual({
-          $type: 'camunda:In',
-          sourceExpression: 'fooExp',
-          source: 'foo',
-          target: 'bar',
-          variables: 'all',
-          local: true
-        });
-
-        done(err);
-      });
-    });
-
-
-    it('camunda:out', function(done) {
-
-      // given
-      var xml = readFile('test/fixtures/xml/camunda-out.part.bpmn');
-
-      // when
-      moddle.fromXML(xml, 'camunda:Out', function(err, binding) {
-
-        // then
-        expect(binding).to.jsonEqual({
-          $type: 'camunda:Out',
-          sourceExpression: 'fooExp',
-          source: 'foo',
-          target: 'bar',
-          variables: 'all',
-          local: true
-        });
-
-        done(err);
+      // then
+      expect(binding).to.jsonEqual({
+        $type: 'camunda:Out',
+        sourceExpression: 'fooExp',
+        source: 'foo',
+        target: 'bar',
+        variables: 'all',
+        local: true
       });
     });
 
 
     describe('camunda:inputParameter', function() {
 
-      it('with body content', function(done) {
+      it('with body content', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/camunda-inputParameter-body.part.bpmn');
+        var file = 'camunda-inputParameter-body.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'camunda:InputParameter', function(err, parameter) {
+        var { rootElement: parameter } = await fromFile(file, 'camunda:InputParameter');
 
-          // then
-          expect(parameter).to.jsonEqual({
-            $type: 'camunda:InputParameter',
-            name: 'foo',
-            value: 'BAR'
-          });
-
-          done(err);
+        // then
+        expect(parameter).to.jsonEqual({
+          $type: 'camunda:InputParameter',
+          name: 'foo',
+          value: 'BAR'
         });
       });
 
 
-      it('with nested script', function(done) {
+      it('with nested script', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/camunda-inputParameter-script.part.bpmn');
+        var file = 'camunda-inputParameter-script.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'camunda:InputParameter', function(err, parameter) {
+        var { rootElement: parameter } = await fromFile(file, 'camunda:InputParameter');
 
-          // then
-          expect(parameter).to.jsonEqual({
-            $type: 'camunda:InputParameter',
-            definition: {
-              $type: 'camunda:Script'
-            }
-          });
-
-          done(err);
+        // then
+        expect(parameter).to.jsonEqual({
+          $type: 'camunda:InputParameter',
+          definition: {
+            $type: 'camunda:Script'
+          }
         });
       });
 
 
-      it('with nested list', function(done) {
+      it('with nested list', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/camunda-inputParameter-list.part.bpmn');
+        var file = 'camunda-inputParameter-list.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'camunda:InputParameter', function(err, parameter) {
+        var { rootElement: parameter } = await fromFile(file, 'camunda:InputParameter');
 
-          // then
-          expect(parameter).to.jsonEqual({
-            $type: 'camunda:InputParameter',
-            name: 'var1',
-            definition: {
-              $type: 'camunda:List',
-              items: [
-                {
-                  $type: 'camunda:Value',
-                  value: '${1+1}'
-                },
-                {
-                  $type: 'camunda:Value',
-                  value: '${1+2}'
-                },
-                {
-                  $type: 'camunda:Value',
-                  value: '${1+3}'
-                }
-              ]
-            }
-          });
-
-          done(err);
+        // then
+        expect(parameter).to.jsonEqual({
+          $type: 'camunda:InputParameter',
+          name: 'var1',
+          definition: {
+            $type: 'camunda:List',
+            items: [
+              {
+                $type: 'camunda:Value',
+                value: '${1+1}'
+              },
+              {
+                $type: 'camunda:Value',
+                value: '${1+2}'
+              },
+              {
+                $type: 'camunda:Value',
+                value: '${1+3}'
+              }
+            ]
+          }
         });
       });
 
 
-      it('with nested map', function(done) {
+      it('with nested map', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/camunda-inputParameter-map.part.bpmn');
+        var file = 'camunda-inputParameter-map.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'camunda:InputParameter', function(err, parameter) {
+        var { rootElement: parameter } = await fromFile(file, 'camunda:InputParameter');
 
-          // then
-          expect(parameter).to.jsonEqual({
-            $type: 'camunda:InputParameter',
-            definition: {
-              $type: 'camunda:Map',
-              entries: [
-                {
-                  $type: 'camunda:Entry',
-                  key: 'a',
-                  value: '${1+1}'
-                },
-                {
-                  $type: 'camunda:Entry',
-                  key: 'b',
-                  value: '${1+2}'
-                },
-                {
-                  $type: 'camunda:Entry',
-                  key: 'c',
-                  value: '${1+3}'
-                }
-              ]
-            }
-          });
-
-          done(err);
+        // then
+        expect(parameter).to.jsonEqual({
+          $type: 'camunda:InputParameter',
+          definition: {
+            $type: 'camunda:Map',
+            entries: [
+              {
+                $type: 'camunda:Entry',
+                key: 'a',
+                value: '${1+1}'
+              },
+              {
+                $type: 'camunda:Entry',
+                key: 'b',
+                value: '${1+2}'
+              },
+              {
+                $type: 'camunda:Entry',
+                key: 'c',
+                value: '${1+3}'
+              }
+            ]
+          }
         });
       });
 
@@ -568,39 +500,36 @@ describe('read', function() {
 
     describe('camunda:outputParameter', function() {
 
-      it('with mixed contents', function(done) {
+      it('with mixed contents', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/camunda-outputParameter-mixed.part.bpmn');
+        var file = 'camunda-outputParameter-mixed.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'camunda:OutputParameter', function(err, parameter) {
+        var { rootElement: parameter } = await fromFile(file, 'camunda:OutputParameter');
 
-          // then
-          expect(parameter).to.jsonEqual({
-            $type: 'camunda:OutputParameter',
-            name: 'var1',
-            definition: {
-              $type: 'camunda:List',
-              items: [
-                {
-                  $type: 'camunda:Value',
-                  value: 'constantStringValue'
-                },
-                {
-                  $type: 'camunda:Value',
-                  value: '${ \'elValue\' }'
-                },
-                {
-                  $type: 'camunda:Script',
-                  scriptFormat: 'Groovy',
-                  value: 'return "scriptValue";'
-                }
-              ]
-            }
-          });
-
-          done(err);
+        // then
+        expect(parameter).to.jsonEqual({
+          $type: 'camunda:OutputParameter',
+          name: 'var1',
+          definition: {
+            $type: 'camunda:List',
+            items: [
+              {
+                $type: 'camunda:Value',
+                value: 'constantStringValue'
+              },
+              {
+                $type: 'camunda:Value',
+                value: '${ \'elValue\' }'
+              },
+              {
+                $type: 'camunda:Script',
+                scriptFormat: 'Groovy',
+                value: 'return "scriptValue";'
+              }
+            ]
+          }
         });
       });
 
@@ -609,42 +538,36 @@ describe('read', function() {
 
     describe('camunda:FormSupported with camunda:formKey and camunda:formHandlerClass', function() {
 
-      it('on UserTask', function(done) {
+      it('on UserTask', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/userTask-camunda-formSupported.part.bpmn');
+        var file = 'userTask-camunda-formSupported.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:UserTask', function(err, task) {
+        var { rootElement: userTask } = await fromFile(file, 'bpmn:UserTask');
 
-          // then
-          expect(task).to.jsonEqual({
-            $type: 'bpmn:UserTask',
-            formHandlerClass: 'my.company.FormHandler',
-            formKey: 'form.html'
-          });
-
-          done(err);
+        // then
+        expect(userTask).to.jsonEqual({
+          $type: 'bpmn:UserTask',
+          formHandlerClass: 'my.company.FormHandler',
+          formKey: 'form.html'
         });
       });
 
 
-      it('on StartEvent', function(done) {
+      it('on StartEvent', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/userTask-camunda-formSupported.part.bpmn');
+        var file = 'startEvent-camunda-formSupported.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:UserTask', function(err, startEvent) {
+        var { rootElement: startEvent } = await fromFile(file, 'bpmn:StartEvent');
 
-          // then
-          expect(startEvent).to.jsonEqual({
-            $type: 'bpmn:UserTask',
-            formHandlerClass: 'my.company.FormHandler',
-            formKey: 'form.html'
-          });
-
-          done(err);
+        // then
+        expect(startEvent).to.jsonEqual({
+          $type: 'bpmn:StartEvent',
+          formHandlerClass: 'my.company.FormHandler',
+          formKey: 'form.html'
         });
       });
 
@@ -655,122 +578,105 @@ describe('read', function() {
 
       describe('camunda:modelerTemplate', function() {
 
-        it('on Process', function(done) {
+        it('on Process', async function() {
 
           // given
-          var xml = readFile('test/fixtures/xml/process-camunda-modelerTemplate.part.bpmn');
+          var file = 'process-camunda-modelerTemplate.part.bpmn';
 
           // when
-          moddle.fromXML(xml, 'bpmn:Process', function(err, task) {
+          var { rootElement: process } = await fromFile(file, 'bpmn:Process');
 
-            // then
-            expect(task).to.jsonEqual({
-              $type: 'bpmn:Process',
-              modelerTemplate: 'foo'
-            });
-
-            done(err);
+          // then
+          expect(process).to.jsonEqual({
+            $type: 'bpmn:Process',
+            modelerTemplate: 'foo'
           });
         });
 
 
-        it('on Task', function(done) {
+        it('on Task', async function() {
 
           // given
-          var xml = readFile('test/fixtures/xml/task-camunda-modelerTemplate.part.bpmn');
+          var file = 'task-camunda-modelerTemplate.part.bpmn';
 
           // when
-          moddle.fromXML(xml, 'bpmn:Task', function(err, task) {
+          var { rootElement: task } = await fromFile(file, 'bpmn:Task');
 
-            // then
-            expect(task).to.jsonEqual({
-              $type: 'bpmn:Task',
-              modelerTemplate: 'foo'
-            });
-
-            done(err);
+          // then
+          expect(task).to.jsonEqual({
+            $type: 'bpmn:Task',
+            modelerTemplate: 'foo'
           });
         });
 
 
-        it('on StartEvent', function(done) {
+        it('on StartEvent', async function() {
 
           // given
-          var xml = readFile('test/fixtures/xml/startEvent-camunda-modelerTemplate.part.bpmn');
+          var file = 'startEvent-camunda-modelerTemplate.part.bpmn';
 
           // when
-          moddle.fromXML(xml, 'bpmn:StartEvent', function(err, task) {
+          var { rootElement: startEvent } = await fromFile(file, 'bpmn:StartEvent');
 
-            // then
-            expect(task).to.jsonEqual({
-              $type: 'bpmn:StartEvent',
-              modelerTemplate: 'bar'
-            });
-
-            done(err);
+          // then
+          expect(startEvent).to.jsonEqual({
+            $type: 'bpmn:StartEvent',
+            modelerTemplate: 'bar'
           });
         });
 
       });
 
+
       describe('camunda:modelerTemplateVersion', function() {
 
-        it('on Process', function(done) {
+        it('on Process', async function() {
 
           // given
-          var xml = readFile('test/fixtures/xml/process-camunda-modelerTemplateVersion.part.bpmn');
+          var file = 'process-camunda-modelerTemplateVersion.part.bpmn';
 
           // when
-          moddle.fromXML(xml, 'bpmn:Process', function(err, task) {
+          var { rootElement: process } = await fromFile(file, 'bpmn:Process');
 
-            // then
-            expect(task).to.jsonEqual({
-              $type: 'bpmn:Process',
-              modelerTemplate: 'foo',
-              modelerTemplateVersion: 1
-            });
-
-            done(err);
+          // then
+          expect(process).to.jsonEqual({
+            $type: 'bpmn:Process',
+            modelerTemplate: 'foo',
+            modelerTemplateVersion: 1
           });
         });
 
 
-        it('on Task', function(done) {
+        it('on Task', async function() {
 
           // given
-          var xml = readFile('test/fixtures/xml/task-camunda-modelerTemplateVersion.part.bpmn');
+          var file = 'task-camunda-modelerTemplateVersion.part.bpmn';
 
           // when
-          moddle.fromXML(xml, 'bpmn:Task', function(err, task) {
+          var { rootElement: task } = await fromFile(file, 'bpmn:Task');
 
-            // then
-            expect(task).to.jsonEqual({
-              $type: 'bpmn:Task',
-              modelerTemplate: 'foo',
-              modelerTemplateVersion: 1
-            });
-
-            done(err);
+          // then
+          expect(task).to.jsonEqual({
+            $type: 'bpmn:Task',
+            modelerTemplate: 'foo',
+            modelerTemplateVersion: 1
           });
         });
 
 
-        it('on StartEvent', function(done) {
+        it('on StartEvent', async function() {
 
           // given
-          var xml = readFile('test/fixtures/xml/startEvent-camunda-modelerTemplateVersion.part.bpmn');
+          var file = 'startEvent-camunda-modelerTemplateVersion.part.bpmn';
 
           // when
-          moddle.fromXML(xml, 'bpmn:StartEvent', function(err, task) {
+          var { rootElement: startEvent } = await fromFile(file, 'bpmn:StartEvent');
 
-            // then
-            expect(task).to.jsonEqual({
-              $type: 'bpmn:StartEvent',
-              modelerTemplate: 'bar',
-              modelerTemplateVersion: 1
-            });
-
-            done(err);
+          // then
+          expect(startEvent).to.jsonEqual({
+            $type: 'bpmn:StartEvent',
+            modelerTemplate: 'bar',
+            modelerTemplateVersion: 1
           });
         });
 
@@ -781,33 +687,528 @@ describe('read', function() {
 
     describe('camunda:initiator', function() {
 
-      it('on StartEvent', function(done) {
+      it('on StartEvent', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/startEvent-camunda-initiator.part.bpmn');
+        var file = 'startEvent-camunda-initiator.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:StartEvent', function(err, proc) {
+        var { rootElement: startEvent } = await fromFile(file, 'bpmn:StartEvent');
 
-          // then
-          expect(proc).to.jsonEqual({
-            $type: 'bpmn:StartEvent',
-            initiator: 'kermit'
-          });
-
-          done(err);
+        // then
+        expect(startEvent).to.jsonEqual({
+          $type: 'bpmn:StartEvent',
+          initiator: 'kermit'
         });
       });
 
     });
 
-    it('bpmn:CallActivity', function(done) {
+
+    it('bpmn:CallActivity', async function() {
 
       // given
-      var xml = readFile('test/fixtures/xml/callActivity.part.bpmn');
+      var file = 'callActivity.part.bpmn';
 
       // when
-      moddle.fromXML(xml, 'bpmn:CallActivity', function(err, callActivity) {
+      var { rootElement: callActivity } = await fromFile(file, 'bpmn:CallActivity');
+
+      // then
+      expect(callActivity).to.jsonEqual({
+        $type: 'bpmn:CallActivity',
+        calledElementBinding: 'version',
+        calledElementVersion: '1',
+        calledElementVersionTag: 'version1',
+        calledElementTenantId: 'tenant1',
+        caseRef: 'oneTaskCase',
+        caseBinding: 'version',
+        caseVersion: '2',
+        caseTenantId: 'tenant1',
+        variableMappingClass: 'org.camunda.bpm.test.Test',
+        variableMappingDelegateExpression: '${test}'
+      });
+    });
+
+
+    describe('camunda:taskPriority', function() {
+
+      it('on Process', async function() {
+
+        // given
+        var file = 'process-camunda-taskPriority.part.bpmn';
+
+        // when
+        var { rootElement: process } = await fromFile(file, 'bpmn:Process');
+
+        // then
+        expect(process).to.jsonEqual({
+          $type : 'bpmn:Process',
+          taskPriority : '100'
+        });
+      });
+
+
+      it('on ServiceTaskLike Element', async function() {
+
+        // given
+        var file = 'serviceTask-camunda-taskPriority.part.bpmn';
+
+        // when
+        var { rootElement: task } = await fromFile(file, 'bpmn:ServiceTask');
+
+        // then
+        expect(task).to.jsonEqual({
+          $type : 'bpmn:ServiceTask',
+          taskPriority : '100'
+        });
+      });
+
+    });
+
+
+    describe('camunda:jobPriority', function() {
+
+      it('on Process', async function() {
+
+        // given
+        var file = 'process-camunda-jobPriority.part.bpmn';
+
+        // when
+        var { rootElement: process } = await fromFile(file, 'bpmn:Process');
+
+        // then
+        expect(process).to.jsonEqual({
+          $type: 'bpmn:Process',
+          jobPriority: '100'
+        });
+      });
+
+
+      it('on ServiceTask', async function() {
+
+        // given
+        var file = 'serviceTask-camunda-jobPriority.part.bpmn';
+
+        // when
+        var { rootElement: serviceTask } = await fromFile(file, 'bpmn:ServiceTask');
+
+        // then
+        expect(serviceTask).to.jsonEqual({
+          $type: 'bpmn:ServiceTask',
+          jobPriority: '100'
+        });
+      });
+
+
+      it('on Gateway', async function() {
+
+        // given
+        var file = 'gateway-camunda-jobPriority.part.bpmn';
+
+        // when
+        var { rootElement: gateway } = await fromFile(file, 'bpmn:ExclusiveGateway');
+
+        // then
+        expect(gateway).to.jsonEqual({
+          $type: 'bpmn:ExclusiveGateway',
+          jobPriority: '${ some - expression }'
+        });
+      });
+
+
+      it('on Event', async function() {
+
+        // given
+        var file = 'event-camunda-jobPriority.part.bpmn';
+
+        // when
+        var { rootElement: catchEvent } = await fromFile(file, 'bpmn:IntermediateCatchEvent');
+
+        // then
+        expect(catchEvent).to.jsonEqual({
+          $type: 'bpmn:IntermediateCatchEvent',
+          jobPriority: '100'
+        });
+      });
+
+    });
+
+
+    describe('bpmn:Process', function() {
+
+      it('extended with camunda:candidateStarterUsers, camunda:candidateStarterGroups, camunda:versionTag', async function() {
+
+        // given
+        var file = 'process.part.bpmn';
+
+        // when
+        var { rootElement: process } = await fromFile(file, 'bpmn:Process');
+
+        // then
+        expect(process).to.jsonEqual({
+          $type: 'bpmn:Process',
+          candidateStarterUsers: 'userInGroup2',
+          candidateStarterGroups: 'group1, group2, group3',
+          versionTag: '1.0.0'
+        });
+      });
+
+    });
+
+
+    describe('bpmn:ScriptTask', function() {
+
+      it('extended with camunda:resource, camunda:resultVariable', async function() {
+
+        // given
+        var file = 'scriptTask.part.bpmn';
+
+        // when
+        var { rootElement: scriptTask } = await fromFile(file, 'bpmn:ScriptTask');
+
+        // then
+        expect(scriptTask).to.jsonEqual({
+          $type: 'bpmn:ScriptTask',
+          scriptFormat: 'python',
+          resource: 'some-file.py',
+          resultVariable: 'result'
+        });
+      });
+
+    });
+
+
+    it('camunda:formData', async function() {
+
+      // given
+      var file = 'camunda-formData.part.bpmn';
+
+      // when
+      var { rootElement: formData } = await fromFile(file, 'camunda:FormData');
+
+      // then
+      expect(formData).to.jsonEqual({
+        $type: 'camunda:FormData',
+        fields: [
+          {
+            $type: 'camunda:FormField',
+            id: 'stringField',
+            label: 'String Field',
+            type: 'string',
+            defaultValue: 'someString',
+            properties: {
+              $type: 'camunda:Properties',
+              values: [
+                {
+                  $type: 'camunda:Property',
+                  id: 'p1',
+                  value: 'property1'
+                },
+                {
+                  $type: 'camunda:Property',
+                  id: 'p2',
+                  value: 'property2'
+                }
+              ]
+            },
+            validation: {
+              $type: 'camunda:Validation',
+              constraints: [
+                {
+                  $type: 'camunda:Constraint',
+                  name: 'readonly'
+                },
+                {
+                  $type: 'camunda:Constraint',
+                  name: 'minlength',
+                  config: '5'
+                }
+              ]
+            },
+            values: [
+              {
+                $type: 'camunda:Value',
+                id: 'a',
+                name: 'A'
+              },
+              {
+                $type: 'camunda:Value',
+                id: 'b',
+                name: 'B'
+              }
+            ]
+          }
+        ]
+      });
+    });
+
+
+    describe('camunda:formProperty', function() {
+
+      it('attributes', async function() {
+
+        // given
+        var file = 'camunda-formProperty-attributes.part.bpmn';
+
+        // when
+        var { rootElement: formProperty } = await fromFile(file, 'camunda:FormProperty');
+
+        // then
+        expect(formProperty).to.jsonEqual({
+          $type: 'camunda:FormProperty',
+          id: 'longProperty',
+          name: 'Property',
+          type: 'long',
+          required: 'true',
+          readable: 'true',
+          writable: 'true',
+          variable: 'SpeakerName',
+          expression: '#{address.street}',
+          datePattern: 'dd-MM-yyyy hh:mm',
+          default: '42'
+        });
+      });
+
+
+      it('with nested value', async function() {
+
+        // given
+        var file = 'camunda-formProperty-children.part.bpmn';
+
+        // when
+        var { rootElement: formProperty } = await fromFile(file, 'camunda:FormProperty');
+
+        // then
+        expect(formProperty).to.jsonEqual({
+          $type: 'camunda:FormProperty',
+          values: [
+            {
+              $type: 'camunda:Value',
+              id: 'false',
+              name: 'Yes'
+            },
+            {
+              $type: 'camunda:Value',
+              id: 'true',
+              name: 'No'
+            }
+          ]
+        });
+      });
+
+    });
+
+
+    describe('camunda:executionListener', function() {
+
+      it('attributes', async function() {
+
+        // given
+        var file = 'camunda-executionListener.part.bpmn';
+
+        // when
+        var { rootElement: executionListener } = await fromFile(file, 'camunda:ExecutionListener');
+
+        // then
+        expect(executionListener).to.jsonEqual({
+          $type: 'camunda:ExecutionListener',
+          event: 'start',
+          'class': 'my.company.Listener'
+        });
+      });
+
+
+      it('script', async function() {
+
+        // given
+        var file = 'camunda-executionListener-script.part.bpmn';
+
+        // when
+        var { rootElement: executionListener } = await fromFile(file, 'camunda:ExecutionListener');
+
+        // then
+        expect(executionListener).to.jsonEqual({
+          $type: 'camunda:ExecutionListener',
+          event: 'start',
+          script: {
+            $type: 'camunda:Script',
+            scriptFormat: 'groovy',
+            value: 'foo = bar;'
+          }
+        });
+      });
+
+
+      it('fields', async function() {
+
+        // given
+        var file = 'camunda-executionListener-fields.part.bpmn';
+
+        // when
+        var { rootElement: executionListener } = await fromFile(file, 'camunda:ExecutionListener');
+
+        // then
+        expect(executionListener).to.jsonEqual({
+          $type: 'camunda:ExecutionListener',
+          event: 'start',
+          'class': 'my.company.Listener',
+          fields : [
+            {
+              $type: 'camunda:Field',
+              name: 'fieldOne',
+              stringValue: 'myString'
+            },
+            {
+              $type: 'camunda:Field',
+              name: 'fieldTwo',
+              expression: '${myExpression}'
+            }
+          ]
+        });
+      });
+
+    });
+
+
+    describe('camunda:taskListener', function() {
+
+      it('create event', async function() {
+
+        // given
+        var file = 'camunda-taskListener.part.bpmn';
+
+        // when
+        var { rootElement: taskListener } = await fromFile(file, 'camunda:TaskListener');
+
+        // then
+        expect(taskListener).to.jsonEqual({
+          $type: 'camunda:TaskListener',
+          event: 'create',
+          class: 'org.camunda.bpm.engine.test.bpmn.usertask.UserTaskTestCreateTaskListener',
+          delegateExpression: '${myTaskListener}',
+          expression: '${myTaskListener.notify(task, task.eventName)}'
+        });
+      });
+
+
+      it('timeout event', async function() {
+
+        // given
+        var file = 'camunda-timeout-taskListener.part.bpmn';
+
+        // when
+        var { rootElement: taskListener } = await fromFile(file, 'camunda:TaskListener');
+
+        // then
+        expect(taskListener).to.jsonEqual({
+          $type: 'camunda:TaskListener',
+          event: 'timeout',
+          id: 'timeout-friendly',
+          eventDefinitions: [
+            {
+              $type: 'bpmn:TimerEventDefinition',
+              timeDuration: {
+                $type: 'bpmn:FormalExpression',
+                body: 'PT1H'
+              }
+            }
+          ]
+        });
+      });
+
+    });
+
+
+    describe('camunda:field', function() {
+
+      it('attributes', async function() {
+
+        // given
+        var file = 'camunda-field-attributes.part.bpmn';
+
+        // when
+        var { rootElement: field } = await fromFile(file, 'camunda:Field');
+
+        // then
+        expect(field).to.jsonEqual({
+          $type: 'camunda:Field',
+          name: 'html',
+          expression: '<html><body>Hi!</body></html>',
+          stringValue: '41 is not the answer!'
+        });
+      });
+
+
+      it('with nested expression and string', async function() {
+
+        // given
+        var file = 'camunda-field-children.part.bpmn';
+
+        // when
+        var { rootElement: field } = await fromFile(file, 'camunda:Field');
+
+        // then
+        expect(field).to.jsonEqual({
+          $type: 'camunda:Field',
+          name: 'html',
+          expression: '<html><body>Hi!</body></html>',
+          string: '42 is the answer!'
+        });
+      });
+
+    });
+
+
+    describe('camunda:Collectable', function() {
+
+      it('attributes', async function() {
+
+        // given
+        var file = 'camunda-multiInstance.part.bpmn';
+
+        // when
+        var { rootElement: field } = await fromFile(file, 'bpmn:MultiInstanceLoopCharacteristics');
+
+        // then
+        expect(field).to.jsonEqual({
+          $type: 'bpmn:MultiInstanceLoopCharacteristics',
+          isSequential: true,
+          collection: '5',
+          elementVariable: '5'
+        });
+      });
+
+    });
+
+
+    describe('camunda tenant id', function() {
+
+      it('on BusinessRuleTask', async function() {
+
+        // given
+        var file = 'businessRuleTask.part.bpmn';
+
+        // when
+        var { rootElement: businessRuleTask } = await fromFile(file, 'bpmn:BusinessRuleTask');
+
+        // then
+        expect(businessRuleTask).to.jsonEqual({
+          $type: 'bpmn:BusinessRuleTask',
+          decisionRef: 'myDecision',
+          decisionRefBinding: 'version',
+          decisionRefVersion: '1',
+          decisionRefTenantId: 'tenant1'
+        });
+      });
+
+
+      it('on CallActivity', async function() {
+
+        // given
+        var file = 'callActivity.part.bpmn';
+
+        // when
+        var { rootElement: callActivity } = await fromFile(file, 'bpmn:CallActivity');
 
         // then
         expect(callActivity).to.jsonEqual({
@@ -823,638 +1224,69 @@ describe('read', function() {
           variableMappingClass: 'org.camunda.bpm.test.Test',
           variableMappingDelegateExpression: '${test}'
         });
-
-        done(err);
       });
 
-    });
-
-    describe('camunda:taskPriority', function() {
-
-      it('on Process', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/process-camunda-taskPriority.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'bpmn:Process', function(err, proc) {
-
-          // then
-          expect(proc).to.jsonEqual({
-            $type : 'bpmn:Process',
-            taskPriority : '100'
-          });
-
-          done(err);
-        });
-      });
-
-
-      it('on ServiceTaskLike Element', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/serviceTask-camunda-taskPriority.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'bpmn:ServiceTask', function(err, task) {
-
-          // then
-          expect(task).to.jsonEqual({
-            $type : 'bpmn:ServiceTask',
-            taskPriority : '100'
-          });
-
-          done(err);
-        });
-      });
-    });
-
-
-    describe('camunda:jobPriority', function() {
-
-      it('on Process', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/process-camunda-jobPriority.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'bpmn:Process', function(err, proc) {
-
-          // then
-          expect(proc).to.jsonEqual({
-            $type: 'bpmn:Process',
-            jobPriority: '100'
-          });
-
-          done(err);
-        });
-      });
-
-
-      it('on ServiceTask', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/serviceTask-camunda-jobPriority.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'bpmn:ServiceTask', function(err, task) {
-
-          // then
-          expect(task).to.jsonEqual({
-            $type: 'bpmn:ServiceTask',
-            jobPriority: '100'
-          });
-
-          done(err);
-        });
-      });
-
-
-      it('on Gateway', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/gateway-camunda-jobPriority.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'bpmn:ExclusiveGateway', function(err, gateway) {
-
-          // then
-          expect(gateway).to.jsonEqual({
-            $type: 'bpmn:ExclusiveGateway',
-            jobPriority: '${ some - expression }'
-          });
-
-          done(err);
-        });
-      });
-
-
-      it('on Event', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/event-camunda-jobPriority.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'bpmn:IntermediateCatchEvent', function(err, proc) {
-
-          // then
-          expect(proc).to.jsonEqual({
-            $type: 'bpmn:IntermediateCatchEvent',
-            jobPriority: '100'
-          });
-
-          done(err);
-        });
-      });
-
-    });
-
-
-    describe('bpmn:Process', function() {
-
-      it('extended with camunda:candidateStarterUsers, camunda:candidateStarterGroups, camunda:versionTag', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/process.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'bpmn:Process', function(err, proc) {
-
-          // then
-          expect(proc).to.jsonEqual({
-            $type: 'bpmn:Process',
-            candidateStarterUsers: 'userInGroup2',
-            candidateStarterGroups: 'group1, group2, group3',
-            versionTag: '1.0.0'
-          });
-
-          done(err);
-        });
-      });
-
-    });
-
-
-    describe('bpmn:ScriptTask', function() {
-
-      it('extended with camunda:resource, camunda:resultVariable', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/scriptTask.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'bpmn:ScriptTask', function(err, definition) {
-
-          // then
-          expect(definition).to.jsonEqual({
-            $type: 'bpmn:ScriptTask',
-            scriptFormat: 'python',
-            resource: 'some-file.py',
-            resultVariable: 'result'
-          });
-
-          done(err);
-        });
-      });
-
-    });
-
-
-    it('camunda:formData', function(done) {
-
-      // given
-      var xml = readFile('test/fixtures/xml/camunda-formData.part.bpmn');
-
-      // when
-      moddle.fromXML(xml, 'camunda:FormData', function(err, formData) {
-
-        // then
-        expect(formData).to.jsonEqual({
-          $type: 'camunda:FormData',
-          fields: [
-            {
-              $type: 'camunda:FormField',
-              id: 'stringField',
-              label: 'String Field',
-              type: 'string',
-              defaultValue: 'someString',
-              properties: {
-                $type: 'camunda:Properties',
-                values: [
-                  {
-                    $type: 'camunda:Property',
-                    id: 'p1',
-                    value: 'property1'
-                  },
-                  {
-                    $type: 'camunda:Property',
-                    id: 'p2',
-                    value: 'property2'
-                  }
-                ]
-              },
-              validation: {
-                $type: 'camunda:Validation',
-                constraints: [
-                  {
-                    $type: 'camunda:Constraint',
-                    name: 'readonly'
-                  },
-                  {
-                    $type: 'camunda:Constraint',
-                    name: 'minlength',
-                    config: '5'
-                  }
-                ]
-              },
-              values: [
-                {
-                  $type: 'camunda:Value',
-                  id: 'a',
-                  name: 'A'
-                },
-                {
-                  $type: 'camunda:Value',
-                  id: 'b',
-                  name: 'B'
-                }
-              ]
-            }
-          ]
-        });
-
-        done(err);
-      });
-
-    });
-
-
-    describe('camunda:formProperty', function() {
-
-      it('attributes', function(done) {
-        // given
-        var xml = readFile('test/fixtures/xml/camunda-formProperty-attributes.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'camunda:FormProperty', function(err, formProperty) {
-
-          // then
-          expect(formProperty).to.jsonEqual({
-            $type: 'camunda:FormProperty',
-            id: 'longProperty',
-            name: 'Property',
-            type: 'long',
-            required: 'true',
-            readable: 'true',
-            writable: 'true',
-            variable: 'SpeakerName',
-            expression: '#{address.street}',
-            datePattern: 'dd-MM-yyyy hh:mm',
-            default: '42'
-          });
-
-          done(err);
-        });
-      });
-
-
-      it('with nested value', function(done) {
-        // given
-        var xml = readFile('test/fixtures/xml/camunda-formProperty-children.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'camunda:FormProperty', function(err, formProperty) {
-
-          // then
-          expect(formProperty).to.jsonEqual({
-            $type: 'camunda:FormProperty',
-            values: [
-              {
-                $type: 'camunda:Value',
-                id: 'false',
-                name: 'Yes'
-              },
-              {
-                $type: 'camunda:Value',
-                id: 'true',
-                name: 'No'
-              }
-            ]
-          });
-
-          done(err);
-        });
-      });
-
-    });
-
-    describe('camunda:executionListener', function() {
-
-      it('attributes', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/camunda-executionListener.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'camunda:ExecutionListener', function(err, executionListener) {
-
-          // then
-          expect(executionListener).to.jsonEqual({
-            $type: 'camunda:ExecutionListener',
-            event: 'start',
-            'class': 'my.company.Listener'
-          });
-
-          done(err);
-        });
-
-      });
-
-
-      it('script', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/camunda-executionListener-script.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'camunda:ExecutionListener', function(err, executionListener) {
-
-          // then
-          expect(executionListener).to.jsonEqual({
-            $type: 'camunda:ExecutionListener',
-            event: 'start',
-            script: {
-              $type: 'camunda:Script',
-              scriptFormat: 'groovy',
-              value: 'foo = bar;'
-            }
-          });
-
-          done(err);
-        });
-      });
-
-
-      it('fields', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/camunda-executionListener-fields.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'camunda:ExecutionListener', function(err, executionListener) {
-
-          // then
-          expect(executionListener).to.jsonEqual({
-            $type: 'camunda:ExecutionListener',
-            event: 'start',
-            'class': 'my.company.Listener',
-            fields : [
-              {
-                $type: 'camunda:Field',
-                name: 'fieldOne',
-                stringValue: 'myString'
-              },
-              {
-                $type: 'camunda:Field',
-                name: 'fieldTwo',
-                expression: '${myExpression}'
-              }
-            ]
-          });
-
-          done(err);
-        });
-
-      });
-
-    });
-
-
-    describe('camunda:taskListener', function() {
-
-      it('create event', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/camunda-taskListener.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'camunda:TaskListener', function(err, taskListener) {
-
-          // then
-          expect(taskListener).to.jsonEqual({
-            $type: 'camunda:TaskListener',
-            event: 'create',
-            class: 'org.camunda.bpm.engine.test.bpmn.usertask.UserTaskTestCreateTaskListener',
-            delegateExpression: '${myTaskListener}',
-            expression: '${myTaskListener.notify(task, task.eventName)}'
-          });
-
-          done(err);
-        });
-      });
-
-
-      it('timeout event', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/camunda-timeout-taskListener.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'camunda:TaskListener', function(err, taskListener) {
-
-          // then
-          expect(taskListener).to.jsonEqual({
-            $type: 'camunda:TaskListener',
-            event: 'timeout',
-            id: 'timeout-friendly',
-            eventDefinitions: [
-              {
-                $type: 'bpmn:TimerEventDefinition',
-                timeDuration: {
-                  $type: 'bpmn:FormalExpression',
-                  body: 'PT1H'
-                }
-              }
-            ]
-          });
-
-          done(err);
-        });
-      });
-    });
-
-
-    describe('camunda:field', function() {
-
-      it('attributes', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/camunda-field-attributes.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'camunda:Field', function(err, field) {
-
-          // then
-          expect(field).to.jsonEqual({
-            $type: 'camunda:Field',
-            name: 'html',
-            expression: '<html><body>Hi!</body></html>',
-            stringValue: '41 is not the answer!'
-          });
-
-          done(err);
-        });
-      });
-
-
-      it('with nested expression and string', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/camunda-field-children.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'camunda:Field', function(err, field) {
-
-          // then
-          expect(field).to.jsonEqual({
-            $type: 'camunda:Field',
-            name: 'html',
-            expression: '<html><body>Hi!</body></html>',
-            string: '42 is the answer!'
-          });
-
-          done(err);
-        });
-      });
-
-    });
-
-
-    describe('camunda:Collectable', function() {
-
-      it('attributes', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/camunda-multiInstance.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'bpmn:MultiInstanceLoopCharacteristics', function(err, field) {
-
-          // then
-          expect(field).to.jsonEqual({
-            $type: 'bpmn:MultiInstanceLoopCharacteristics',
-            isSequential: true,
-            collection: '5',
-            elementVariable: '5'
-          });
-
-          done(err);
-        });
-      });
-    });
-
-    describe('camunda tenant id', function() {
-
-      it('on BusinessRuleTask', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/businessRuleTask.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'bpmn:BusinessRuleTask', function(err, proc) {
-
-          // then
-          expect(proc).to.jsonEqual({
-            $type: 'bpmn:BusinessRuleTask',
-            decisionRef: 'myDecision',
-            decisionRefBinding: 'version',
-            decisionRefVersion: '1',
-            decisionRefTenantId: 'tenant1'
-          });
-
-          done(err);
-        });
-      });
-
-
-      it('on CallActivity', function(done) {
-
-        // given
-        var xml = readFile('test/fixtures/xml/callActivity.part.bpmn');
-
-        // when
-        moddle.fromXML(xml, 'bpmn:CallActivity', function(err, task) {
-
-          // then
-          expect(task).to.jsonEqual({
-            $type: 'bpmn:CallActivity',
-            calledElementBinding: 'version',
-            calledElementVersion: '1',
-            calledElementVersionTag: 'version1',
-            calledElementTenantId: 'tenant1',
-            caseRef: 'oneTaskCase',
-            caseBinding: 'version',
-            caseVersion: '2',
-            caseTenantId: 'tenant1',
-            variableMappingClass: 'org.camunda.bpm.test.Test',
-            variableMappingDelegateExpression: '${test}'
-          });
-
-          done(err);
-        });
-      });
     });
 
 
     describe('camunda:errorMessageVariable', function() {
 
-      it('on ErrorEventDefinition', function(done) {
+      it('on ErrorEventDefinition', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/errorEventDefinition-camunda-errorMessageVariable.part.bpmn');
+        var file = 'errorEventDefinition-camunda-errorMessageVariable.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:ErrorEventDefinition', function(err, definition) {
+        var { rootElement: errorEventDefinition } = await fromFile(file, 'bpmn:ErrorEventDefinition');
 
-          // then
-          expect(definition).to.jsonEqual({
-            $type: 'bpmn:ErrorEventDefinition',
-            errorMessageVariable: 'errorMessage'
-          });
-
-          done(err);
+        // then
+        expect(errorEventDefinition).to.jsonEqual({
+          $type: 'bpmn:ErrorEventDefinition',
+          errorMessageVariable: 'errorMessage'
         });
-
       });
 
     });
+
 
     describe('camunda:variableName', function() {
 
-      it('on ConditionalEventDefinition', function(done) {
+      it('on ConditionalEventDefinition', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/conditionalEventDefinition-camunda-variableName.part.bpmn');
+        var file = 'conditionalEventDefinition-camunda-variableName.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:ConditionalEventDefinition', function(err, definition) {
+        var { rootElement: conditionalEventDefinition } = await fromFile(file, 'bpmn:ConditionalEventDefinition');
 
-          // then
-          expect(definition).to.jsonEqual({
-            $type: 'bpmn:ConditionalEventDefinition',
-            variableName: 'myConditionVar'
-          });
-
-          done(err);
+        // then
+        expect(conditionalEventDefinition).to.jsonEqual({
+          $type: 'bpmn:ConditionalEventDefinition',
+          variableName: 'myConditionVar'
         });
-
       });
 
     });
+
 
     describe('camunda:variableEvents', function() {
 
-      it('on ConditionalEventDefinition', function(done) {
+      it('on ConditionalEventDefinition', async function() {
 
         // given
-        var xml = readFile('test/fixtures/xml/conditionalEventDefinition-camunda-variableEvents.part.bpmn');
+        var file = 'conditionalEventDefinition-camunda-variableEvents.part.bpmn';
 
         // when
-        moddle.fromXML(xml, 'bpmn:ConditionalEventDefinition', function(err, definition) {
+        var { rootElement: conditionalEventDefinition } = await fromFile(file, 'bpmn:ConditionalEventDefinition');
 
-          // then
-          expect(definition).to.jsonEqual({
-            $type: 'bpmn:ConditionalEventDefinition',
-            variableEvents: 'create, update'
-          });
-
-          done(err);
+        // then
+        expect(conditionalEventDefinition).to.jsonEqual({
+          $type: 'bpmn:ConditionalEventDefinition',
+          variableEvents: 'create, update'
         });
-
       });
 
     });
-
 
   });
 
