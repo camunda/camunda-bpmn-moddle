@@ -6,7 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 5.0.0
+
 * `CHORE`: rename `*EventDefinition` to `*EventDefinitionExtension`
+* `FEAT`: support `camunda:ErrorEventDefinition` for external service tasks
 
 ### Breaking Changes
 
