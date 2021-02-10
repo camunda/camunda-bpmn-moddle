@@ -1,16 +1,16 @@
-'use strict';
+const globSync = require('glob').sync;
+const pSeries = require('p-series');
 
-var glob = require('glob'),
-    asyncMap = require('async').map;
+const {
+  readFile,
+  createModdle
+} = require('../helper');
 
-var readFile = require('../helper').readFile,
-    createModdle = require('../helper').createModdle;
+const path = require('path');
 
-var path = require('path');
+const platformPath = '../../camunda-bpm/camunda-bpm-platform';
 
-var platformPath = '../../camunda-bpm/camunda-bpm-platform';
-
-var diagramPath = path.resolve(platformPath, 'engine/src/test/resources');
+const diagramPath = path.resolve(platformPath, 'engine/src/test/resources');
 
 
 describe.skip('camunda models', function() {
@@ -19,59 +19,67 @@ describe.skip('camunda models', function() {
   this.timeout(30000);
 
 
-  it('should parse camunda extensions', function(done) {
+  it('should parse camunda extensions', async function() {
 
-    var allFiles = [].concat(
-      glob.sync('**/*.bpmn', { cwd: diagramPath, dot: true }),
-      glob.sync('**/*.bpmn20.xml', { cwd: diagramPath, dot: true })
+    const allFiles = [].concat(
+      globSync('**/*.bpmn', { cwd: diagramPath, dot: true }),
+      globSync('**/*.bpmn20.xml', { cwd: diagramPath, dot: true })
     );
 
-    var results = {
+    const results = {
       OK: 0,
       ERROR: 0,
       WARNINGS: 0
     };
 
-    asyncMap(allFiles, function(f, done) {
+    await pSeries(allFiles.map(
+      async function(localPath) {
 
-      var fullPath = diagramPath + '/' + f;
+        const fullPath = diagramPath + '/' + localPath;
 
-      var xml = readFile(fullPath);
-      var moddle = createModdle();
+        const xml = readFile(fullPath);
 
-      moddle.fromXML(xml, 'bpmn:Definitions', function(err, definitions, context) {
+        const result = await parseDiagram(xml);
 
-        var warnings = context.warnings.filter(function(w) {
+        const warnings = result.warnings.filter(function(w) {
           return w.message.indexOf('unresolved reference') === -1;
         });
 
-        var result = err ? 'ERROR' : (warnings.length ? 'WARNINGS' : 'OK');
+        const status = result.error ? 'ERROR' : (warnings.length ? 'WARNINGS' : 'OK');
 
-        console.log('%s - %s', result, f);
+        console.log('%s - %s', status, localPath);
         if (warnings.length) {
           console.log('\twarnings: %s', JSON.stringify(warnings));
         }
 
-        if (err) {
-          console.log('\terror: %s', warnings);
+        if (result.error) {
+          console.log('\terror: %s', result.error);
         }
 
-        results[result]++;
-
-        done();
-      });
-    }, function(err) {
-      if (err) {
-        return done(err);
+        results[status]++;
       }
+    ));
 
-      console.log('results\n\tok: %s\n\terror: %s\n\twarnings: %s',
-        results['OK'],
-        results['ERROR'],
-        results['WARNINGS']);
-
-      done();
-    });
+    console.log('results\n\tok: %s\n\terror: %s\n\twarnings: %s',
+      results['OK'],
+      results['ERROR'],
+      results['WARNINGS']
+    );
   });
 
 });
+
+
+// helpers ////////////////
+
+function parseDiagram(xml) {
+
+  const moddle = createModdle();
+
+  return moddle.fromXML(xml, 'bpmn:Definitions').catch(error => {
+    return {
+      error: error,
+      warnings: error.warnings
+    };
+  });
+}
