@@ -1,8 +1,5 @@
 'use strict';
 
-var assign = require('min-dash').assign,
-    isFunction = require('min-dash').isFunction;
-
 var Helper = require('../../helper');
 
 
@@ -11,22 +8,14 @@ describe('write', function() {
   var moddle = Helper.createModdle();
 
 
-  function write(element, options, callback) {
-    if (isFunction(options)) {
-      callback = options;
-      options = {};
-    }
-
-    // skip preamble for tests
-    options = assign({ preamble: false }, options);
-
-    moddle.toXML(element, options, callback);
+  async function write(element) {
+    return await moddle.toXML(element, { preamble: false });
   }
 
 
   describe('should export types', function() {
 
-    it('Field#stringValue', function(done) {
+    it('Field#stringValue', async function() {
 
       // given
       var fieldElem = moddle.create('camunda:Field', {
@@ -39,17 +28,14 @@ describe('write', function() {
               'name="Field_1" stringValue="myFieldValue" />';
 
       // when
-      write(fieldElem, function(err, result) {
+      var { xml } = await write(fieldElem);
 
-        // then
-        expect(result).to.eql(expectedXML);
-
-        done(err);
-      });
+      // then
+      expect(xml).to.eql(expectedXML);
     });
 
 
-    it('Field#string', function(done) {
+    it('Field#string', async function() {
 
       // given
       var fieldElem = moddle.create('camunda:Field', {
@@ -63,17 +49,14 @@ describe('write', function() {
         '</camunda:field>';
 
       // when
-      write(fieldElem, function(err, result) {
+      var { xml } = await write(fieldElem);
 
-        // then
-        expect(result).to.eql(expectedXML);
-
-        done(err);
-      });
+      // then
+      expect(xml).to.eql(expectedXML);
     });
 
 
-    it('Field#expression', function(done) {
+    it('Field#expression', async function() {
 
       // given
       var fieldElem = moddle.create('camunda:Field', {
@@ -87,15 +70,11 @@ describe('write', function() {
         '</camunda:field>';
 
       // when
-      write(fieldElem, function(err, result) {
+      var { xml } = await write(fieldElem);
 
-        // then
-        expect(result).to.eql(expectedXML);
-
-        done(err);
-      });
+      // then
+      expect(xml).to.eql(expectedXML);
     });
-
 
   });
 
