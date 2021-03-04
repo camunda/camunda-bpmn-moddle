@@ -5,6 +5,7 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 ## Unreleased
 
 ___Note:__ Yet to be released changes appear here._
+* 'FIX': support `camunda:modelerTemplate` and 'camunda:modelerTemplateVersion' for 'bpmn:Collaboration' elements
 
 ## 5.0.0
 
@@ -13,7 +14,7 @@ ___Note:__ Yet to be released changes appear here._
 
 ### Breaking Changes
 
-* `*EventDefinition` elements were re-named by appending `Extension`. Adjust the name of these elements, if you extended or superclassed them. 
+* `*EventDefinition` elements were re-named by appending `Extension`. Adjust the name of these elements, if you extended or superclassed them.
 
 ## 4.5.0
 

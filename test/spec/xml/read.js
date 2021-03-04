@@ -594,6 +594,22 @@ describe('read', function() {
         });
 
 
+        it('on Collaboration', async function() {
+
+          // given
+          var file = 'collaboration-camunda-modelerTemplate.part.bpmn';
+
+          // when
+          var { rootElement: collaboration } = await fromFile(file, 'bpmn:Collaboration');
+
+          // then
+          expect(collaboration).to.jsonEqual({
+            $type: 'bpmn:Collaboration',
+            modelerTemplate: 'foo'
+          });
+        });
+
+
         it('on Task', async function() {
 
           // given
@@ -641,6 +657,23 @@ describe('read', function() {
           // then
           expect(process).to.jsonEqual({
             $type: 'bpmn:Process',
+            modelerTemplate: 'foo',
+            modelerTemplateVersion: 1
+          });
+        });
+
+
+        it('on Collaboration', async function() {
+
+          // given
+          var file = 'collaboration-camunda-modelerTemplateVersion.part.bpmn';
+
+          // when
+          var { rootElement: collaboration } = await fromFile(file, 'bpmn:Collaboration');
+
+          // then
+          expect(collaboration).to.jsonEqual({
+            $type: 'bpmn:Collaboration',
             modelerTemplate: 'foo',
             modelerTemplateVersion: 1
           });
