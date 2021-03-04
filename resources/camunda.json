@@ -235,6 +235,7 @@
       "name": "TemplateSupported",
       "isAbstract": true,
       "extends": [
+        "bpmn:Collaboration",
         "bpmn:Process",
         "bpmn:FlowElement"
       ],
