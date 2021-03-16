@@ -5,8 +5,10 @@
   "scripts": {
     "all": "run-s lint test",
     "lint": "eslint .",
-    "dev": "npm test -- --watch",
-    "test": "mocha -r ./test/expect --reporter=spec --recursive test"
+    "dev": "npm run test:browser -- --auto-watch --no-single-run",
+    "test": "run-s test:*",
+    "test:node": "mocha -r ./test/expect --reporter=spec --recursive test",
+    "test:browser": "karma start karma.config.js"
   },
   "repository": {
     "type": "git",
@@ -31,17 +33,35 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "bpmn-js": "^8.2.2",
     "bpmn-moddle": "^7.0.4",
     "chai": "^4.3.0",
     "eslint": "^7.19.0",
     "eslint-plugin-bpmn-io": "^0.12.0",
+    "esm": "^3.2.25",
     "glob": "^7.1.6",
+    "karma": "^6.2.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-env-preprocessor": "^0.1.1",
+    "karma-mocha": "^2.0.1",
+    "karma-sinon-chai": "^2.0.2",
+    "karma-webpack": "^5.0.0",
     "mocha": "^8.2.1",
+    "mocha-test-container-support": "^0.2.0",
     "npm-run-all": "^4.1.2",
     "p-series": "^2.1.0",
+    "puppeteer": "^8.0.0",
+    "raw-loader": "^4.0.2",
+    "sinon": "^9.2.4",
+    "sinon-chai": "^3.5.0",
+    "webpack": "^5.26.3",
     "xsd-schema-validator": "^0.5.0"
   },
   "dependencies": {
     "min-dash": "^3.5.2"
+  },
+  "peerDependencies": {
+    "bpmn-js": "^6.x || ^7.x || ^8.x",
+    "diagram-js": "^5.x || ^6.x || ^7.x"
   }
 }
