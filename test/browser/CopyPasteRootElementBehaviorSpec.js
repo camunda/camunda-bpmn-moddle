@@ -56,7 +56,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
         copiedBusinessObject = getBusinessObject(copiedServiceTask);
 
         // assume
-        expect(getExtensionElementsOfType(copiedBusinessObject, 'camunda:ErrorEventDefinition').length).to.eql(0);
+        expect(getErrorEventDefinitions(copiedBusinessObject)).to.be.empty;
 
         // when
         copyPaste.copy(copiedServiceTask);
@@ -77,7 +77,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
       it('should not create a camunda:ErrorEventDefinition on paste', function() {
 
         // then
-        expect(getExtensionElementsOfType(pastedBusinessObject, 'camunda:ErrorEventDefinition').length).to.eql(0);
+        expect(getErrorEventDefinitions(pastedBusinessObject)).to.be.empty;
       });
 
     });
@@ -119,7 +119,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
         it('should copy the errorRef on paste', function() {
 
           // then
-          expect(getExtensionElementsOfType(pastedBusinessObject, 'camunda:ErrorEventDefinition')[0].errorRef).to.exist;
+          expect(getErrorEventDefinitions(pastedBusinessObject)[0].errorRef).to.exist;
         });
 
 
@@ -159,7 +159,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
         it('should copy the errorRef on paste', function() {
 
           // then
-          expect(getExtensionElementsOfType(pastedBusinessObject, 'camunda:ErrorEventDefinition')[0].errorRef).to.exist;
+          expect(getErrorEventDefinitions(pastedBusinessObject)[0].errorRef).to.exist;
         });
 
       });
@@ -172,7 +172,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
           // given
           copiedServiceTask = elementRegistry.get('ServiceTask_2');
           copiedBusinessObject = getBusinessObject(copiedServiceTask);
-          referencedRootElement = getExtensionElementsOfType(copiedBusinessObject, 'camunda:ErrorEventDefinition')[0].errorRef;
+          referencedRootElement = getErrorEventDefinitions(copiedBusinessObject)[0].errorRef;
 
           // remove all root errors except the referenced one
           var rootElements = getRootElementsOfType('bpmn:Error');
@@ -185,7 +185,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 
           // assume
           expect(hasRootElement(referencedRootElement)).to.be.true;
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(1);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(1);
 
           // when
           copyPaste.copy(copiedServiceTask);
@@ -203,7 +203,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
         it('should not create an additional root bpmn:Error', function() {
 
           // then
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(1);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(1);
         });
 
       });
@@ -218,7 +218,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 
           copiedBusinessObject = getBusinessObject(copiedServiceTask);
 
-          referencedRootElement = getExtensionElementsOfType(copiedBusinessObject, 'camunda:ErrorEventDefinition')[0].errorRef;
+          referencedRootElement = getErrorEventDefinitions(copiedBusinessObject)[0].errorRef;
 
           // when
           copyPaste.copy(copiedServiceTask);
@@ -232,7 +232,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 
           // assume
           expect(hasRootElement(referencedRootElement)).to.be.false;
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(0);
+          expect(getRootElementsOfType('bpmn:Error')).to.be.empty;
 
           pastedServiceTask = copyPaste.paste({
             element: canvas.getRootElement(),
@@ -244,14 +244,14 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 
           pastedBusinessObject = getBusinessObject(pastedServiceTask);
 
-          pastedRootElement = getExtensionElementsOfType(pastedBusinessObject, 'camunda:ErrorEventDefinition')[0].errorRef;
+          pastedRootElement = getErrorEventDefinitions(pastedBusinessObject)[0].errorRef;
         }));
 
 
         it('should do', function() {
 
           // then
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(1);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(1);
           expect(hasRootElement(referencedRootElement)).to.be.false;
           expect(hasRootElement(pastedRootElement)).to.be.true;
         });
@@ -263,7 +263,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
           commandStack.undo();
 
           // then
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(0);
+          expect(getRootElementsOfType('bpmn:Error')).to.be.empty;
           expect(hasRootElement(referencedRootElement)).to.be.false;
           expect(hasRootElement(pastedRootElement)).to.be.false;
         }));
@@ -278,7 +278,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
           commandStack.redo();
 
           // then
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(1);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(1);
           expect(hasRootElement(referencedRootElement)).to.be.false;
           expect(hasRootElement(pastedRootElement)).to.be.true;
         }));
@@ -306,7 +306,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
           copiedBusinessObject = getBusinessObject(copiedServiceTask);
 
           // assume
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(3);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(3);
 
           // when
           copyPaste.copy(copiedServiceTask);
@@ -321,7 +321,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 
           pastedBusinessObject = getBusinessObject(pastedServiceTask);
 
-          var extensionElements = getExtensionElementsOfType(pastedBusinessObject, 'camunda:ErrorEventDefinition');
+          var extensionElements = getErrorEventDefinitions(pastedBusinessObject);
 
           pastedRootElements = extensionElements.map(function(extensionElement) {
             return extensionElement.errorRef;
@@ -332,7 +332,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
         it('should not create any additional bpmn:Error', function() {
 
           // then
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(3);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(3);
 
           pastedRootElements.forEach(function(referencedRootElement) {
             expect(hasRootElement(referencedRootElement)).to.be.true;
@@ -351,7 +351,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 
           copiedBusinessObject = getBusinessObject(copiedServiceTask);
 
-          var extensionElements = getExtensionElementsOfType(copiedBusinessObject, 'camunda:ErrorEventDefinition');
+          var extensionElements = getErrorEventDefinitions(copiedBusinessObject);
 
           referencedRootElements = extensionElements.map(function(extensionElement) {
             return extensionElement.errorRef;
@@ -362,7 +362,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 
 
           // assume
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(2);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(2);
 
           // when
           copyPaste.copy(copiedServiceTask);
@@ -377,7 +377,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 
           pastedBusinessObject = getBusinessObject(pastedServiceTask);
 
-          extensionElements = getExtensionElementsOfType(pastedBusinessObject, 'camunda:ErrorEventDefinition');
+          extensionElements = getErrorEventDefinitions(pastedBusinessObject);
 
           pastedRootElements = extensionElements.map(function(extensionElement) {
             return extensionElement.errorRef;
@@ -388,7 +388,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
         it('should recreate the missing root bpmn:Error', function() {
 
           // then
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(3);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(3);
           expect(hasRootElement(pastedRootElements[1])).to.be.true;
         });
 
@@ -399,7 +399,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
           commandStack.undo();
 
           // then
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(2);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(2);
           expect(hasRootElement(pastedRootElements[1])).to.be.false;
         }));
 
@@ -413,7 +413,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
           commandStack.redo();
 
           // then
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(3);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(3);
           expect(hasRootElement(pastedRootElements[1])).to.be.true;
         }));
 
@@ -429,7 +429,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 
           copiedBusinessObject = getBusinessObject(copiedServiceTask);
 
-          var extensionElements = getExtensionElementsOfType(copiedBusinessObject, 'camunda:ErrorEventDefinition');
+          var extensionElements = getErrorEventDefinitions(copiedBusinessObject);
 
           referencedRootElements = extensionElements.map(function(extensionElement) {
             return extensionElement.errorRef;
@@ -443,7 +443,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
           });
 
           // assume
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(0);
+          expect(getRootElementsOfType('bpmn:Error')).to.be.empty;
 
           // when
           copyPaste.copy(copiedServiceTask);
@@ -458,7 +458,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 
           pastedBusinessObject = getBusinessObject(pastedServiceTask);
 
-          extensionElements = getExtensionElementsOfType(pastedBusinessObject, 'camunda:ErrorEventDefinition');
+          extensionElements = getErrorEventDefinitions(pastedBusinessObject);
 
           pastedRootElements = extensionElements.map(function(extensionElement) {
             return extensionElement.errorRef;
@@ -469,7 +469,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
         it('should recreate every missing root bpmn:Error', function() {
 
           // then
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(3);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(3);
         });
 
 
@@ -479,7 +479,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
           commandStack.undo();
 
           // then
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(0);
+          expect(getRootElementsOfType('bpmn:Error')).to.be.empty;
         }));
 
 
@@ -492,7 +492,7 @@ describe('browser - CopyPasteRootElementBehavior', function() {
           commandStack.redo();
 
           // then
-          expect(getRootElementsOfType('bpmn:Error').length).to.eql(3);
+          expect(getRootElementsOfType('bpmn:Error')).to.have.length(3);
         }));
 
       });
@@ -504,6 +504,10 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 });
 
 // helper ////
+
+function getErrorEventDefinitions(bo) {
+  return getExtensionElementsOfType(bo, 'camunda:ErrorEventDefinition');
+}
 
 function getExtensionElementsOfType(bo, type) {
   var extensionElements = bo.get('extensionElements');
