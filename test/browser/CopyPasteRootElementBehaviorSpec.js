@@ -24,7 +24,7 @@ var collectionRemove = require('diagram-js/lib/util/Collections').remove;
 var diagramXML = require('../fixtures/xml/RootElementReferenceBehavior.bpmn').default;
 
 
-describe('integration', function() {
+describe('browser - CopyPasteRootElementBehavior', function() {
 
   beforeEach(bootstrapModeler(diagramXML, {
     modules: [
