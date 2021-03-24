@@ -5,11 +5,11 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 ## Unreleased
 
 ___Note:__ Yet to be released changes appear here._
-* 'FIX': support `camunda:modelerTemplate` and 'camunda:modelerTemplateVersion' for 'bpmn:Collaboration' elements
 
 ## 5.1.0
 
 * `FEAT`: add behavior to copy and paste `bpmn:Error` elements referenced via `camunda:ErrorEventDefinition` elements
+* `FIX`: support `camunda:modelerTemplate` and 'camunda:modelerTemplateVersion' for 'bpmn:Collaboration' elements
 
 ## 5.0.0
 
