@@ -1,19 +1,23 @@
 'use strict';
 
-var CamundaModdleExtension = require('../../lib/extension');
+var CopyPasteBehavior = require('../../lib/CopyPasteBehavior');
 
-var createModdle = require('../helper').createModdle;
+var BpmnModdle = require('bpmn-moddle').default;
+
+var camundaDescriptor = require('../../resources/camunda');
 
 
-describe('extension', function() {
+describe('browser - CopyPasteBehavior', function() {
 
-  var camundaModdleExtension,
+  var copyPasteBehavior,
       moddle;
 
   beforeEach(function() {
-    camundaModdleExtension = new CamundaModdleExtension(new EventBusMock());
+    copyPasteBehavior = new CopyPasteBehavior(new EventBusMock());
 
-    moddle = createModdle();
+    moddle = new BpmnModdle({
+      camunda: camundaDescriptor
+    });
   });
 
 
@@ -35,7 +39,7 @@ describe('extension', function() {
       messageEndEvent.eventDefinitions = [ messageEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(connector, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(connector, extensionElements);
 
       // then
       expect(canCopyProperty).not.to.be.false;
@@ -58,7 +62,7 @@ describe('extension', function() {
       signalEndEvent.eventDefinitions = [ signalEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(connector, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(connector, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
@@ -81,7 +85,7 @@ describe('extension', function() {
       messageStartEvent.eventDefinitions = [ messageEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(connector, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(connector, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
@@ -98,7 +102,7 @@ describe('extension', function() {
       extensionElements.$parent = serviceTask;
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(connector, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(connector, extensionElements);
 
       // then
       expect(canCopyProperty).not.to.be.false;
@@ -125,7 +129,7 @@ describe('extension', function() {
       messageEndEvent.eventDefinitions = [ messageEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(field, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(field, extensionElements);
 
       // then
       expect(canCopyProperty).not.to.be.false;
@@ -148,7 +152,7 @@ describe('extension', function() {
       signalEndEvent.eventDefinitions = [ signalEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(field, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(field, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
@@ -171,7 +175,7 @@ describe('extension', function() {
       signalStartEvent.eventDefinitions = [ signalEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(field, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(field, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
@@ -199,7 +203,7 @@ describe('extension', function() {
         signalIntermediateThrowEvent.eventDefinitions = [ signalEventDefinition ];
 
         // when
-        var canCopyProperty = camundaModdleExtension.canCopyProperty(retryCycle, extensionElements);
+        var canCopyProperty = copyPasteBehavior.canCopyProperty(retryCycle, extensionElements);
 
         // then
         expect(canCopyProperty).not.to.be.false;
@@ -224,7 +228,7 @@ describe('extension', function() {
         signalStartEvent.eventDefinitions = [ signalEventDefinition ];
 
         // when
-        var canCopyProperty = camundaModdleExtension.canCopyProperty(retryCycle, extensionElements);
+        var canCopyProperty = copyPasteBehavior.canCopyProperty(retryCycle, extensionElements);
 
         // then
         expect(canCopyProperty).not.to.be.false;
@@ -248,7 +252,7 @@ describe('extension', function() {
       timerIntermediateCatchEvent.eventDefinitions = [ timerEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(retryCycle, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(retryCycle, extensionElements);
 
       // then
       expect(canCopyProperty).not.to.be.false;
@@ -271,7 +275,7 @@ describe('extension', function() {
       timerEndEvent.eventDefinitions = [ timerEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(retryCycle, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(retryCycle, extensionElements);
 
       // then
       expect(canCopyProperty).not.to.be.false;
@@ -295,7 +299,7 @@ describe('extension', function() {
         messageIntermediateCatchEvent.eventDefinitions = [ messageEventDefinition ];
 
         // when
-        var canCopyProperty = camundaModdleExtension.canCopyProperty(retryCycle, extensionElements);
+        var canCopyProperty = copyPasteBehavior.canCopyProperty(retryCycle, extensionElements);
 
         // then
         expect(canCopyProperty).not.to.be.false;
@@ -315,7 +319,7 @@ describe('extension', function() {
       loopCharacteristics.extensionElements = extensionElements;
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(retryCycle, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(retryCycle, extensionElements);
 
       // then
       expect(canCopyProperty).not.to.be.false;
@@ -338,7 +342,7 @@ describe('extension', function() {
       serviceTask.extensionElements = extensionElements;
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(errorEventDefinition, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(errorEventDefinition, extensionElements);
 
       // then
       expect(canCopyProperty).not.to.be.false;
@@ -357,7 +361,7 @@ describe('extension', function() {
       userTask.extensionElements = extensionElements;
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(errorEventDefinition, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(errorEventDefinition, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
@@ -380,7 +384,7 @@ describe('extension', function() {
       userTask.extensionElements = extensionElements;
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(taskListener, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(taskListener, extensionElements);
 
       // then
       expect(canCopyProperty).not.to.be.false;
@@ -399,7 +403,7 @@ describe('extension', function() {
       serviceTask.extensionElements = extensionElements;
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(taskListener, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(taskListener, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
@@ -422,7 +426,7 @@ describe('extension', function() {
       callActivity.extensionElements = extensionElements;
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(inOutBinding, extensionElements);
 
       // then
       expect(canCopyProperty).not.to.be.false;
@@ -446,7 +450,7 @@ describe('extension', function() {
       intermediateThrowEvent.eventDefinitions = [ signalEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(inOutBinding, extensionElements);
 
       // then
       expect(canCopyProperty).not.to.be.false;
@@ -470,7 +474,7 @@ describe('extension', function() {
       endEvent.eventDefinitions = [ signalEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(inOutBinding, extensionElements);
 
       // then
       expect(canCopyProperty).not.to.be.false;
@@ -494,7 +498,7 @@ describe('extension', function() {
       startEvent.eventDefinitions = [ signalEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(inOutBinding, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
@@ -518,7 +522,7 @@ describe('extension', function() {
       intermediateCatchEvent.eventDefinitions = [ signalEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(inOutBinding, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
@@ -542,7 +546,7 @@ describe('extension', function() {
       intermediateCatchEvent.eventDefinitions = [ messageEventDefinition ];
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(inOutBinding, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(inOutBinding, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
@@ -564,7 +568,7 @@ describe('extension', function() {
       gateway.extensionElements = extensionElements;
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(inputOutput, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(inputOutput, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
@@ -583,7 +587,7 @@ describe('extension', function() {
       boundaryEvent.extensionElements = extensionElements;
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(inputOutput, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(inputOutput, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
@@ -602,7 +606,7 @@ describe('extension', function() {
       startEvent.extensionElements = extensionElements;
 
       // when
-      var canCopyProperty = camundaModdleExtension.canCopyProperty(inputOutput, extensionElements);
+      var canCopyProperty = copyPasteBehavior.canCopyProperty(inputOutput, extensionElements);
 
       // then
       expect(canCopyProperty).to.be.false;
