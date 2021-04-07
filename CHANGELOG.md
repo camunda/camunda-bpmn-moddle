@@ -8,8 +8,8 @@ ___Note:__ Yet to be released changes appear here._
 
 ## 5.1.0
 
-* `FEAT`: add behavior to copy and paste `bpmn:Error` elements referenced via `camunda:ErrorEventDefinition` elements
-* `FIX`: support `camunda:modelerTemplate` and 'camunda:modelerTemplateVersion' for 'bpmn:Collaboration' elements
+* `FEAT`: add behavior to copy and paste `bpmn:Error` elements referenced via `camunda:ErrorEventDefinition` elements ([#68](https://github.com/camunda/camunda-bpmn-moddle/pull/68))
+* `FIX`: support `camunda:modelerTemplate` and `camunda:modelerTemplateVersion` for `bpmn:Collaboration` elements ([#67](https://github.com/camunda/camunda-bpmn-moddle/pull/67))
 
 ## 5.0.0
 
