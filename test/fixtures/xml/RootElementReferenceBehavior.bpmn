@@ -21,6 +21,21 @@
         <camunda:errorEventDefinition id="ErrorEventDefinition_0awnqeg" errorRef="Error_2" expression="Expression_2" />
       </bpmn:extensionElements>
     </bpmn:serviceTask>
+    <bpmn:serviceTask id="ServiceTask_5" camunda:type="external" camunda:topic="topic">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="Input_1" />
+          <camunda:inputParameter name="Input_2" />
+          <camunda:outputParameter name="Output_1" />
+        </camunda:inputOutput>
+        <camunda:errorEventDefinition id="ErrorEventDefinition_0t8tcfu" errorRef="Error_1" expression="Expression_1" />
+        <camunda:errorEventDefinition id="ErrorEventDefinition_0t3sasq" />
+        <camunda:errorEventDefinition id="ErrorEventDefinition_1kzuwno" errorRef="Error_2" expression="Expression_2" />
+        <camunda:properties>
+          <camunda:property name="property" value="value" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:error id="Error_1" name="Error_1" errorCode="Code_1" />
   <bpmn:error id="Error_2" name="Error_2" errorCode="Code_2" />
@@ -38,6 +53,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0h45fbf_di" bpmnElement="ServiceTask_4">
         <dc:Bounds x="260" y="210" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0z04jeg_di" bpmnElement="ServiceTask_5">
+        <dc:Bounds x="360" y="350" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
