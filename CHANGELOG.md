@@ -6,6 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 5.1.2
+
+* `FIX`: ensure root element is referenced on correct position ([#70](https://github.com/camunda/camunda-bpmn-moddle/pull/70))
+
 ## 5.1.1
 
 * `FIX`: do not copy non existing root elements ([#69](https://github.com/camunda/camunda-bpmn-moddle/pull/69))
