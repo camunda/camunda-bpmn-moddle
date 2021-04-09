@@ -548,6 +548,93 @@ describe('browser - CopyPasteRootElementBehavior', function() {
 
       });
 
+
+      describe('with complex extension elements', function() {
+
+
+        it('should set root elements to correct position', inject(
+          function(elementRegistry, copyPaste, canvas) {
+
+            // given
+            copiedServiceTask = elementRegistry.get('ServiceTask_5');
+
+            copiedBusinessObject = getBusinessObject(copiedServiceTask);
+
+            // assume
+            expect(getRootElementsOfType('bpmn:Error')).to.have.length(3);
+
+            // when
+            copyPaste.copy(copiedServiceTask);
+
+            pastedServiceTask = copyPaste.paste({
+              element: canvas.getRootElement(),
+              point: {
+                x: copiedServiceTask.x,
+                y: copiedServiceTask.y
+              },
+            })[0];
+
+            pastedBusinessObject = getBusinessObject(pastedServiceTask);
+
+            var extensionElements = getErrorEventDefinitions(pastedBusinessObject),
+                rootElements = getRootElementsOfType('bpmn:Error');
+
+            // then
+            expect(extensionElements.length).to.equal(3);
+
+            expect(extensionElements[0].errorRef).to.equal(rootElements[0]);
+            expect(extensionElements[1].errorRef).to.not.exist;
+            expect(extensionElements[2].errorRef).to.equal(rootElements[1]);
+          }
+        ));
+
+
+        it('should not create any additional bpmn:Error', inject(
+          function(elementRegistry, copyPaste, canvas) {
+
+            // given
+            copiedServiceTask = elementRegistry.get('ServiceTask_5');
+
+            copiedBusinessObject = getBusinessObject(copiedServiceTask);
+
+            // assume
+            expect(getRootElementsOfType('bpmn:Error')).to.have.length(3);
+
+            // when
+            copyPaste.copy(copiedServiceTask);
+
+            pastedServiceTask = copyPaste.paste({
+              element: canvas.getRootElement(),
+              point: {
+                x: copiedServiceTask.x,
+                y: copiedServiceTask.y
+              },
+            })[0];
+
+            pastedBusinessObject = getBusinessObject(pastedServiceTask);
+
+            var extensionElements = getErrorEventDefinitions(pastedBusinessObject);
+
+            pastedRootElements = extensionElements
+              .reduce(function(rootElements, extensionElement) {
+
+                if (extensionElement.errorRef) {
+                  rootElements.push(extensionElement.errorRef);
+                }
+
+                return rootElements;
+              }, []);
+
+            // then
+            expect(getRootElementsOfType('bpmn:Error')).to.have.length(3);
+
+            pastedRootElements.forEach(function(referencedRootElement) {
+              expect(hasRootElement(referencedRootElement)).to.be.true;
+            });
+          })
+        );
+      });
+
     });
 
   });
