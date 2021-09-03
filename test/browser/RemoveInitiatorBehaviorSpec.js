@@ -86,6 +86,33 @@ describe('browser - RemoveInitiatorBehaviour', function() {
 
     });
 
+    describe('when event with property and subprocess as parent is moved', function() {
+
+      var startEvent,
+          startBusinessObject,
+          subProcess;
+
+      it('should not have an initiator property', inject(function(elementRegistry, modeling, elementFactory, canvas, copyPaste) {
+
+        // given
+        startEvent = elementRegistry.get('StartEvent_2');
+        subProcess = elementRegistry.get('Activity_subprocess1');
+        startBusinessObject = getBusinessObject(startEvent);
+
+        // assume
+        expect(startBusinessObject.get('camunda:initiator')).to.not.be.undefined;
+
+        // when
+        modeling.moveShape(startEvent, { x: (subProcess.x+subProcess.width/4), y: (subProcess.y+subProcess.height/4) });
+
+        // then
+        expect(startBusinessObject.get('camunda:initiator')).to.be.undefined;
+
+      }
+      ));
+
+    });
+
 
   });
 
