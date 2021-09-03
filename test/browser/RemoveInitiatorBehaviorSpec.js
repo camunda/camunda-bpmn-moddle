@@ -47,12 +47,38 @@ describe('browser - RemoveInitiatorBehaviour', function() {
         startEvent = elementRegistry.get('StartEvent_1');
         subProcess = elementRegistry.get('Activity_subprocess1');
         startBusinessObject = getBusinessObject(startEvent);
+        console.log(startEvent);
+        console.log(startBusinessObject);
 
         // assume
         expect(startBusinessObject.get('camunda:initiator')).to.not.be.undefined;
 
         // when
         modeling.moveShape(startEvent, { x: (subProcess.x+subProcess.width/4), y: (subProcess.y+subProcess.height/4) }, subProcess);
+
+        // then
+        expect(startBusinessObject.get('camunda:initiator')).to.be.undefined;
+
+      }
+      ));
+
+    });
+
+
+    describe('when event is created within a subprocess', function() {
+
+      var startEvent,
+          startBusinessObject,
+          subProcess;
+
+      it('should not have an initiator property', inject(function(elementRegistry, modeling, elementFactory, canvas, copyPaste) {
+
+        // given
+        subProcess = elementRegistry.get('Activity_subprocess1');
+
+        // when
+        startEvent = modeling.createShape({ type: 'bpmn:StartEvent', 'camunda:initiator': 'abc' }, { x: 0, y: 0 }, subProcess);
+        startBusinessObject = getBusinessObject(startEvent);
 
         // then
         expect(startBusinessObject.get('camunda:initiator')).to.be.undefined;
