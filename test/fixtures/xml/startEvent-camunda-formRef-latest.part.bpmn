@@ -1,0 +1,4 @@
+<bpmn:startEvent
+  camunda:formRef="formId"
+  camunda:formRefBinding="latest">
+</bpmn:startEvent>

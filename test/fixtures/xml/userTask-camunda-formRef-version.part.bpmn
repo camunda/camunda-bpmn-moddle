@@ -1,0 +1,5 @@
+<bpmn:userTask
+  camunda:formRef="formId"
+  camunda:formRefBinding="version"
+  camunda:formRefVersion="1">
+</bpmn:userTask>

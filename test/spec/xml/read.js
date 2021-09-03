@@ -1242,6 +1242,88 @@ describe('read', function() {
       });
 
 
+      describe('Camunda Forms (camunda:formRef)', function() {
+
+        describe('camunda:formRefBinding = latest', function() {
+
+          it('on UserTask', async function() {
+
+            // given
+            var file = 'userTask-camunda-formRef-latest.part.bpmn';
+
+            // when
+            var { rootElement: userTask } = await fromFile(file, 'bpmn:UserTask');
+
+            // then
+            expect(userTask).to.jsonEqual({
+              $type: 'bpmn:UserTask',
+              formRef: 'formId',
+              formRefBinding: 'latest'
+            });
+          });
+
+
+          it('on StartEvent', async function() {
+
+            // given
+            var file = 'startEvent-camunda-formRef-latest.part.bpmn';
+
+            // when
+            var { rootElement: startEvent } = await fromFile(file, 'bpmn:StartEvent');
+
+            // then
+            expect(startEvent).to.jsonEqual({
+              $type: 'bpmn:StartEvent',
+              formRef: 'formId',
+              formRefBinding: 'latest'
+            });
+          });
+
+        });
+
+
+        describe('camunda:formRefBinding = version', function() {
+
+          it('on UserTask', async function() {
+
+            // given
+            var file = 'userTask-camunda-formRef-version.part.bpmn';
+
+            // when
+            var { rootElement: userTask } = await fromFile(file, 'bpmn:UserTask');
+
+            // then
+            expect(userTask).to.jsonEqual({
+              $type: 'bpmn:UserTask',
+              formRef: 'formId',
+              formRefBinding: 'version',
+              formRefVersion: '1'
+            });
+          });
+
+
+          it('on StartEvent', async function() {
+
+            // given
+            var file = 'startEvent-camunda-formRef-version.part.bpmn';
+
+            // when
+            var { rootElement: startEvent } = await fromFile(file, 'bpmn:StartEvent');
+
+            // then
+            expect(startEvent).to.jsonEqual({
+              $type: 'bpmn:StartEvent',
+              formRef: 'formId',
+              formRefBinding: 'version',
+              formRefVersion: '1'
+            });
+          });
+
+        });
+
+      });
+
+
       describe('generated (camunda:formData)', function() {
 
         it('camunda:formData', async function() {
