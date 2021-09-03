@@ -47,8 +47,6 @@ describe('browser - RemoveInitiatorBehaviour', function() {
         startEvent = elementRegistry.get('StartEvent_1');
         subProcess = elementRegistry.get('Activity_subprocess1');
         startBusinessObject = getBusinessObject(startEvent);
-        console.log(startEvent);
-        console.log(startBusinessObject);
 
         // assume
         expect(startBusinessObject.get('camunda:initiator')).to.not.be.undefined;
