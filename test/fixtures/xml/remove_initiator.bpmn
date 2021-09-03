@@ -14,7 +14,7 @@
       <bpmndi:BPMNShape id="Activity_0aunq9w_di" bpmnElement="Activity_subprocess1" isExpanded="true">
         <dc:Bounds x="160" y="220" width="350" height="200" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0e1wd2u_di" bpmnElement="Event_1_inside">
+      <bpmndi:BPMNShape id="Event_0e1wd2u_di" bpmnElement="StartEvent_2">
         <dc:Bounds x="200" y="302" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
