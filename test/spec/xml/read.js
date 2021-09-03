@@ -536,44 +536,6 @@ describe('read', function() {
     });
 
 
-    describe('camunda:FormSupported with camunda:formKey and camunda:formHandlerClass', function() {
-
-      it('on UserTask', async function() {
-
-        // given
-        var file = 'userTask-camunda-formSupported.part.bpmn';
-
-        // when
-        var { rootElement: userTask } = await fromFile(file, 'bpmn:UserTask');
-
-        // then
-        expect(userTask).to.jsonEqual({
-          $type: 'bpmn:UserTask',
-          formHandlerClass: 'my.company.FormHandler',
-          formKey: 'form.html'
-        });
-      });
-
-
-      it('on StartEvent', async function() {
-
-        // given
-        var file = 'startEvent-camunda-formSupported.part.bpmn';
-
-        // when
-        var { rootElement: startEvent } = await fromFile(file, 'bpmn:StartEvent');
-
-        // then
-        expect(startEvent).to.jsonEqual({
-          $type: 'bpmn:StartEvent',
-          formHandlerClass: 'my.company.FormHandler',
-          formKey: 'form.html'
-        });
-      });
-
-    });
-
-
     describe('camunda:TemplateSupported', function() {
 
       describe('camunda:modelerTemplate', function() {
@@ -911,127 +873,6 @@ describe('read', function() {
     });
 
 
-    it('camunda:formData', async function() {
-
-      // given
-      var file = 'camunda-formData.part.bpmn';
-
-      // when
-      var { rootElement: formData } = await fromFile(file, 'camunda:FormData');
-
-      // then
-      expect(formData).to.jsonEqual({
-        $type: 'camunda:FormData',
-        fields: [
-          {
-            $type: 'camunda:FormField',
-            id: 'stringField',
-            label: 'String Field',
-            type: 'string',
-            defaultValue: 'someString',
-            properties: {
-              $type: 'camunda:Properties',
-              values: [
-                {
-                  $type: 'camunda:Property',
-                  id: 'p1',
-                  value: 'property1'
-                },
-                {
-                  $type: 'camunda:Property',
-                  id: 'p2',
-                  value: 'property2'
-                }
-              ]
-            },
-            validation: {
-              $type: 'camunda:Validation',
-              constraints: [
-                {
-                  $type: 'camunda:Constraint',
-                  name: 'readonly'
-                },
-                {
-                  $type: 'camunda:Constraint',
-                  name: 'minlength',
-                  config: '5'
-                }
-              ]
-            },
-            values: [
-              {
-                $type: 'camunda:Value',
-                id: 'a',
-                name: 'A'
-              },
-              {
-                $type: 'camunda:Value',
-                id: 'b',
-                name: 'B'
-              }
-            ]
-          }
-        ]
-      });
-    });
-
-
-    describe('camunda:formProperty', function() {
-
-      it('attributes', async function() {
-
-        // given
-        var file = 'camunda-formProperty-attributes.part.bpmn';
-
-        // when
-        var { rootElement: formProperty } = await fromFile(file, 'camunda:FormProperty');
-
-        // then
-        expect(formProperty).to.jsonEqual({
-          $type: 'camunda:FormProperty',
-          id: 'longProperty',
-          name: 'Property',
-          type: 'long',
-          required: 'true',
-          readable: 'true',
-          writable: 'true',
-          variable: 'SpeakerName',
-          expression: '#{address.street}',
-          datePattern: 'dd-MM-yyyy hh:mm',
-          default: '42'
-        });
-      });
-
-
-      it('with nested value', async function() {
-
-        // given
-        var file = 'camunda-formProperty-children.part.bpmn';
-
-        // when
-        var { rootElement: formProperty } = await fromFile(file, 'camunda:FormProperty');
-
-        // then
-        expect(formProperty).to.jsonEqual({
-          $type: 'camunda:FormProperty',
-          values: [
-            {
-              $type: 'camunda:Value',
-              id: 'false',
-              name: 'Yes'
-            },
-            {
-              $type: 'camunda:Value',
-              id: 'true',
-              name: 'No'
-            }
-          ]
-        });
-      });
-
-    });
-
-
     describe('camunda:executionListener', function() {
 
       it('attributes', async function() {
@@ -1317,6 +1158,212 @@ describe('read', function() {
           $type: 'bpmn:ConditionalEventDefinition',
           variableEvents: 'create, update'
         });
+      });
+
+    });
+
+
+    describe('forms', function() {
+
+      describe('embedded/external/Camunda Forms (camunda:formKey)', function() {
+
+        describe('camunda:formKey', function() {
+
+          it('on UserTask', async function() {
+
+            // given
+            var file = 'userTask-camunda-formKey.part.bpmn';
+
+            // when
+            var { rootElement: userTask } = await fromFile(file, 'bpmn:UserTask');
+
+            // then
+            expect(userTask).to.jsonEqual({
+              $type: 'bpmn:UserTask',
+              formKey: 'form.html'
+            });
+          });
+
+
+          it('on StartEvent', async function() {
+
+            // given
+            var file = 'startEvent-camunda-formKey.part.bpmn';
+
+            // when
+            var { rootElement: startEvent } = await fromFile(file, 'bpmn:StartEvent');
+
+            // then
+            expect(startEvent).to.jsonEqual({
+              $type: 'bpmn:StartEvent',
+              formKey: 'form.html'
+            });
+          });
+
+        });
+
+        describe('camunda:formKey and camunda:formHandlerClass', function() {
+
+          it('on UserTask', async function() {
+
+            // given
+            var file = 'userTask-camunda-formHandlerClass.part.bpmn';
+
+            // when
+            var { rootElement: userTask } = await fromFile(file, 'bpmn:UserTask');
+
+            // then
+            expect(userTask).to.jsonEqual({
+              $type: 'bpmn:UserTask',
+              formHandlerClass: 'my.company.FormHandler',
+              formKey: 'form.html'
+            });
+          });
+
+
+          it('on StartEvent', async function() {
+
+            // given
+            var file = 'startEvent-camunda-formHandlerClass.part.bpmn';
+
+            // when
+            var { rootElement: startEvent } = await fromFile(file, 'bpmn:StartEvent');
+
+            // then
+            expect(startEvent).to.jsonEqual({
+              $type: 'bpmn:StartEvent',
+              formHandlerClass: 'my.company.FormHandler',
+              formKey: 'form.html'
+            });
+          });
+
+        });
+
+      });
+
+
+      describe('generated (camunda:formData)', function() {
+
+        it('camunda:formData', async function() {
+
+          // given
+          var file = 'camunda-formData.part.bpmn';
+
+          // when
+          var { rootElement: formData } = await fromFile(file, 'camunda:FormData');
+
+          // then
+          expect(formData).to.jsonEqual({
+            $type: 'camunda:FormData',
+            fields: [
+              {
+                $type: 'camunda:FormField',
+                id: 'stringField',
+                label: 'String Field',
+                type: 'string',
+                defaultValue: 'someString',
+                properties: {
+                  $type: 'camunda:Properties',
+                  values: [
+                    {
+                      $type: 'camunda:Property',
+                      id: 'p1',
+                      value: 'property1'
+                    },
+                    {
+                      $type: 'camunda:Property',
+                      id: 'p2',
+                      value: 'property2'
+                    }
+                  ]
+                },
+                validation: {
+                  $type: 'camunda:Validation',
+                  constraints: [
+                    {
+                      $type: 'camunda:Constraint',
+                      name: 'readonly'
+                    },
+                    {
+                      $type: 'camunda:Constraint',
+                      name: 'minlength',
+                      config: '5'
+                    }
+                  ]
+                },
+                values: [
+                  {
+                    $type: 'camunda:Value',
+                    id: 'a',
+                    name: 'A'
+                  },
+                  {
+                    $type: 'camunda:Value',
+                    id: 'b',
+                    name: 'B'
+                  }
+                ]
+              }
+            ]
+          });
+        });
+
+
+        describe('camunda:formProperty', function() {
+
+          it('attributes', async function() {
+
+            // given
+            var file = 'camunda-formProperty-attributes.part.bpmn';
+
+            // when
+            var { rootElement: formProperty } = await fromFile(file, 'camunda:FormProperty');
+
+            // then
+            expect(formProperty).to.jsonEqual({
+              $type: 'camunda:FormProperty',
+              id: 'longProperty',
+              name: 'Property',
+              type: 'long',
+              required: 'true',
+              readable: 'true',
+              writable: 'true',
+              variable: 'SpeakerName',
+              expression: '#{address.street}',
+              datePattern: 'dd-MM-yyyy hh:mm',
+              default: '42'
+            });
+          });
+
+
+          it('with nested value', async function() {
+
+            // given
+            var file = 'camunda-formProperty-children.part.bpmn';
+
+            // when
+            var { rootElement: formProperty } = await fromFile(file, 'camunda:FormProperty');
+
+            // then
+            expect(formProperty).to.jsonEqual({
+              $type: 'camunda:FormProperty',
+              values: [
+                {
+                  $type: 'camunda:Value',
+                  id: 'false',
+                  name: 'Yes'
+                },
+                {
+                  $type: 'camunda:Value',
+                  id: 'true',
+                  name: 'No'
+                }
+              ]
+            });
+          });
+
+        });
+
       });
 
     });
