@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1jtfk9s" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="Process_1r4jk18" name="aaaa" isExecutable="false">
+    <bpmn:subProcess id="Activity_subprocess1" triggeredByEvent="true">
+      <bpmn:startEvent id="startEvent_1" name="f">
+        <bpmn:conditionalEventDefinition id="ConditionalEventDefinition_04mrb51" camunda:variableEvents="e" />
+        <bpmn:conditionalEventDefinition id="ConditionalEventDefinition_04mrb52" camunda:variableEvents="f" />
+      </bpmn:startEvent>
+    </bpmn:subProcess>
+    <bpmn:subProcess id="Activity_subprocess2" triggeredByEvent="true">
+      <bpmn:startEvent id="Event_1homx2o" />
+    </bpmn:subProcess>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1r4jk18">
+      <bpmndi:BPMNShape id="Activity_1a5old2_di" bpmnElement="Activity_subprocess1" isExpanded="true">
+        <dc:Bounds x="160" y="80" width="440" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1e9bgq2_di" bpmnElement="startEvent_1">
+        <dc:Bounds x="212" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="228" y="175" width="4" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0qu87kz_di" bpmnElement="Activity_subprocess2" isExpanded="true">
+        <dc:Bounds x="160" y="320" width="440" height="200" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1homx2o_di" bpmnElement="Event_1homx2o">
+        <dc:Bounds x="190" y="402" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
