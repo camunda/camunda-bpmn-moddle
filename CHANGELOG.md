@@ -6,6 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 6.0.0
+
+* `FEAT`: support `camunda:formRef`, `camunda:formRefBinding` and `camunda:formRefVersion` elements ([#76](https://github.com/camunda/camunda-bpmn-moddle/pull/76))
+
 ## 5.1.2
 
 * `FIX`: ensure root element is referenced on correct position ([#70](https://github.com/camunda/camunda-bpmn-moddle/pull/70))
