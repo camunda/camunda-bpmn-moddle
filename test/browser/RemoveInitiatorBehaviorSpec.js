@@ -52,13 +52,12 @@ describe('browser - RemoveInitiatorBehaviour', function() {
         expect(startBusinessObject.get('camunda:initiator')).to.not.be.undefined;
 
         // when
-        modeling.moveShape(startEvent, { x: (subProcess.x+subProcess.width/4), y: (subProcess.y+subProcess.height/4) }, subProcess);
+        modeling.moveShape(startEvent, { x: (subProcess.x + subProcess.width / 4), y: (subProcess.y + subProcess.height / 4) }, subProcess);
 
         // then
         expect(startBusinessObject.get('camunda:initiator')).to.be.undefined;
 
-      }
-      ));
+      }));
 
     });
 
@@ -80,10 +79,10 @@ describe('browser - RemoveInitiatorBehaviour', function() {
         // then
         expect(startBusinessObject.get('camunda:initiator')).to.be.undefined;
 
-      }
-      ));
+      }));
 
     });
+
 
     describe('when event with property and subprocess as parent is moved', function() {
 
@@ -102,13 +101,12 @@ describe('browser - RemoveInitiatorBehaviour', function() {
         expect(startBusinessObject.get('camunda:initiator')).to.not.be.undefined;
 
         // when
-        modeling.moveShape(startEvent, { x: (subProcess.x+subProcess.width/4), y: (subProcess.y+subProcess.height/4) });
+        modeling.moveShape(startEvent, { x: (subProcess.x + subProcess.width / 4), y: (subProcess.y + subProcess.height / 4) });
 
         // then
         expect(startBusinessObject.get('camunda:initiator')).to.be.undefined;
 
-      }
-      ));
+      }));
 
     });
 
