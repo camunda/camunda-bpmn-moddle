@@ -52,39 +52,37 @@ describe('browser - RemoveInitiatorBehaviour', function() {
         expect(startBusinessObject.get('camunda:initiator')).to.not.be.undefined;
 
         // when
-        modeling.moveShape(startEvent, { x: (subProcess.x+subProcess.width/4), y: (subProcess.y+subProcess.height/4) }, subProcess);
+        modeling.moveShape(startEvent, { x: (subProcess.x + subProcess.width / 4), y: (subProcess.y + subProcess.height / 4) }, subProcess);
 
         // then
         expect(startBusinessObject.get('camunda:initiator')).to.be.undefined;
 
-      }
-      ));
+      }));
 
     });
 
 
     describe('when event is created within a subprocess', function() {
 
-      var startEvent,
-          startBusinessObject,
+      var startBusinessObject,
           subProcess;
 
-      it('should not have an initiator property', inject(function(elementRegistry, modeling, elementFactory, canvas, copyPaste) {
+      it('should not have an initiator property', inject(function(elementRegistry, modeling, bpmnFactory) {
 
         // given
         subProcess = elementRegistry.get('Activity_subprocess1');
+        startBusinessObject = bpmnFactory.create('bpmn:StartEvent', { initiator:'abc' });
 
         // when
-        startEvent = modeling.createShape({ type: 'bpmn:StartEvent', 'camunda:initiator': 'abc' }, { x: 0, y: 0 }, subProcess);
-        startBusinessObject = getBusinessObject(startEvent);
+        modeling.createShape({ type: 'bpmn:StartEvent', businessObject:startBusinessObject }, { x: 0, y: 0 }, subProcess);
 
         // then
         expect(startBusinessObject.get('camunda:initiator')).to.be.undefined;
 
-      }
-      ));
+      }));
 
     });
+
 
     describe('when event with property and subprocess as parent is moved', function() {
 
@@ -103,13 +101,12 @@ describe('browser - RemoveInitiatorBehaviour', function() {
         expect(startBusinessObject.get('camunda:initiator')).to.not.be.undefined;
 
         // when
-        modeling.moveShape(startEvent, { x: (subProcess.x+subProcess.width/4), y: (subProcess.y+subProcess.height/4) });
+        modeling.moveShape(startEvent, { x: (subProcess.x + subProcess.width / 4), y: (subProcess.y + subProcess.height / 4) });
 
         // then
         expect(startBusinessObject.get('camunda:initiator')).to.be.undefined;
 
-      }
-      ));
+      }));
 
     });
 
