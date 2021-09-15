@@ -6,9 +6,15 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 6.1.0
+
+* `FEAT`: remove `variableEvents` for `startEvent` outside of `EventSubProcess` ([#77](https://github.com/camunda/camunda-bpmn-moddle/pull/77))
+* `FIX`: remove `initiator` property for `shape.create` ([#78](https://github.com/camunda/camunda-bpmn-moddle/pull/78))
+
 ## 6.0.0
 
 * `FEAT`: support `camunda:formRef`, `camunda:formRefBinding` and `camunda:formRefVersion` elements ([#76](https://github.com/camunda/camunda-bpmn-moddle/pull/76))
+* `FIX`: remove `initiator` property for `startEvent` when moved to a subProcess ([#74](https://github.com/camunda/camunda-bpmn-moddle/issues/74))
 
 ## 5.1.2
 
