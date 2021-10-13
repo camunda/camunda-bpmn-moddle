@@ -76,6 +76,26 @@ describe('write', function() {
       expect(xml).to.eql(expectedXML);
     });
 
+
+    it('UserTask#formRefBinding', async function() {
+
+      // given
+      var element = moddle.create('bpmn:UserTask', {
+        'camunda:formRefBinding': 'latest'
+      });
+
+      var expectedXML =
+        '<bpmn:userTask xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" ' +
+                       'xmlns:camunda="http://camunda.org/schema/1.0/bpmn" ' +
+                       'camunda:formRefBinding="latest" />';
+
+      // when
+      var { xml } = await write(element);
+
+      // then
+      expect(xml).to.eql(expectedXML);
+    });
+
   });
 
 });
