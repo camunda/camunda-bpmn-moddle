@@ -63,5 +63,10 @@
   "peerDependencies": {
     "bpmn-js": "^6.x || ^7.x || ^8.x",
     "diagram-js": "^5.x || ^6.x || ^7.x"
-  }
+  },
+  "files": [
+    "lib",
+    "resources",
+    "index.js"
+  ]
 }
