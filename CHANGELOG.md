@@ -6,6 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 6.1.1
+
+* `FIX`: remove invalid `camunda:formRefBinding` default value ([#87](https://github.com/camunda/camunda-bpmn-moddle/pull/87))
+
 ## 6.1.0
 
 * `FEAT`: remove `variableEvents` for `startEvent` outside of `EventSubProcess` ([#77](https://github.com/camunda/camunda-bpmn-moddle/pull/77))
