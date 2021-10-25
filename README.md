@@ -40,7 +40,7 @@ npm run all
 
 ## [bpmn-js](https://github.com/bpmn-io/bpmn-js) Extension
 
-We include an extension that makes [bpmn-js](https://github.com/bpmn-io/bpmn-js) copy and replace mechanisms aware of Camunda properties.
+We include an extension that makes [bpmn-js](https://github.com/bpmn-io/bpmn-js) Modeler copy and replace mechanisms aware of Camunda properties.
 
 ```js
 var BpmnJS = require('bpmn-js/lib/Modeler'),
