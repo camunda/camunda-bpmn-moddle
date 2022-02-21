@@ -61,8 +61,8 @@
     "min-dash": "^3.5.2"
   },
   "peerDependencies": {
-    "bpmn-js": "^6.x || ^7.x || ^8.x",
-    "diagram-js": "^5.x || ^6.x || ^7.x"
+    "bpmn-js": "^6.x || ^7.x || ^8.x || ^9.x",
+    "diagram-js": "^5.x || ^6.x || ^7.x || ^8.x"
   },
   "files": [
     "lib",
