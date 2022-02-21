@@ -58,7 +58,7 @@
     "xsd-schema-validator": "^0.5.0"
   },
   "dependencies": {
-    "min-dash": "^3.5.2"
+    "min-dash": "^3.8.1"
   },
   "peerDependencies": {
     "bpmn-js": "^6.x || ^7.x || ^8.x || ^9.x",
