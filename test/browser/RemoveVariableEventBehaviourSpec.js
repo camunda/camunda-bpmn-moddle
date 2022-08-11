@@ -54,9 +54,7 @@ describe('browser - RemoveVariableEventBehaviour', function() {
 
         // assume
         eventDefinitions.forEach(def => {
-
           expect(def.get('camunda:variableEvents')).to.not.be.undefined;
-
         });
 
         // when
@@ -66,11 +64,8 @@ describe('browser - RemoveVariableEventBehaviour', function() {
 
         // then
         eventDefinitions.forEach(def => {
-
           expect(def.get('camunda:variableEvents')).to.be.undefined;
-
         });
-
       }));
 
     });
@@ -94,9 +89,7 @@ describe('browser - RemoveVariableEventBehaviour', function() {
 
         // assume
         eventDefinitions.forEach(def => {
-
           expect(def.get('camunda:variableEvents')).to.not.be.undefined;
-
         });
 
         // when
@@ -104,14 +97,12 @@ describe('browser - RemoveVariableEventBehaviour', function() {
 
         // then
         eventDefinitions.forEach(def => {
-
           expect(def.get('camunda:variableEvents')).to.not.be.undefined;
-
         });
-
       }));
 
     });
+
 
     describe('when conditional startEvent with variableEvents property is created out of event subprocess', function() {
 
@@ -131,11 +122,8 @@ describe('browser - RemoveVariableEventBehaviour', function() {
 
         // then
         eventBusinessObject.get('eventDefinitions').forEach(def => {
-
           expect(def.get('camunda:variableEvents')).to.be.undefined;
-
         });
-
       }));
 
     });
