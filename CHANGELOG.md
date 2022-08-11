@@ -6,6 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 7.0.0
+
+* `CHORE`: migrate behaviors to ES6
+
 ## 6.1.2
 
 * `DEPS`: deps: mark `bpmn-js@9` and `diagram-js@8` as peer dependency
