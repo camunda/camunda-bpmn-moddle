@@ -58,6 +58,7 @@
     "xsd-schema-validator": "^0.5.0"
   },
   "dependencies": {
+    "inherits-browser": "0.0.1",
     "min-dash": "^3.8.1"
   },
   "peerDependencies": {

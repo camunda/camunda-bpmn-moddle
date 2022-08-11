@@ -1,27 +1,33 @@
-'use strict';
+import {
+  bootstrapModeler,
+  getBpmnJS,
+  inject
+} from 'bpmn-js/test/helper';
 
-var bootstrapModeler = require('bpmn-js/test/helper').bootstrapModeler,
-    getBpmnJS = require('bpmn-js/test/helper').getBpmnJS,
-    inject = require('bpmn-js/test/helper').inject;
+import {
+  is,
+  getBusinessObject
+} from 'bpmn-js/lib/util/ModelUtil';
 
-var getBusinessObject = require('bpmn-js/lib/util/ModelUtil').getBusinessObject,
-    is = require('bpmn-js/lib/util/ModelUtil').is;
+import {
+  find,
+  matchPattern
+} from 'min-dash';
 
-var find = require('min-dash').find,
-    matchPattern = require('min-dash').matchPattern;
+import coreModule from 'bpmn-js/lib/core';
 
-var coreModule = require('bpmn-js/lib/core').default;
+import modelingModule from 'bpmn-js/lib/features/modeling';
 
-var modelingModule = require('bpmn-js/lib/features/modeling').default;
+import bpmnCopyPasteModule from 'bpmn-js/lib/features/copy-paste';
 
-var bpmnCopyPasteModule = require('bpmn-js/lib/features/copy-paste').default;
+import camundaDescriptor from '../../resources/camunda.json';
+import camundaExtension from '../../lib';
 
-var camundaDescriptor = require('../../resources/camunda');
-var camundaExtension = require('../../lib');
+import {
+  remove as collectionRemove
+} from 'diagram-js/lib/util/Collections';
 
-var collectionRemove = require('diagram-js/lib/util/Collections').remove;
-
-var diagramXML = require('../fixtures/xml/RootElementReferenceBehavior.bpmn').default;
+import diagramXML from '../fixtures/xml/RootElementReferenceBehavior.bpmn';
 
 
 describe('browser - CopyPasteRootElementBehavior', function() {

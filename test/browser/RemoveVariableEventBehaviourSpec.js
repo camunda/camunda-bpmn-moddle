@@ -1,21 +1,20 @@
-'use strict';
+import {
+  bootstrapModeler,
+  inject
+} from 'bpmn-js/test/helper';
 
-var bootstrapModeler = require('bpmn-js/test/helper').bootstrapModeler,
-    inject = require('bpmn-js/test/helper').inject;
+import { getBusinessObject } from 'bpmn-js/lib/util/ModelUtil';
 
-var getBusinessObject = require('bpmn-js/lib/util/ModelUtil').getBusinessObject;
+import coreModule from 'bpmn-js/lib/core';
 
-var coreModule = require('bpmn-js/lib/core').default;
+import modelingModule from 'bpmn-js/lib/features/modeling';
 
-var modelingModule = require('bpmn-js/lib/features/modeling').default;
+import bpmnCopyPasteModule from 'bpmn-js/lib/features/copy-paste';
 
-var bpmnCopyPasteModule = require('bpmn-js/lib/features/copy-paste').default;
+import camundaDescriptor from '../../resources/camunda.json';
+import camundaExtension from '../../lib';
 
-var camundaDescriptor = require('../../resources/camunda');
-var camundaExtension = require('../../lib');
-
-
-var diagramXML = require('../fixtures/xml/remove_variable_event.bpmn').default;
+import diagramXML from '../fixtures/xml/remove_variable_event.bpmn';
 
 
 describe('browser - RemoveVariableEventBehaviour', function() {

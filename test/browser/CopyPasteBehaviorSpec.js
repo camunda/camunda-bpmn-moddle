@@ -1,10 +1,8 @@
-'use strict';
+import CopyPasteBehavior from '../../lib/CopyPasteBehavior';
 
-var CopyPasteBehavior = require('../../lib/CopyPasteBehavior');
+import BpmnModdle from 'bpmn-moddle';
 
-var BpmnModdle = require('bpmn-moddle').default;
-
-var camundaDescriptor = require('../../resources/camunda');
+import camundaDescriptor from '../../resources/camunda.json';
 
 
 describe('browser - CopyPasteBehavior', function() {
