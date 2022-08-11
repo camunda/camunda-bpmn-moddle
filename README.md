@@ -10,9 +10,9 @@ This project defines the [Camunda](https://camunda.org) namespace extensions for
 Use it together with [bpmn-moddle](https://github.com/bpmn-io/bpmn-moddle) to validate Camunda BPMN 2.0 extensions.
 
 ```javascript
-var BpmnModdle = require('bpmn-moddle');
+import BpmnModdle from 'bpmn-moddle';
 
-var camundaModdle = require('camunda-bpmn-moddle/resources/camunda');
+import camundaModdle from 'camunda-bpmn-moddle/resources/camunda.json';
 
 var moddle = new BpmnModdle({ camunda: camundaModdle });
 
@@ -38,23 +38,25 @@ Perform a complete build of the application via
 npm run all
 ```
 
+
 ## [bpmn-js](https://github.com/bpmn-io/bpmn-js) Extension
 
 We include an extension that makes [bpmn-js](https://github.com/bpmn-io/bpmn-js) Modeler copy and replace mechanisms aware of Camunda properties.
 
 ```js
-var BpmnJS = require('bpmn-js/lib/Modeler'),
-    camundaExtensionModule = require('camunda-bpmn-moddle/lib'),
-    camundaModdle = require('camunda-bpmn-moddle/resources/camunda');
+import BpmnModeler from 'bpmn-js/lib/Modeler';
 
-var modeler = new BpmnJS({
-    additionalModules: [
-      camundaExtensionModule
-    ],
-    moddleExtensions: {
-      camunda: camundaModdle
-    }
-  });
+import camundaExtensionModule from 'camunda-bpmn-moddle/lib';
+import camundaModdle from 'camunda-bpmn-moddle/resources/camunda.json';
+
+var modeler = new BpmnModeler({
+  additionalModules: [
+    camundaExtensionModule
+  ],
+  moddleExtensions: {
+    camunda: camundaModdle
+  }
+});
 ```
 
 This extension hooks into the copy mechanism provided by the BPMN editor and ensures Camunda properties are kept and or dropped on copy and element replace.
