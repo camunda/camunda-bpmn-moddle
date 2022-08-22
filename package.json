@@ -5,10 +5,8 @@
   "scripts": {
     "all": "run-s lint test",
     "lint": "eslint .",
-    "dev": "npm run test:browser -- --auto-watch --no-single-run",
-    "test": "run-s test:*",
-    "test:node": "mocha -r ./test/expect --reporter=spec \"test/!(browser)/**/*.js\"",
-    "test:browser": "karma start karma.config.js"
+    "dev": "npm run test -- --auto-watch --no-single-run",
+    "test": "mocha -r ./test/expect --reporter=spec \"test/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -57,17 +55,11 @@
     "webpack": "^5.26.3",
     "xsd-schema-validator": "^0.5.0"
   },
-  "dependencies": {
-    "inherits-browser": "0.0.1",
-    "min-dash": "^3.8.1"
-  },
   "peerDependencies": {
     "bpmn-js": "^6.x || ^7.x || ^8.x || ^9.x",
     "diagram-js": "^5.x || ^6.x || ^7.x || ^8.x"
   },
   "files": [
-    "lib",
-    "resources",
-    "index.js"
+    "resources"
   ]
 }
