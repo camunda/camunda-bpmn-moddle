@@ -38,30 +38,6 @@ Perform a complete build of the application via
 npm run all
 ```
 
-
-## [bpmn-js](https://github.com/bpmn-io/bpmn-js) Extension
-
-We include an extension that makes [bpmn-js](https://github.com/bpmn-io/bpmn-js) Modeler copy and replace mechanisms aware of Camunda properties.
-
-```js
-import BpmnModeler from 'bpmn-js/lib/Modeler';
-
-import camundaExtensionModule from 'camunda-bpmn-moddle/lib';
-import camundaModdle from 'camunda-bpmn-moddle/resources/camunda.json';
-
-var modeler = new BpmnModeler({
-  additionalModules: [
-    camundaExtensionModule
-  ],
-  moddleExtensions: {
-    camunda: camundaModdle
-  }
-});
-```
-
-This extension hooks into the copy mechanism provided by the BPMN editor and ensures Camunda properties are kept and or dropped on copy and element replace.
-
-
 ## License
 
 Use under the terms of the [MIT license](http://opensource.org/licenses/MIT).
