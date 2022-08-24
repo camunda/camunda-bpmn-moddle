@@ -14,9 +14,9 @@ import BpmnModdle from 'bpmn-moddle';
 
 import camundaModdle from 'camunda-bpmn-moddle/resources/camunda.json';
 
-var moddle = new BpmnModdle({ camunda: camundaModdle });
+const moddle = new BpmnModdle({ camunda: camundaModdle });
 
-var serviceTask = moddle.create('bpmn:ServiceTask', {
+const serviceTask = moddle.create('bpmn:ServiceTask', {
   'javaDelegate': 'my.company.SomeDelegate'
 });
 ```
@@ -37,6 +37,10 @@ Perform a complete build of the application via
 ```
 npm run all
 ```
+
+## Behaviors
+
+This extension should be used with [camunda-bpmn-js-behaviors](https://github.com/camunda/camunda-bpmn-js-behaviors#camunda-platform-7) to ensure Camunda properties are created, updated and deleted as expected.
 
 ## License
 
