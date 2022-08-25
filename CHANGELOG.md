@@ -8,7 +8,11 @@ ___Note:__ Yet to be released changes appear here._
 
 ## 7.0.0
 
-* `CHORE`: migrate behaviors to ES6
+* `CHORE`: remove behaviors ([#112](https://github.com/camunda/camunda-bpmn-moddle/pull/112))
+
+### Breaking Changes
+
+* behaviors moved to https://github.com/camunda/camunda-bpmn-js-behaviors
 
 ## 6.1.2
 
