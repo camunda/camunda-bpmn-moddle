@@ -12,7 +12,7 @@ updates:
     reviewers: # Automatically assign reviewer
       - "bpmn-io/modeling-dev"
     allow:
-      - dependency-name: "bpmn-js"
+      - dependency-name: "bpmn-moddle"
         dependency-type: "all"
     commit-message:
       prefix: "deps:"
