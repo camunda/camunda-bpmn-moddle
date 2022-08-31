@@ -12,7 +12,7 @@ ___Note:__ Yet to be released changes appear here._
 
 ### Breaking Changes
 
-* behaviors moved to https://github.com/camunda/camunda-bpmn-js-behaviors
+* Behaviors moved to [`camunda-bpmn-js-behaviors`](https://github.com/camunda/camunda-bpmn-js-behaviors)
 
 ## 6.1.2
 
