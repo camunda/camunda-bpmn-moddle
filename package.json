@@ -34,7 +34,7 @@
     "bpmn-moddle": "^8.0.1",
     "chai": "^4.3.0",
     "eslint": "^8.25.0",
-    "eslint-plugin-bpmn-io": "^0.16.0",
+    "eslint-plugin-bpmn-io": "^1.0.0",
     "esm": "^3.2.25",
     "glob": "^8.0.0",
     "mocha": "^10.0.0",
