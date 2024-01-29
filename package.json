@@ -38,7 +38,7 @@
     "esm": "^3.2.25",
     "glob": "^10.0.0",
     "mocha": "^10.0.0",
-    "npm-run-all2": "^5.0.0",
+    "npm-run-all2": "^6.0.0",
     "p-series": "^2.1.0",
     "xsd-schema-validator": "^0.7.0"
   },
