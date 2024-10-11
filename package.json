@@ -33,8 +33,8 @@
   "devDependencies": {
     "bpmn-moddle": "^9.0.1",
     "chai": "^4.3.0",
-    "eslint": "^8.25.0",
-    "eslint-plugin-bpmn-io": "^1.0.0",
+    "eslint": "^9.12.0",
+    "eslint-plugin-bpmn-io": "^2.0.2",
     "esm": "^3.2.25",
     "glob": "^11.0.0",
     "mocha": "^10.0.0",
