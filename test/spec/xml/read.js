@@ -34,7 +34,7 @@ describe('read', function() {
         // then
         expect(process).to.jsonEqual({
           $type : 'bpmn:Process',
-          historyTimeToLive : 'foo'
+          'camunda:historyTimeToLive' : 'foo'
         });
       });
 
@@ -54,7 +54,7 @@ describe('read', function() {
         // then
         expect(process).to.jsonEqual({
           $type : 'bpmn:Process',
-          isStartableInTasklist : true
+          'camunda:isStartableInTasklist' : true
         });
       });
 
@@ -84,7 +84,7 @@ describe('read', function() {
         // then
         expect(userTask).to.jsonEqual({
           $type: 'bpmn:UserTask',
-          priority: '${ priority }'
+          'camunda:priority': '${ priority }'
         });
       });
 
@@ -104,7 +104,7 @@ describe('read', function() {
         // then
         expect(serviceTask).to.jsonEqual({
           $type: 'bpmn:ServiceTask',
-          async: true
+          'camunda:async': true
         });
       });
 
@@ -120,7 +120,7 @@ describe('read', function() {
         // then
         expect(signalEventDefinition).to.jsonEqual({
           $type: 'bpmn:SignalEventDefinition',
-          async: true
+          'camunda:async': true
         });
       });
 
@@ -170,7 +170,7 @@ describe('read', function() {
         // then
         expect(errorEventDefinition).to.jsonEqual({
           $type: 'bpmn:ErrorEventDefinition',
-          errorCodeVariable: 'errorCode'
+          'camunda:errorCodeVariable': 'errorCode'
         });
       });
 
@@ -190,7 +190,7 @@ describe('read', function() {
         // then
         expect(escalationEventDefinition).to.jsonEqual({
           $type: 'bpmn:EscalationEventDefinition',
-          escalationCodeVariable: 'escalationCode'
+          'camunda:escalationCodeVariable': 'escalationCode'
         });
       });
 
@@ -210,7 +210,7 @@ describe('read', function() {
         // then
         expect(error).to.jsonEqual({
           $type: 'bpmn:Error',
-          errorMessage: 'errorMessage'
+          'camunda:errorMessage': 'errorMessage'
         });
       });
 
@@ -302,7 +302,7 @@ describe('read', function() {
         // then
         expect(definitions).to.jsonEqual({
           $type: 'bpmn:Definitions',
-          diagramRelationId: 'foo'
+          'camunda:diagramRelationId': 'foo'
         });
       });
 
@@ -344,7 +344,7 @@ describe('read', function() {
         // then
         expect(expression).to.jsonEqual({
           $type: 'bpmn:FormalExpression',
-          resource: 'deployment://some-file'
+          'camunda:resource': 'deployment://some-file'
         });
       });
 
@@ -551,7 +551,7 @@ describe('read', function() {
           // then
           expect(process).to.jsonEqual({
             $type: 'bpmn:Process',
-            modelerTemplate: 'foo'
+            'camunda:modelerTemplate': 'foo'
           });
         });
 
@@ -567,7 +567,7 @@ describe('read', function() {
           // then
           expect(collaboration).to.jsonEqual({
             $type: 'bpmn:Collaboration',
-            modelerTemplate: 'foo'
+            'camunda:modelerTemplate': 'foo'
           });
         });
 
@@ -583,7 +583,7 @@ describe('read', function() {
           // then
           expect(task).to.jsonEqual({
             $type: 'bpmn:Task',
-            modelerTemplate: 'foo'
+            'camunda:modelerTemplate': 'foo'
           });
         });
 
@@ -599,7 +599,7 @@ describe('read', function() {
           // then
           expect(startEvent).to.jsonEqual({
             $type: 'bpmn:StartEvent',
-            modelerTemplate: 'bar'
+            'camunda:modelerTemplate': 'bar'
           });
         });
 
@@ -619,8 +619,8 @@ describe('read', function() {
           // then
           expect(process).to.jsonEqual({
             $type: 'bpmn:Process',
-            modelerTemplate: 'foo',
-            modelerTemplateVersion: 1
+            'camunda:modelerTemplate': 'foo',
+            'camunda:modelerTemplateVersion': 1
           });
         });
 
@@ -636,8 +636,8 @@ describe('read', function() {
           // then
           expect(collaboration).to.jsonEqual({
             $type: 'bpmn:Collaboration',
-            modelerTemplate: 'foo',
-            modelerTemplateVersion: 1
+            'camunda:modelerTemplate': 'foo',
+            'camunda:modelerTemplateVersion': 1
           });
         });
 
@@ -653,8 +653,8 @@ describe('read', function() {
           // then
           expect(task).to.jsonEqual({
             $type: 'bpmn:Task',
-            modelerTemplate: 'foo',
-            modelerTemplateVersion: 1
+            'camunda:modelerTemplate': 'foo',
+            'camunda:modelerTemplateVersion': 1
           });
         });
 
@@ -670,8 +670,8 @@ describe('read', function() {
           // then
           expect(startEvent).to.jsonEqual({
             $type: 'bpmn:StartEvent',
-            modelerTemplate: 'bar',
-            modelerTemplateVersion: 1
+            'camunda:modelerTemplate': 'bar',
+            'camunda:modelerTemplateVersion': 1
           });
         });
 
@@ -693,7 +693,7 @@ describe('read', function() {
         // then
         expect(startEvent).to.jsonEqual({
           $type: 'bpmn:StartEvent',
-          initiator: 'kermit'
+          'camunda:initiator': 'kermit'
         });
       });
 
@@ -711,16 +711,16 @@ describe('read', function() {
       // then
       expect(callActivity).to.jsonEqual({
         $type: 'bpmn:CallActivity',
-        calledElementBinding: 'version',
-        calledElementVersion: '1',
-        calledElementVersionTag: 'version1',
-        calledElementTenantId: 'tenant1',
-        caseRef: 'oneTaskCase',
-        caseBinding: 'version',
-        caseVersion: '2',
-        caseTenantId: 'tenant1',
-        variableMappingClass: 'org.camunda.bpm.test.Test',
-        variableMappingDelegateExpression: '${test}'
+        'camunda:calledElementBinding': 'version',
+        'camunda:calledElementVersion': '1',
+        'camunda:calledElementVersionTag': 'version1',
+        'camunda:calledElementTenantId': 'tenant1',
+        'camunda:caseRef': 'oneTaskCase',
+        'camunda:caseBinding': 'version',
+        'camunda:caseVersion': '2',
+        'camunda:caseTenantId': 'tenant1',
+        'camunda:variableMappingClass': 'org.camunda.bpm.test.Test',
+        'camunda:variableMappingDelegateExpression': '${test}'
       });
     });
 
@@ -738,7 +738,7 @@ describe('read', function() {
         // then
         expect(process).to.jsonEqual({
           $type : 'bpmn:Process',
-          taskPriority : '100'
+          'camunda:taskPriority' : '100'
         });
       });
 
@@ -754,7 +754,7 @@ describe('read', function() {
         // then
         expect(task).to.jsonEqual({
           $type : 'bpmn:ServiceTask',
-          taskPriority : '100'
+          'camunda:taskPriority' : '100'
         });
       });
 
@@ -774,7 +774,7 @@ describe('read', function() {
         // then
         expect(process).to.jsonEqual({
           $type: 'bpmn:Process',
-          jobPriority: '100'
+          'camunda:jobPriority': '100'
         });
       });
 
@@ -790,7 +790,7 @@ describe('read', function() {
         // then
         expect(serviceTask).to.jsonEqual({
           $type: 'bpmn:ServiceTask',
-          jobPriority: '100'
+          'camunda:jobPriority': '100'
         });
       });
 
@@ -806,7 +806,7 @@ describe('read', function() {
         // then
         expect(gateway).to.jsonEqual({
           $type: 'bpmn:ExclusiveGateway',
-          jobPriority: '${ some - expression }'
+          'camunda:jobPriority': '${ some - expression }'
         });
       });
 
@@ -822,7 +822,7 @@ describe('read', function() {
         // then
         expect(catchEvent).to.jsonEqual({
           $type: 'bpmn:IntermediateCatchEvent',
-          jobPriority: '100'
+          'camunda:jobPriority': '100'
         });
       });
 
@@ -842,9 +842,9 @@ describe('read', function() {
         // then
         expect(process).to.jsonEqual({
           $type: 'bpmn:Process',
-          candidateStarterUsers: 'userInGroup2',
-          candidateStarterGroups: 'group1, group2, group3',
-          versionTag: '1.0.0'
+          'camunda:candidateStarterUsers': 'userInGroup2',
+          'camunda:candidateStarterGroups': 'group1, group2, group3',
+          'camunda:versionTag': '1.0.0'
         });
       });
 
@@ -865,8 +865,8 @@ describe('read', function() {
         expect(scriptTask).to.jsonEqual({
           $type: 'bpmn:ScriptTask',
           scriptFormat: 'python',
-          resource: 'some-file.py',
-          resultVariable: 'result'
+          'camunda:resource': 'some-file.py',
+          'camunda:resultVariable': 'result'
         });
       });
 
@@ -1047,8 +1047,8 @@ describe('read', function() {
         expect(field).to.jsonEqual({
           $type: 'bpmn:MultiInstanceLoopCharacteristics',
           isSequential: true,
-          collection: '5',
-          elementVariable: '5'
+          'camunda:collection': '5',
+          'camunda:elementVariable': '5'
         });
       });
 
@@ -1068,10 +1068,10 @@ describe('read', function() {
         // then
         expect(businessRuleTask).to.jsonEqual({
           $type: 'bpmn:BusinessRuleTask',
-          decisionRef: 'myDecision',
-          decisionRefBinding: 'version',
-          decisionRefVersion: '1',
-          decisionRefTenantId: 'tenant1'
+          'camunda:decisionRef': 'myDecision',
+          'camunda:decisionRefBinding': 'version',
+          'camunda:decisionRefVersion': '1',
+          'camunda:decisionRefTenantId': 'tenant1'
         });
       });
 
@@ -1087,16 +1087,16 @@ describe('read', function() {
         // then
         expect(callActivity).to.jsonEqual({
           $type: 'bpmn:CallActivity',
-          calledElementBinding: 'version',
-          calledElementVersion: '1',
-          calledElementVersionTag: 'version1',
-          calledElementTenantId: 'tenant1',
-          caseRef: 'oneTaskCase',
-          caseBinding: 'version',
-          caseVersion: '2',
-          caseTenantId: 'tenant1',
-          variableMappingClass: 'org.camunda.bpm.test.Test',
-          variableMappingDelegateExpression: '${test}'
+          'camunda:calledElementBinding': 'version',
+          'camunda:calledElementVersion': '1',
+          'camunda:calledElementVersionTag': 'version1',
+          'camunda:calledElementTenantId': 'tenant1',
+          'camunda:caseRef': 'oneTaskCase',
+          'camunda:caseBinding': 'version',
+          'camunda:caseVersion': '2',
+          'camunda:caseTenantId': 'tenant1',
+          'camunda:variableMappingClass': 'org.camunda.bpm.test.Test',
+          'camunda:variableMappingDelegateExpression': '${test}'
         });
       });
 
@@ -1116,7 +1116,7 @@ describe('read', function() {
         // then
         expect(errorEventDefinition).to.jsonEqual({
           $type: 'bpmn:ErrorEventDefinition',
-          errorMessageVariable: 'errorMessage'
+          'camunda:errorMessageVariable': 'errorMessage'
         });
       });
 
@@ -1136,7 +1136,7 @@ describe('read', function() {
         // then
         expect(conditionalEventDefinition).to.jsonEqual({
           $type: 'bpmn:ConditionalEventDefinition',
-          variableName: 'myConditionVar'
+          'camunda:variableName': 'myConditionVar'
         });
       });
 
@@ -1156,7 +1156,7 @@ describe('read', function() {
         // then
         expect(conditionalEventDefinition).to.jsonEqual({
           $type: 'bpmn:ConditionalEventDefinition',
-          variableEvents: 'create, update'
+          'camunda:variableEvents': 'create, update'
         });
       });
 
@@ -1180,7 +1180,7 @@ describe('read', function() {
             // then
             expect(userTask).to.jsonEqual({
               $type: 'bpmn:UserTask',
-              formKey: 'form.html'
+              'camunda:formKey': 'form.html'
             });
           });
 
@@ -1196,7 +1196,7 @@ describe('read', function() {
             // then
             expect(startEvent).to.jsonEqual({
               $type: 'bpmn:StartEvent',
-              formKey: 'form.html'
+              'camunda:formKey': 'form.html'
             });
           });
 
@@ -1215,8 +1215,8 @@ describe('read', function() {
             // then
             expect(userTask).to.jsonEqual({
               $type: 'bpmn:UserTask',
-              formHandlerClass: 'my.company.FormHandler',
-              formKey: 'form.html'
+              'camunda:formHandlerClass': 'my.company.FormHandler',
+              'camunda:formKey': 'form.html'
             });
           });
 
@@ -1232,8 +1232,8 @@ describe('read', function() {
             // then
             expect(startEvent).to.jsonEqual({
               $type: 'bpmn:StartEvent',
-              formHandlerClass: 'my.company.FormHandler',
-              formKey: 'form.html'
+              'camunda:formHandlerClass': 'my.company.FormHandler',
+              'camunda:formKey': 'form.html'
             });
           });
 
@@ -1257,8 +1257,8 @@ describe('read', function() {
             // then
             expect(userTask).to.jsonEqual({
               $type: 'bpmn:UserTask',
-              formRef: 'formId',
-              formRefBinding: 'latest'
+              'camunda:formRef': 'formId',
+              'camunda:formRefBinding': 'latest'
             });
           });
 
@@ -1274,8 +1274,8 @@ describe('read', function() {
             // then
             expect(startEvent).to.jsonEqual({
               $type: 'bpmn:StartEvent',
-              formRef: 'formId',
-              formRefBinding: 'latest'
+              'camunda:formRef': 'formId',
+              'camunda:formRefBinding': 'latest'
             });
           });
 
@@ -1295,9 +1295,9 @@ describe('read', function() {
             // then
             expect(userTask).to.jsonEqual({
               $type: 'bpmn:UserTask',
-              formRef: 'formId',
-              formRefBinding: 'version',
-              formRefVersion: '1'
+              'camunda:formRef': 'formId',
+              'camunda:formRefBinding': 'version',
+              'camunda:formRefVersion': '1'
             });
           });
 
@@ -1313,9 +1313,9 @@ describe('read', function() {
             // then
             expect(startEvent).to.jsonEqual({
               $type: 'bpmn:StartEvent',
-              formRef: 'formId',
-              formRefBinding: 'version',
-              formRefVersion: '1'
+              'camunda:formRef': 'formId',
+              'camunda:formRefBinding': 'version',
+              'camunda:formRefVersion': '1'
             });
           });
 
