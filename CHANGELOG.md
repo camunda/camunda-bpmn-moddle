@@ -6,6 +6,10 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+## 7.0.2
+
+* `DEPS`: update to `bpmn-moddle@9.0.3`
+
 ## 7.0.1
 
 * `DEPS`: update to `bpmn-moddle@7.1.3`
