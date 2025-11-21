@@ -40,7 +40,7 @@
     "mocha": "^11.0.0",
     "npm-run-all2": "^8.0.0",
     "p-series": "^2.1.0",
-    "xsd-schema-validator": "^0.7.0"
+    "xsd-schema-validator": "^0.11.0"
   },
   "files": [
     "resources"
