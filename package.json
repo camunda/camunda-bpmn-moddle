@@ -39,7 +39,7 @@
     "glob": "^13.0.0",
     "mocha": "^11.0.0",
     "npm-run-all2": "^8.0.4",
-    "p-series": "^2.1.0",
+    "p-series": "^3.0.0",
     "xsd-schema-validator": "^0.11.0"
   },
   "files": [
