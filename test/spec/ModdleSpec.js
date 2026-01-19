@@ -3,7 +3,7 @@
 var readFile = require('../helper').readFile,
     createModdle = require('../helper').createModdle;
 
-var BpmnModdle = require('bpmn-moddle');
+var { BpmnModdle } = require('bpmn-moddle');
 
 var camundaDescriptor = require('../../resources/camunda');
 
