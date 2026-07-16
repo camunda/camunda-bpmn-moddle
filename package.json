@@ -3,8 +3,11 @@
   "version": "7.0.2",
   "description": "Camunda moddle extensions for BPMN 2.0",
   "scripts": {
-    "all": "run-s lint test",
+    "all": "run-s lint generate-types test:types test",
     "lint": "eslint .",
+    "generate-types": "moddle-generate-types --external bpmn=bpmn-moddle/types --index dist/types/index.d.ts resources/camunda.json dist/types/camunda.d.ts",
+    "test:types": "tsc --noEmit -p test/types/tsconfig.json",
+    "prepare": "run-s generate-types",
     "dev": "npm run test -- --auto-watch --no-single-run",
     "test": "mocha -r ./test/expect --reporter=spec \"test/**/*.js\""
   },
@@ -30,8 +33,12 @@
     }
   ],
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "bpmn-moddle": "^10.2.0",
+    "moddle": "^8.2.0"
+  },
+  "devDependencies": {
+    "@bpmn-io/moddle-types-generator": "^0.2.1",
     "chai": "^6.2.2",
     "eslint": "^9.39.5",
     "eslint-plugin-bpmn-io": "^2.3.1",
@@ -40,12 +47,17 @@
     "mocha": "^11.8.0",
     "npm-run-all2": "^9.0.3",
     "p-series": "^3.0.0",
+    "ts-expect": "^1.3.0",
+    "typescript": "^5.9.3",
     "xsd-schema-validator": "^0.11.0"
   },
   "files": [
     "resources"
   ],
   "exports": {
+    "./types": {
+      "types": "./dist/types/index.d.ts"
+    },
     "./resources/*": "./resources/*",
     "./package.json": "./package.json"
   }
