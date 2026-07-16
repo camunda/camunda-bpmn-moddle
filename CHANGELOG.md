@@ -7,6 +7,8 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 ___Note:__ Yet to be released changes appear here._
 
 * `CHORE`: add `exports` declaration ([#161](https://github.com/camunda/camunda-bpmn-moddle/pull/161))
+* `FEAT`: add camunda bpmn moddle types ([#161](https://github.com/camunda/camunda-bpmn-moddle/pull/161))
+* `DEPS`: add `bpmn-moddle` and `moddle` as dependencies ([#161](https://github.com/camunda/camunda-bpmn-moddle/pull/161))
 
 ### Breaking Changes
 
