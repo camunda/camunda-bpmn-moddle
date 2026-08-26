@@ -6,6 +6,12 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+* `CHORE`: add `exports` declaration ([#161](https://github.com/camunda/camunda-bpmn-moddle/pull/161))
+
+### Breaking Changes
+
+* Extensionless imports are no longer supported, import resources via their full path ([#161](https://github.com/camunda/camunda-bpmn-moddle/pull/161))
+
 ## 7.0.2
 
 * `CHORE`: verify compatibility with `bpmn-moddle@10.2.0`

@@ -44,5 +44,9 @@
   },
   "files": [
     "resources"
-  ]
+  ],
+  "exports": {
+    "./resources/*": "./resources/*",
+    "./package.json": "./package.json"
+  }
 }
