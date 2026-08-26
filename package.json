@@ -52,7 +52,8 @@
     "xsd-schema-validator": "^0.11.0"
   },
   "files": [
-    "resources"
+    "resources",
+    "dist"
   ],
   "exports": {
     "./types": {

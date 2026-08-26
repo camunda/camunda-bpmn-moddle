@@ -6,6 +6,8 @@ All notable changes to [camunda-bpmn-moddle](https://github.com/camunda/camunda-
 
 ___Note:__ Yet to be released changes appear here._
 
+* `FIX`: publish `dist` directory
+
 ## 8.0.0
 
 * `CHORE`: add `exports` declaration ([#161](https://github.com/camunda/camunda-bpmn-moddle/pull/161))
