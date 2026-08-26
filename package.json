@@ -1,6 +1,6 @@
 {
   "name": "camunda-bpmn-moddle",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "Camunda moddle extensions for BPMN 2.0",
   "scripts": {
     "all": "run-s lint generate-types test:types test",
